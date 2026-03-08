@@ -1,0 +1,848 @@
+[
+  {
+    "id": "binance-portfolio",
+    "name": "{\"ko\": \"바이낸스 포트폴리오\", \"en\": \"Binance Portfolio\"}",
+    "description": "{\"ko\": \"Binance 현물/선물 잔고, 포지션, 주요 시세 조회\", \"en\": \"Fetch Binance spot/futures balance, positions & prices\"}",
+    "category": "Finance",
+    "icon": "💹",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "api_key",
+        "type": "str",
+        "desc": "Binance API Key"
+      },
+      {
+        "name": "api_secret",
+        "type": "str",
+        "desc": "Binance API Secret"
+      }
+    ],
+    "file": "finance/binance-portfolio.py"
+  },
+  {
+    "id": "crypto-prices",
+    "name": "{\"ko\": \"암호화폐 시세\", \"en\": \"Crypto Prices\"}",
+    "description": "{\"ko\": \"CoinGecko API로 주요 코인 실시간 가격\", \"en\": \"Real-time crypto prices via CoinGecko\"}",
+    "category": "Finance",
+    "icon": "📈",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "coins",
+        "type": "str",
+        "desc": "Coin IDs (comma separated)",
+        "default": "bitcoin,ethereum,solana,ripple,dogecoin"
+      }
+    ],
+    "file": "finance/crypto-prices.py"
+  },
+  {
+    "id": "fear-greed",
+    "name": "{\"ko\": \"공포/탐욕 지수\", \"en\": \"Fear & Greed Index\"}",
+    "description": "{\"ko\": \"암호화폐 시장 공포/탐욕 지수\", \"en\": \"Crypto market Fear & Greed Index\"}",
+    "category": "Finance",
+    "icon": "😱",
+    "lang": "multi",
+    "params": [],
+    "file": "finance/fear-greed.py"
+  },
+  {
+    "id": "exchange-rates",
+    "name": "{\"ko\": \"환율 조회\", \"en\": \"Exchange Rates\"}",
+    "description": "{\"ko\": \"주요 통화 실시간 환율\", \"en\": \"Real-time currency exchange rates\"}",
+    "category": "Finance",
+    "icon": "💱",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "base",
+        "type": "str",
+        "desc": "Base currency",
+        "default": "USD"
+      }
+    ],
+    "file": "finance/exchange-rates.py"
+  },
+  {
+    "id": "stock-price",
+    "name": "{\"ko\": \"주식 시세\", \"en\": \"Stock Price\"}",
+    "description": "{\"ko\": \"Yahoo Finance 주식 가격\", \"en\": \"Stock price from Yahoo Finance\"}",
+    "category": "Finance",
+    "icon": "📊",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "symbol",
+        "type": "str",
+        "desc": "Ticker symbol",
+        "default": "AAPL"
+      }
+    ],
+    "file": "finance/stock-price.py"
+  },
+  {
+    "id": "gas-tracker",
+    "name": "{\"ko\": \"ETH 가스비\", \"en\": \"ETH Gas Tracker\"}",
+    "description": "{\"ko\": \"이더리움 가스비 실시간 조회\", \"en\": \"Ethereum gas price tracker\"}",
+    "category": "Finance",
+    "icon": "⛽",
+    "lang": "multi",
+    "params": [],
+    "file": "finance/gas-tracker.py"
+  },
+  {
+    "id": "ip-info",
+    "name": "{\"ko\": \"IP 정보 조회\", \"en\": \"IP Information\"}",
+    "description": "{\"ko\": \"현재 공인 IP 및 위치 정보\", \"en\": \"Current public IP and geolocation\"}",
+    "category": "Web & API",
+    "icon": "🌍",
+    "lang": "multi",
+    "params": [],
+    "file": "web_&_api/ip-info.py"
+  },
+  {
+    "id": "dns-lookup",
+    "name": "{\"ko\": \"DNS 조회\", \"en\": \"DNS Lookup\"}",
+    "description": "{\"ko\": \"도메인 DNS 레코드 조회\", \"en\": \"Domain DNS record lookup\"}",
+    "category": "Web & API",
+    "icon": "🔍",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "domain",
+        "type": "str",
+        "desc": "Domain",
+        "default": "google.com"
+      }
+    ],
+    "file": "web_&_api/dns-lookup.py"
+  },
+  {
+    "id": "http-status",
+    "name": "{\"ko\": \"사이트 상태 체크\", \"en\": \"HTTP Status Check\"}",
+    "description": "{\"ko\": \"URL 응답 상태 및 속도 확인\", \"en\": \"Check URL response status and speed\"}",
+    "category": "Web & API",
+    "icon": "🏥",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "url",
+        "type": "str",
+        "desc": "URL",
+        "default": "https://google.com"
+      }
+    ],
+    "file": "web_&_api/http-status.py"
+  },
+  {
+    "id": "ssl-check",
+    "name": "{\"ko\": \"SSL 인증서 체크\", \"en\": \"SSL Certificate Check\"}",
+    "description": "{\"ko\": \"HTTPS 인증서 만료일/발급자 확인\", \"en\": \"Check SSL certificate expiry & issuer\"}",
+    "category": "Web & API",
+    "icon": "🔒",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "domain",
+        "type": "str",
+        "desc": "Domain",
+        "default": "google.com"
+      }
+    ],
+    "file": "web_&_api/ssl-check.py"
+  },
+  {
+    "id": "whois-simple",
+    "name": "{\"ko\": \"WHOIS 조회\", \"en\": \"WHOIS Lookup\"}",
+    "description": "{\"ko\": \"도메인 등록 정보 조회\", \"en\": \"Domain registration info lookup\"}",
+    "category": "Web & API",
+    "icon": "📋",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "domain",
+        "type": "str",
+        "desc": "Domain",
+        "default": "google.com"
+      }
+    ],
+    "file": "web_&_api/whois-simple.py"
+  },
+  {
+    "id": "json-formatter",
+    "name": "{\"ko\": \"JSON 포매터\", \"en\": \"JSON Formatter\"}",
+    "description": "{\"ko\": \"JSON 정렬/포매팅/유효성 검사\", \"en\": \"JSON pretty-print and validation\"}",
+    "category": "Data & Text",
+    "icon": "📝",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "json_text",
+        "type": "str",
+        "desc": "JSON string"
+      }
+    ],
+    "file": "data_&_text/json-formatter.py"
+  },
+  {
+    "id": "base64-codec",
+    "name": "{\"ko\": \"Base64 변환\", \"en\": \"Base64 Encode/Decode\"}",
+    "description": "{\"ko\": \"텍스트 ↔ Base64 변환\", \"en\": \"Text ↔ Base64 conversion\"}",
+    "category": "Data & Text",
+    "icon": "🔄",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text"
+      },
+      {
+        "name": "mode",
+        "type": "str",
+        "desc": "encode or decode",
+        "default": "encode"
+      }
+    ],
+    "file": "data_&_text/base64-codec.py"
+  },
+  {
+    "id": "hash-generator",
+    "name": "{\"ko\": \"해시 생성\", \"en\": \"Hash Generator\"}",
+    "description": "{\"ko\": \"MD5/SHA256/SHA512 해시 생성\", \"en\": \"Generate MD5/SHA256/SHA512 hashes\"}",
+    "category": "Data & Text",
+    "icon": "#️⃣",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text to hash"
+      }
+    ],
+    "file": "data_&_text/hash-generator.py"
+  },
+  {
+    "id": "text-stats",
+    "name": "{\"ko\": \"텍스트 분석\", \"en\": \"Text Statistics\"}",
+    "description": "{\"ko\": \"글자수, 단어수, 읽기 시간 계산\", \"en\": \"Character/word count & reading time\"}",
+    "category": "Data & Text",
+    "icon": "📊",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text to analyze"
+      }
+    ],
+    "file": "data_&_text/text-stats.py"
+  },
+  {
+    "id": "regex-tester",
+    "name": "{\"ko\": \"정규식 테스터\", \"en\": \"Regex Tester\"}",
+    "description": "{\"ko\": \"정규식 패턴 매칭 테스트\", \"en\": \"Test regex pattern matching\"}",
+    "category": "Data & Text",
+    "icon": "🔎",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "pattern",
+        "type": "str",
+        "desc": "Regex pattern"
+      },
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Test text"
+      }
+    ],
+    "file": "data_&_text/regex-tester.py"
+  },
+  {
+    "id": "csv-analyzer",
+    "name": "{\"ko\": \"CSV 분석\", \"en\": \"CSV Analyzer\"}",
+    "description": "{\"ko\": \"CSV 데이터 통계 분석\", \"en\": \"Analyze CSV data statistics\"}",
+    "category": "Data & Text",
+    "icon": "📈",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "csv_text",
+        "type": "str",
+        "desc": "CSV data with header"
+      }
+    ],
+    "file": "data_&_text/csv-analyzer.py"
+  },
+  {
+    "id": "port-scanner",
+    "name": "{\"ko\": \"포트 스캐너\", \"en\": \"Port Scanner\"}",
+    "description": "{\"ko\": \"대상 호스트의 열린 포트 확인\", \"en\": \"Scan open ports on target host\"}",
+    "category": "System",
+    "icon": "🔌",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "host",
+        "type": "str",
+        "desc": "Target host",
+        "default": "127.0.0.1"
+      },
+      {
+        "name": "ports",
+        "type": "str",
+        "desc": "Ports (comma separated)",
+        "default": "22,80,443,3000,3306,5432,6379,8080,8443,9090"
+      }
+    ],
+    "file": "system/port-scanner.py"
+  },
+  {
+    "id": "disk-usage",
+    "name": "{\"ko\": \"시스템 상태\", \"en\": \"System Status\"}",
+    "description": "{\"ko\": \"디스크/메모리/CPU 상태 확인\", \"en\": \"Check disk/memory/CPU status\"}",
+    "category": "System",
+    "icon": "💾",
+    "lang": "multi",
+    "params": [],
+    "file": "system/disk-usage.py"
+  },
+  {
+    "id": "process-monitor",
+    "name": "{\"ko\": \"프로세스 모니터\", \"en\": \"Process Monitor\"}",
+    "description": "{\"ko\": \"CPU/메모리 상위 프로세스\", \"en\": \"Top processes by CPU/memory\"}",
+    "category": "System",
+    "icon": "📋",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Number of processes",
+        "default": "10"
+      }
+    ],
+    "file": "system/process-monitor.py"
+  },
+  {
+    "id": "cron-parser",
+    "name": "{\"ko\": \"Cron 스케줄 해석\", \"en\": \"Cron Parser\"}",
+    "description": "{\"ko\": \"cron 표현식을 읽기 쉽게 변환\", \"en\": \"Parse cron expressions to readable format\"}",
+    "category": "System",
+    "icon": "⏰",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "expression",
+        "type": "str",
+        "desc": "Cron expression",
+        "default": "*/5 * * * *"
+      }
+    ],
+    "file": "system/cron-parser.py"
+  },
+  {
+    "id": "env-checker",
+    "name": "{\"ko\": \"환경 변수 탐색\", \"en\": \"Environment Variables\"}",
+    "description": "{\"ko\": \"시스템 환경변수 필터링/조회\", \"en\": \"Filter and list environment variables\"}",
+    "category": "System",
+    "icon": "🔧",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "filter",
+        "type": "str",
+        "desc": "Filter keyword (empty=all)",
+        "default": ""
+      }
+    ],
+    "file": "system/env-checker.py"
+  },
+  {
+    "id": "password-gen",
+    "name": "{\"ko\": \"비밀번호 생성\", \"en\": \"Password Generator\"}",
+    "description": "{\"ko\": \"강력한 랜덤 비밀번호 생성\", \"en\": \"Generate strong random passwords\"}",
+    "category": "Security",
+    "icon": "🔑",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "length",
+        "type": "str",
+        "desc": "Length",
+        "default": "16"
+      },
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Count",
+        "default": "5"
+      }
+    ],
+    "file": "security/password-gen.py"
+  },
+  {
+    "id": "jwt-decoder",
+    "name": "{\"ko\": \"JWT 디코더\", \"en\": \"JWT Decoder\"}",
+    "description": "{\"ko\": \"JWT 토큰 헤더/페이로드 파싱\", \"en\": \"Decode JWT token header & payload\"}",
+    "category": "Security",
+    "icon": "🎫",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "token",
+        "type": "str",
+        "desc": "JWT token"
+      }
+    ],
+    "file": "security/jwt-decoder.py"
+  },
+  {
+    "id": "uuid-gen",
+    "name": "{\"ko\": \"UUID 생성\", \"en\": \"UUID Generator\"}",
+    "description": "{\"ko\": \"UUID v4 생성\", \"en\": \"Generate UUID v4 identifiers\"}",
+    "category": "Security",
+    "icon": "🆔",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Count",
+        "default": "5"
+      }
+    ],
+    "file": "security/uuid-gen.py"
+  },
+  {
+    "id": "totp-gen",
+    "name": "{\"ko\": \"TOTP 생성\", \"en\": \"TOTP Generator\"}",
+    "description": "{\"ko\": \"2FA TOTP 코드 생성\", \"en\": \"Generate 2FA TOTP codes\"}",
+    "category": "Security",
+    "icon": "🔐",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "secret",
+        "type": "str",
+        "desc": "Base32 secret key"
+      }
+    ],
+    "file": "security/totp-gen.py"
+  },
+  {
+    "id": "password-strength",
+    "name": "{\"ko\": \"비밀번호 강도\", \"en\": \"Password Strength\"}",
+    "description": "{\"ko\": \"비밀번호 엔트로피/강도 분석\", \"en\": \"Analyze password entropy & strength\"}",
+    "category": "Security",
+    "icon": "💪",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "password",
+        "type": "str",
+        "desc": "Password to check"
+      }
+    ],
+    "file": "security/password-strength.py"
+  },
+  {
+    "id": "timezone-converter",
+    "name": "{\"ko\": \"시간대 변환\", \"en\": \"Timezone Converter\"}",
+    "description": "{\"ko\": \"전 세계 주요 시간대 현재 시간\", \"en\": \"Current time across world timezones\"}",
+    "category": "Productivity",
+    "icon": "🕐",
+    "lang": "multi",
+    "params": [],
+    "file": "productivity/timezone-converter.py"
+  },
+  {
+    "id": "countdown",
+    "name": "{\"ko\": \"D-Day 카운트다운\", \"en\": \"D-Day Countdown\"}",
+    "description": "{\"ko\": \"특정 날짜까지 남은 시간\", \"en\": \"Time remaining until target date\"}",
+    "category": "Productivity",
+    "icon": "⏳",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "target_date",
+        "type": "str",
+        "desc": "Target date (YYYY-MM-DD)",
+        "default": "2025-12-31"
+      }
+    ],
+    "file": "productivity/countdown.py"
+  },
+  {
+    "id": "unit-converter",
+    "name": "{\"ko\": \"단위 변환\", \"en\": \"Unit Converter\"}",
+    "description": "{\"ko\": \"길이/무게/온도 변환\", \"en\": \"Convert length/weight/temperature\"}",
+    "category": "Productivity",
+    "icon": "📐",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "value",
+        "type": "str",
+        "desc": "Value",
+        "default": "100"
+      },
+      {
+        "name": "from_unit",
+        "type": "str",
+        "desc": "From unit",
+        "default": "kg"
+      },
+      {
+        "name": "to_unit",
+        "type": "str",
+        "desc": "To unit",
+        "default": "lb"
+      }
+    ],
+    "file": "productivity/unit-converter.py"
+  },
+  {
+    "id": "random-picker",
+    "name": "{\"ko\": \"랜덤 선택기\", \"en\": \"Random Picker\"}",
+    "description": "{\"ko\": \"목록에서 랜덤 항목 선택\", \"en\": \"Pick random items from a list\"}",
+    "category": "Productivity",
+    "icon": "🎲",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "items",
+        "type": "str",
+        "desc": "Items (comma separated)",
+        "default": "A,B,C,D,E"
+      },
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Pick count",
+        "default": "1"
+      }
+    ],
+    "file": "productivity/random-picker.py"
+  },
+  {
+    "id": "pomodoro",
+    "name": "{\"ko\": \"포모도로 타이머\", \"en\": \"Pomodoro Timer\"}",
+    "description": "{\"ko\": \"집중/휴식 타이머 (실시간 카운트)\", \"en\": \"Focus/break timer with live countdown\"}",
+    "category": "Productivity",
+    "icon": "🍅",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "work_min",
+        "type": "str",
+        "desc": "Work minutes",
+        "default": "25"
+      }
+    ],
+    "file": "productivity/pomodoro.py"
+  },
+  {
+    "id": "dice-roller",
+    "name": "{\"ko\": \"주사위 게임\", \"en\": \"Dice Roller\"}",
+    "description": "{\"ko\": \"D&D 스타일 주사위 굴리기\", \"en\": \"Roll D&D style dice (2d6+3 etc)\"}",
+    "category": "Games",
+    "icon": "🎲",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "dice",
+        "type": "str",
+        "desc": "Dice notation",
+        "default": "2d6+3"
+      }
+    ],
+    "file": "games/dice-roller.py"
+  },
+  {
+    "id": "ascii-art",
+    "name": "{\"ko\": \"ASCII 아트\", \"en\": \"ASCII Art\"}",
+    "description": "{\"ko\": \"텍스트를 ASCII 아트로 변환\", \"en\": \"Convert text to ASCII art\"}",
+    "category": "Games",
+    "icon": "🎨",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text (short)",
+        "default": "HELLO"
+      }
+    ],
+    "file": "games/ascii-art.py"
+  },
+  {
+    "id": "fortune-cookie",
+    "name": "{\"ko\": \"포춘 쿠키\", \"en\": \"Fortune Cookie\"}",
+    "description": "{\"ko\": \"랜덤 명언/격언 출력\", \"en\": \"Random inspirational quotes\"}",
+    "category": "Games",
+    "icon": "🥠",
+    "lang": "multi",
+    "params": [],
+    "file": "games/fortune-cookie.py"
+  },
+  {
+    "id": "maze-gen",
+    "name": "{\"ko\": \"미로 생성\", \"en\": \"Maze Generator\"}",
+    "description": "{\"ko\": \"랜덤 미로 텍스트 생성\", \"en\": \"Generate random text-based maze\"}",
+    "category": "Games",
+    "icon": "🏰",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "size",
+        "type": "str",
+        "desc": "Maze size",
+        "default": "10"
+      }
+    ],
+    "file": "games/maze-gen.py"
+  },
+  {
+    "id": "number-guess",
+    "name": "{\"ko\": \"숫자 맞추기\", \"en\": \"Number Guessing\"}",
+    "description": "{\"ko\": \"이진 탐색으로 숫자 맞추기 시뮬레이션\", \"en\": \"Binary search number guessing simulation\"}",
+    "category": "Games",
+    "icon": "🔢",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "max_num",
+        "type": "str",
+        "desc": "Max number",
+        "default": "100"
+      }
+    ],
+    "file": "games/number-guess.py"
+  },
+  {
+    "id": "ping-test",
+    "name": "{\"ko\": \"핑 테스트\", \"en\": \"Ping Test\"}",
+    "description": "{\"ko\": \"여러 호스트 응답 시간 측정\", \"en\": \"Measure response time for multiple hosts\"}",
+    "category": "Network",
+    "icon": "📡",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "hosts",
+        "type": "str",
+        "desc": "Hosts (comma separated)",
+        "default": "google.com,cloudflare.com,github.com"
+      }
+    ],
+    "file": "network/ping-test.py"
+  },
+  {
+    "id": "hackernews",
+    "name": "{\"ko\": \"Hacker News 인기글\", \"en\": \"Hacker News Top\"}",
+    "description": "{\"ko\": \"HN 상위 뉴스 목록\", \"en\": \"Top stories from Hacker News\"}",
+    "category": "Network",
+    "icon": "📰",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Count",
+        "default": "10"
+      }
+    ],
+    "file": "network/hackernews.py"
+  },
+  {
+    "id": "github-trending",
+    "name": "{\"ko\": \"GitHub 트렌딩\", \"en\": \"GitHub Trending\"}",
+    "description": "{\"ko\": \"GitHub 인기 저장소 조회\", \"en\": \"Trending GitHub repositories\"}",
+    "category": "Network",
+    "icon": "🐙",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "language",
+        "type": "str",
+        "desc": "Language",
+        "default": "python"
+      }
+    ],
+    "file": "network/github-trending.py"
+  },
+  {
+    "id": "speed-test",
+    "name": "{\"ko\": \"다운로드 속도 측정\", \"en\": \"Download Speed Test\"}",
+    "description": "{\"ko\": \"간이 다운로드 속도 측정\", \"en\": \"Quick download speed measurement\"}",
+    "category": "Network",
+    "icon": "⚡",
+    "lang": "multi",
+    "params": [],
+    "file": "network/speed-test.py"
+  },
+  {
+    "id": "prime-checker",
+    "name": "{\"ko\": \"소수 판별\", \"en\": \"Prime Checker\"}",
+    "description": "{\"ko\": \"소수 확인 + 근처 소수 찾기\", \"en\": \"Check if number is prime + nearby primes\"}",
+    "category": "Math",
+    "icon": "🔢",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "number",
+        "type": "str",
+        "desc": "Number",
+        "default": "97"
+      }
+    ],
+    "file": "math/prime-checker.py"
+  },
+  {
+    "id": "fibonacci",
+    "name": "{\"ko\": \"피보나치 수열\", \"en\": \"Fibonacci Sequence\"}",
+    "description": "{\"ko\": \"N번째까지 피보나치 수열 + 황금비\", \"en\": \"Fibonacci sequence + golden ratio\"}",
+    "category": "Math",
+    "icon": "🌀",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "n",
+        "type": "str",
+        "desc": "Count",
+        "default": "20"
+      }
+    ],
+    "file": "math/fibonacci.py"
+  },
+  {
+    "id": "statistics",
+    "name": "{\"ko\": \"통계 계산기\", \"en\": \"Statistics Calculator\"}",
+    "description": "{\"ko\": \"평균/중앙값/표준편차 계산\", \"en\": \"Mean/median/stddev calculator\"}",
+    "category": "Math",
+    "icon": "📈",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "numbers",
+        "type": "str",
+        "desc": "Numbers (comma separated)",
+        "default": "10,20,30,40,50,60,70,80,90,100"
+      }
+    ],
+    "file": "math/statistics.py"
+  },
+  {
+    "id": "matrix-calc",
+    "name": "{\"ko\": \"행렬 연산\", \"en\": \"Matrix Calculator\"}",
+    "description": "{\"ko\": \"행렬 곱셈, 전치, 행렬식\", \"en\": \"Matrix multiply, transpose, determinant\"}",
+    "category": "Math",
+    "icon": "🧮",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "matrix_a",
+        "type": "str",
+        "desc": "Matrix A (rows separated by ;)",
+        "default": "1,2;3,4"
+      },
+      {
+        "name": "operation",
+        "type": "str",
+        "desc": "Operation: det, transpose, square",
+        "default": "det"
+      }
+    ],
+    "file": "math/matrix-calc.py"
+  },
+  {
+    "id": "arena-spectator",
+    "name": "{\"ko\": \"아레나 관전\", \"en\": \"Arena Spectator\"}",
+    "description": "{\"ko\": \"진행 중인 게임 실시간 관전\", \"en\": \"Watch a live arena game\"}",
+    "category": "Games",
+    "icon": "👁️",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "game_id",
+        "type": "str",
+        "desc": "Game ID to watch"
+      }
+    ],
+    "file": "games/arena-spectator.py"
+  },
+  {
+    "id": "arena-stats",
+    "name": "{\"ko\": \"아레나 통계\", \"en\": \"Arena Statistics\"}",
+    "description": "{\"ko\": \"최근 게임 결과/승률 통계\", \"en\": \"Recent game results & win rates\"}",
+    "category": "Games",
+    "icon": "📊",
+    "lang": "multi",
+    "params": [],
+    "file": "games/arena-stats.py"
+  },
+  {
+    "id": "qr-text",
+    "name": "{\"ko\": \"QR코드 텍스트\", \"en\": \"QR Code Text\"}",
+    "description": "{\"ko\": \"텍스트 해시 기반 ASCII 패턴\", \"en\": \"Text hash-based ASCII pattern\"}",
+    "category": "Data & Text",
+    "icon": "📱",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text",
+        "default": "Hello"
+      }
+    ],
+    "file": "data_&_text/qr-text.py"
+  },
+  {
+    "id": "color-converter",
+    "name": "{\"ko\": \"색상 변환\", \"en\": \"Color Converter\"}",
+    "description": "{\"ko\": \"HEX/RGB/HSL 색상 코드 변환\", \"en\": \"Convert HEX/RGB/HSL color codes\"}",
+    "category": "Data & Text",
+    "icon": "🎨",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "color",
+        "type": "str",
+        "desc": "Color (#FF5500 or 255,85,0)",
+        "default": "#FF5500"
+      }
+    ],
+    "file": "data_&_text/color-converter.py"
+  },
+  {
+    "id": "arena-agent-v1",
+    "name": "{\"ko\": \"마피아게임 에이전트\", \"en\": \"Mafia Game Agent\"}",
+    "description": "{\"ko\": \"AI Arena 마피아 게임에 자동으로 참여하는 에이전트\", \"en\": \"AI agent that automatically plays Arena Mafia game\"}",
+    "category": "Games",
+    "icon": "🎮",
+    "lang": "ko",
+    "params": [
+      {
+        "name": "game_id",
+        "type": "str",
+        "desc": "참가할 게임 ID"
+      },
+      {
+        "name": "agent_name",
+        "type": "str",
+        "desc": "에이전트 이름",
+        "default": "Xoul에이전트"
+      },
+      {
+        "name": "persona",
+        "type": "str",
+        "desc": "에이전트 성격",
+        "default": "분석적이고 논리적인 성격."
+      }
+    ],
+    "file": "games/arena-agent-v1.py"
+  }
+]
