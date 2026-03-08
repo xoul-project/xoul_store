@@ -1,0 +1,898 @@
+[
+  {
+    "id": "binance-portfolio",
+    "name": "{\"ko\": \"바이낸스 포트폴리오\", \"en\": \"Binance Portfolio\"}",
+    "description": "{\"ko\": \"Binance 현물/선물 잔고, 포지션, 주요 시세 조회\", \"en\": \"Fetch Binance spot/futures balance, positions & prices\"}",
+    "category": "Finance",
+    "icon": "💹",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "api_key",
+        "type": "str",
+        "desc": "Binance API Key"
+      },
+      {
+        "name": "api_secret",
+        "type": "str",
+        "desc": "Binance API Secret"
+      }
+    ],
+    "file": "finance/binance-portfolio.py",
+    "code": "def run(api_key: str, api_secret: str):\n    \"\"\"\n    api_key: Binance API Key\n    api_secret: Binance API Secret\n    \"\"\"\n    import hashlib,hmac,time,urllib.parse,urllib.request,json\n    BASE_S=\"https://api.binance.com\";BASE_F=\"https://fapi.binance.com\"\n    def _sign(qs,s):return hmac.new(s.encode(),qs.encode(),hashlib.sha256).hexdigest()\n    def _req(base,ep,params=None,secret=None,key=None):\n        params=params or {};params[\"timestamp\"]=int(time.time()*1000);qs=urllib.parse.urlencode(params)\n        if secret:qs+=f\"&signature={_sign(qs,secret)}\"\n        req=urllib.request.Request(f\"{base}{ep}?{qs}\")\n        if key:req.add_header(\"X-MBX-APIKEY\",key)\n        try:\n            with urllib.request.urlopen(req,timeout=10) as r:return json.loads(r.read())\n        except Exception as e:return{\"error\":str(e)}\n    print(\"=\"*55+\"\\n\\U0001f4b9 Binance Portfolio\\n\"+\"=\"*55)\n    print(\"\\n\\U0001f4b0 Prices:\")\n    t=_req(BASE_S,\"/api/v3/ticker/24hr\")\n    if isinstance(t,list):\n        for x in t:\n            if x[\"symbol\"]in[\"BTCUSDT\",\"ETHUSDT\",\"SOLUSDT\",\"XRPUSDT\",\"DOGEUSDT\"]:\n                p,c=float(x[\"lastPrice\"]),float(x[\"priceChangePercent\"]);print(f\"  {'\\U0001f7e2'if c>=0 else'\\U0001f534'} {x['symbol']}: ${p:,.2f} ({c:+.2f}%)\")\n    print(\"\\n\\U0001f4bc Spot:\")\n    a=_req(BASE_S,\"/api/v3/account\",secret=api_secret,key=api_key)\n    if\"balances\"in a:\n        for b in a[\"balances\"]:\n            t=float(b[\"free\"])+float(b[\"locked\"])\n            if t>0.0001:print(f\"  {b['asset']:<8}{t:>14.6f}\")\n    elif\"error\"in a:print(f\"  {a['error']}\")\n    print(\"\\n\\U0001f4c8 Futures:\")\n    pos=_req(BASE_F,\"/fapi/v2/positionRisk\",secret=api_secret,key=api_key)\n    if isinstance(pos,list):\n        op=[p for p in pos if float(p.get(\"positionAmt\",0))!=0]\n        for p in op:\n            sd=\"LONG\"if float(p[\"positionAmt\"])>0 else\"SHORT\";pnl=float(p.get(\"unRealizedProfit\",0))\n            print(f\"  {p['symbol']} {sd} x{p.get('leverage','?')} PnL:${pnl:,.2f}\")\n        if not op:print(\"  (no open positions)\")\n    print(\"\\n\\u2705 Done!\")"
+  },
+  {
+    "id": "crypto-prices",
+    "name": "{\"ko\": \"암호화폐 시세\", \"en\": \"Crypto Prices\"}",
+    "description": "{\"ko\": \"CoinGecko API로 주요 코인 실시간 가격\", \"en\": \"Real-time crypto prices via CoinGecko\"}",
+    "category": "Finance",
+    "icon": "📈",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "coins",
+        "type": "str",
+        "desc": "Coin IDs (comma separated)",
+        "default": "bitcoin,ethereum,solana,ripple,dogecoin"
+      }
+    ],
+    "file": "finance/crypto-prices.py",
+    "code": "def run(coins: str = \"bitcoin,ethereum,solana,ripple,dogecoin\"):\n    \"\"\"\n    coins: Coin IDs (comma separated) (default: bitcoin,ethereum,solana,ripple,dogecoin)\n    \"\"\"\n    import urllib.request,json\n    url=f\"https://api.coingecko.com/api/v3/simple/price?ids={coins}&vs_currencies=usd,krw&include_24hr_change=true\"\n    with urllib.request.urlopen(url,timeout=10) as r:data=json.loads(r.read())\n    print(\"\\U0001f4ca Crypto Prices\\n\"+\"=\"*50)\n    for c,v in data.items():\n        usd=v.get(\"usd\",0);krw=v.get(\"krw\",0);ch=v.get(\"usd_24h_change\",0)\n        print(f\"  {'\\U0001f7e2'if ch>=0 else'\\U0001f534'} {c.upper():<12}${usd:>10,.2f} \\u20a9{krw:>14,.0f} ({ch:+.1f}%)\")"
+  },
+  {
+    "id": "fear-greed",
+    "name": "{\"ko\": \"공포/탐욕 지수\", \"en\": \"Fear & Greed Index\"}",
+    "description": "{\"ko\": \"암호화폐 시장 공포/탐욕 지수\", \"en\": \"Crypto market Fear & Greed Index\"}",
+    "category": "Finance",
+    "icon": "😱",
+    "lang": "multi",
+    "params": [],
+    "file": "finance/fear-greed.py",
+    "code": "def run():\n    import urllib.request,json\n    with urllib.request.urlopen(\"https://api.alternative.me/fng/?limit=7\",timeout=10) as r:data=json.loads(r.read())\n    print(\"\\U0001f631 Fear & Greed Index\\n\"+\"=\"*45)\n    for d in data.get(\"data\",[]):\n        v=int(d[\"value\"]);bar=\"\\u2588\"*int(v/5)+\"\\u2591\"*(20-int(v/5))\n        from datetime import datetime\n        dt=datetime.fromtimestamp(int(d[\"timestamp\"])).strftime(\"%Y-%m-%d\")\n        print(f\"  {dt} [{bar}] {v}/100 ({d['value_classification']})\")"
+  },
+  {
+    "id": "exchange-rates",
+    "name": "{\"ko\": \"환율 조회\", \"en\": \"Exchange Rates\"}",
+    "description": "{\"ko\": \"주요 통화 실시간 환율\", \"en\": \"Real-time currency exchange rates\"}",
+    "category": "Finance",
+    "icon": "💱",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "base",
+        "type": "str",
+        "desc": "Base currency",
+        "default": "USD"
+      }
+    ],
+    "file": "finance/exchange-rates.py",
+    "code": "def run(base: str = \"USD\"):\n    \"\"\"\n    base: Base currency (default: USD)\n    \"\"\"\n    import urllib.request,json\n    with urllib.request.urlopen(f\"https://open.er-api.com/v6/latest/{base}\",timeout=10) as r:data=json.loads(r.read())\n    print(f\"\\U0001f4b1 Exchange Rates ({base})\\n\"+\"=\"*45)\n    for t in[\"KRW\",\"JPY\",\"EUR\",\"GBP\",\"CNY\",\"CHF\",\"CAD\",\"AUD\",\"SGD\"]:\n        if t in data.get(\"rates\",{}):print(f\"  {base}/{t}: {data['rates'][t]:>12,.4f}\")\n    print(f\"\\nUpdated: {data.get('time_last_update_utc','?')}\")"
+  },
+  {
+    "id": "stock-price",
+    "name": "{\"ko\": \"주식 시세\", \"en\": \"Stock Price\"}",
+    "description": "{\"ko\": \"Yahoo Finance 주식 가격\", \"en\": \"Stock price from Yahoo Finance\"}",
+    "category": "Finance",
+    "icon": "📊",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "symbol",
+        "type": "str",
+        "desc": "Ticker symbol",
+        "default": "AAPL"
+      }
+    ],
+    "file": "finance/stock-price.py",
+    "code": "def run(symbol: str = \"AAPL\"):\n    \"\"\"\n    symbol: Ticker symbol (default: AAPL)\n    \"\"\"\n    import urllib.request,json\n    req=urllib.request.Request(f\"https://query1.finance.yahoo.com/v8/finance/chart/{symbol}?interval=1d&range=5d\",headers={\"User-Agent\":\"Mozilla/5.0\"})\n    try:\n        with urllib.request.urlopen(req,timeout=10) as r:data=json.loads(r.read())\n        m=data[\"chart\"][\"result\"][0][\"meta\"];p=m[\"regularMarketPrice\"];pv=m.get(\"chartPreviousClose\",p);ch=((p-pv)/pv)*100\n        print(f\"\\U0001f4ca {symbol.upper()}\\n\"+\"=\"*40)\n        print(f\"  Price: ${p:,.2f}\\n  Change: {'\\U0001f7e2'if ch>=0 else'\\U0001f534'} {ch:+.2f}%\\n  Exchange: {m.get('exchangeName','?')}\")\n    except Exception as e:print(f\"\\u274c {e}\")"
+  },
+  {
+    "id": "gas-tracker",
+    "name": "{\"ko\": \"ETH 가스비\", \"en\": \"ETH Gas Tracker\"}",
+    "description": "{\"ko\": \"이더리움 가스비 실시간 조회\", \"en\": \"Ethereum gas price tracker\"}",
+    "category": "Finance",
+    "icon": "⛽",
+    "lang": "multi",
+    "params": [],
+    "file": "finance/gas-tracker.py",
+    "code": "def run():\n    import urllib.request,json\n    try:\n        with urllib.request.urlopen(\"https://api.etherscan.io/api?module=gastracker&action=gasoracle\",timeout=10) as r:g=json.loads(r.read()).get(\"result\",{})\n        print(f\"\\u26fd ETH Gas\\n\"+\"=\"*40)\n        print(f\"  \\U0001f422 Low:  {g.get('SafeGasPrice','?')} Gwei\\n  \\U0001f6b6 Avg:  {g.get('ProposeGasPrice','?')} Gwei\\n  \\U0001f680 Fast: {g.get('FastGasPrice','?')} Gwei\")\n    except Exception as e:print(f\"\\u274c {e}\")"
+  },
+  {
+    "id": "ip-info",
+    "name": "{\"ko\": \"IP 정보 조회\", \"en\": \"IP Information\"}",
+    "description": "{\"ko\": \"현재 공인 IP 및 위치 정보\", \"en\": \"Current public IP and geolocation\"}",
+    "category": "Web & API",
+    "icon": "🌍",
+    "lang": "multi",
+    "params": [],
+    "file": "web_&_api/ip-info.py",
+    "code": "def run():\n    import urllib.request,json\n    with urllib.request.urlopen(\"https://ipinfo.io/json\",timeout=10) as r:d=json.loads(r.read())\n    print(\"\\U0001f30d IP Info\\n\"+\"=\"*40)\n    for k in[\"ip\",\"hostname\",\"city\",\"region\",\"country\",\"loc\",\"org\",\"timezone\"]:\n        if k in d:print(f\"  {k:<12}: {d[k]}\")"
+  },
+  {
+    "id": "dns-lookup",
+    "name": "{\"ko\": \"DNS 조회\", \"en\": \"DNS Lookup\"}",
+    "description": "{\"ko\": \"도메인 DNS 레코드 조회\", \"en\": \"Domain DNS record lookup\"}",
+    "category": "Web & API",
+    "icon": "🔍",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "domain",
+        "type": "str",
+        "desc": "Domain",
+        "default": "google.com"
+      }
+    ],
+    "file": "web_&_api/dns-lookup.py",
+    "code": "def run(domain: str = \"google.com\"):\n    \"\"\"\n    domain: Domain (default: google.com)\n    \"\"\"\n    import urllib.request,json\n    with urllib.request.urlopen(f\"https://dns.google/resolve?name={domain}&type=A\",timeout=10) as r:d=json.loads(r.read())\n    print(f\"\\U0001f50d DNS: {domain}\\n\"+\"=\"*40)\n    for a in d.get(\"Answer\",[]):print(f\"  {a.get('name','')} \\u2192 {a.get('data','')} (TTL:{a.get('TTL','')}s)\")\n    if not d.get(\"Answer\"):print(\"  (no records)\")"
+  },
+  {
+    "id": "http-status",
+    "name": "{\"ko\": \"사이트 상태 체크\", \"en\": \"HTTP Status Check\"}",
+    "description": "{\"ko\": \"URL 응답 상태 및 속도 확인\", \"en\": \"Check URL response status and speed\"}",
+    "category": "Web & API",
+    "icon": "🏥",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "url",
+        "type": "str",
+        "desc": "URL",
+        "default": "https://google.com"
+      }
+    ],
+    "file": "web_&_api/http-status.py",
+    "code": "def run(url: str = \"https://google.com\"):\n    \"\"\"\n    url: URL (default: https://google.com)\n    \"\"\"\n    import urllib.request,time\n    print(f\"\\U0001f3e5 HTTP Check: {url}\\n\"+\"=\"*40)\n    t0=time.time()\n    try:\n        req=urllib.request.Request(url,headers={\"User-Agent\":\"Mozilla/5.0\"})\n        with urllib.request.urlopen(req,timeout=15) as r:\n            ms=(time.time()-t0)*1000;sz=len(r.read())\n            print(f\"  Status: \\u2705 {r.status}\\n  Speed: {ms:.0f}ms\\n  Size: {sz:,}B\\n  Server: {r.headers.get('Server','?')}\")\n    except Exception as e:print(f\"  \\u274c {e}\")"
+  },
+  {
+    "id": "ssl-check",
+    "name": "{\"ko\": \"SSL 인증서 체크\", \"en\": \"SSL Certificate Check\"}",
+    "description": "{\"ko\": \"HTTPS 인증서 만료일/발급자 확인\", \"en\": \"Check SSL certificate expiry & issuer\"}",
+    "category": "Web & API",
+    "icon": "🔒",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "domain",
+        "type": "str",
+        "desc": "Domain",
+        "default": "google.com"
+      }
+    ],
+    "file": "web_&_api/ssl-check.py",
+    "code": "def run(domain: str = \"google.com\"):\n    \"\"\"\n    domain: Domain (default: google.com)\n    \"\"\"\n    import ssl,socket,datetime\n    ctx=ssl.create_default_context()\n    with ctx.wrap_socket(socket.socket(),server_hostname=domain) as s:\n        s.settimeout(10);s.connect((domain,443));cert=s.getpeercert()\n        exp=datetime.datetime.strptime(cert[\"notAfter\"],\"%b %d %H:%M:%S %Y GMT\")\n        days=(exp-datetime.datetime.utcnow()).days\n        print(f\"\\U0001f512 SSL: {domain}\\n\"+\"=\"*40)\n        print(f\"  Issuer: {dict(x[0]for x in cert['issuer']).get('organizationName','?')}\")\n        print(f\"  Expires: {exp:%Y-%m-%d} ({'\\U0001f7e2'if days>30 else'\\U0001f534'} {days}d left)\")"
+  },
+  {
+    "id": "whois-simple",
+    "name": "{\"ko\": \"WHOIS 조회\", \"en\": \"WHOIS Lookup\"}",
+    "description": "{\"ko\": \"도메인 등록 정보 조회\", \"en\": \"Domain registration info lookup\"}",
+    "category": "Web & API",
+    "icon": "📋",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "domain",
+        "type": "str",
+        "desc": "Domain",
+        "default": "google.com"
+      }
+    ],
+    "file": "web_&_api/whois-simple.py",
+    "code": "def run(domain: str = \"google.com\"):\n    \"\"\"\n    domain: Domain (default: google.com)\n    \"\"\"\n    import socket\n    tld=domain.rsplit('.',1)[-1]\n    srv={'com':'whois.verisign-grs.com','net':'whois.verisign-grs.com','org':'whois.pir.org','io':'whois.nic.io'}.get(tld,f'whois.nic.{tld}')\n    try:\n        s=socket.socket();s.settimeout(10);s.connect((srv,43));s.send((domain+'\\r\\n').encode())\n        resp=b''\n        while True:\n            d=s.recv(4096)\n            if not d:break\n            resp+=d\n        s.close()\n        print(f\"\\U0001f4cb WHOIS: {domain}\\n\"+\"=\"*45)\n        for l in resp.decode(errors='ignore').split('\\n'):\n            l=l.strip()\n            if any(k in l.lower()for k in['domain name','registrar','creation','expir','updated','name server']):print(f\"  {l}\")\n    except Exception as e:print(f\"\\u274c {e}\")"
+  },
+  {
+    "id": "json-formatter",
+    "name": "{\"ko\": \"JSON 포매터\", \"en\": \"JSON Formatter\"}",
+    "description": "{\"ko\": \"JSON 정렬/포매팅/유효성 검사\", \"en\": \"JSON pretty-print and validation\"}",
+    "category": "Data & Text",
+    "icon": "📝",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "json_text",
+        "type": "str",
+        "desc": "JSON string"
+      }
+    ],
+    "file": "data_&_text/json-formatter.py",
+    "code": "def run(json_text: str):\n    \"\"\"\n    json_text: JSON string\n    \"\"\"\n    import json\n    print(\"\\U0001f4dd JSON Formatter\\n\"+\"=\"*40)\n    try:\n        p=json.loads(json_text)\n        print(f\"\\u2705 Valid | Type: {type(p).__name__}\")\n        if isinstance(p,dict):print(f\"  Keys: {len(p)}\")\n        elif isinstance(p,list):print(f\"  Items: {len(p)}\")\n        print(f\"\\n{json.dumps(p,indent=2,ensure_ascii=False)}\")\n    except json.JSONDecodeError as e:print(f\"\\u274c Invalid: {e}\")"
+  },
+  {
+    "id": "base64-codec",
+    "name": "{\"ko\": \"Base64 변환\", \"en\": \"Base64 Encode/Decode\"}",
+    "description": "{\"ko\": \"텍스트 ↔ Base64 변환\", \"en\": \"Text ↔ Base64 conversion\"}",
+    "category": "Data & Text",
+    "icon": "🔄",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text"
+      },
+      {
+        "name": "mode",
+        "type": "str",
+        "desc": "encode or decode",
+        "default": "encode"
+      }
+    ],
+    "file": "data_&_text/base64-codec.py",
+    "code": "def run(text: str, mode: str = \"encode\"):\n    \"\"\"\n    text: Text\n    mode: encode or decode (default: encode)\n    \"\"\"\n    import base64\n    print(f\"\\U0001f504 Base64 {mode.upper()}\\n\"+\"=\"*40)\n    if mode=='encode':print(base64.b64encode(text.encode()).decode())\n    else:\n        try:print(base64.b64decode(text).decode())\n        except Exception as e:print(f\"\\u274c {e}\")"
+  },
+  {
+    "id": "hash-generator",
+    "name": "{\"ko\": \"해시 생성\", \"en\": \"Hash Generator\"}",
+    "description": "{\"ko\": \"MD5/SHA256/SHA512 해시 생성\", \"en\": \"Generate MD5/SHA256/SHA512 hashes\"}",
+    "category": "Data & Text",
+    "icon": "#️⃣",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text to hash"
+      }
+    ],
+    "file": "data_&_text/hash-generator.py",
+    "code": "def run(text: str):\n    \"\"\"\n    text: Text to hash\n    \"\"\"\n    import hashlib\n    print(f\"#\\ufe0f\\u20e3 Hash Generator\\n\"+\"=\"*40+f\"\\n  Input: {text[:50]}\")\n    for a in['md5','sha1','sha256','sha512']:print(f\"  {a.upper():<8}: {hashlib.new(a,text.encode()).hexdigest()}\")"
+  },
+  {
+    "id": "text-stats",
+    "name": "{\"ko\": \"텍스트 분석\", \"en\": \"Text Statistics\"}",
+    "description": "{\"ko\": \"글자수, 단어수, 읽기 시간 계산\", \"en\": \"Character/word count & reading time\"}",
+    "category": "Data & Text",
+    "icon": "📊",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text to analyze"
+      }
+    ],
+    "file": "data_&_text/text-stats.py",
+    "code": "def run(text: str):\n    \"\"\"\n    text: Text to analyze\n    \"\"\"\n    import re\n    chars=len(text);words=len(text.split());lines=text.count('\\n')+1\n    print(f\"\\U0001f4ca Text Stats\\n\"+\"=\"*40)\n    print(f\"  Chars: {chars:,}\\n  Words: {words:,}\\n  Lines: {lines}\\n  Read: ~{max(1,words//200)}min\")\n    freq={}\n    for w in re.findall(r'\\w+',text.lower()):freq[w]=freq.get(w,0)+1\n    print('\\n  Top words:')\n    for w,c in sorted(freq.items(),key=lambda x:-x[1])[:8]:print(f\"    {w}: {c}\")"
+  },
+  {
+    "id": "regex-tester",
+    "name": "{\"ko\": \"정규식 테스터\", \"en\": \"Regex Tester\"}",
+    "description": "{\"ko\": \"정규식 패턴 매칭 테스트\", \"en\": \"Test regex pattern matching\"}",
+    "category": "Data & Text",
+    "icon": "🔎",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "pattern",
+        "type": "str",
+        "desc": "Regex pattern"
+      },
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Test text"
+      }
+    ],
+    "file": "data_&_text/regex-tester.py",
+    "code": "def run(pattern: str, text: str):\n    \"\"\"\n    pattern: Regex pattern\n    text: Test text\n    \"\"\"\n    import re\n    print(f\"\\U0001f50e Regex: {pattern}\\n\"+\"=\"*40)\n    try:\n        m=list(re.finditer(pattern,text))\n        print(f\"  Matches: {len(m)}\")\n        for i,x in enumerate(m[:15]):print(f\"    [{i}] pos={x.start()}: '{x.group()}'\")\n    except re.error as e:print(f\"\\u274c {e}\")"
+  },
+  {
+    "id": "csv-analyzer",
+    "name": "{\"ko\": \"CSV 분석\", \"en\": \"CSV Analyzer\"}",
+    "description": "{\"ko\": \"CSV 데이터 통계 분석\", \"en\": \"Analyze CSV data statistics\"}",
+    "category": "Data & Text",
+    "icon": "📈",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "csv_text",
+        "type": "str",
+        "desc": "CSV data with header"
+      }
+    ],
+    "file": "data_&_text/csv-analyzer.py",
+    "code": "def run(csv_text: str):\n    \"\"\"\n    csv_text: CSV data with header\n    \"\"\"\n    import csv,io\n    reader=csv.reader(io.StringIO(csv_text));rows=list(reader)\n    if not rows:print('(empty)');exit()\n    hdr=rows[0];data=rows[1:]\n    print(f\"\\U0001f4c8 CSV Analysis\\n\"+\"=\"*40+f\"\\n  Cols: {len(hdr)} | Rows: {len(data)}\\n  Headers: {', '.join(hdr)}\")\n    for i,col in enumerate(hdr):\n        vals=[r[i]for r in data if i<len(r)and r[i]];nums=[]\n        for v in vals:\n            try:nums.append(float(v.replace(',','')))\n            except:pass\n        if nums:print(f\"\\n  [{col}] min={min(nums):.2f} max={max(nums):.2f} avg={sum(nums)/len(nums):.2f}\")\n        else:print(f\"\\n  [{col}] {len(set(vals))} unique values\")"
+  },
+  {
+    "id": "port-scanner",
+    "name": "{\"ko\": \"포트 스캐너\", \"en\": \"Port Scanner\"}",
+    "description": "{\"ko\": \"대상 호스트의 열린 포트 확인\", \"en\": \"Scan open ports on target host\"}",
+    "category": "System",
+    "icon": "🔌",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "host",
+        "type": "str",
+        "desc": "Target host",
+        "default": "127.0.0.1"
+      },
+      {
+        "name": "ports",
+        "type": "str",
+        "desc": "Ports (comma separated)",
+        "default": "22,80,443,3000,3306,5432,6379,8080,8443,9090"
+      }
+    ],
+    "file": "system/port-scanner.py",
+    "code": "def run(host: str = \"127.0.0.1\", ports: str = \"22,80,443,3000,3306,5432,6379,8080,8443,9090\"):\n    \"\"\"\n    host: Target host (default: 127.0.0.1)\n    ports: Ports (comma separated) (default: 22,80,443,3000,3306,5432,6379,8080,8443,9090)\n    \"\"\"\n    import socket\n    print(f\"\\U0001f50c Port Scan: {host}\\n\"+\"=\"*40)\n    for p in ports.split(','):\n        p=int(p.strip());s=socket.socket();s.settimeout(1)\n        r=s.connect_ex((host,p));s.close()\n        st='\\U0001f7e2 OPEN' if r==0 else '\\u26aa CLOSED'\n        print(f\"  {st}  :{p}\")"
+  },
+  {
+    "id": "disk-usage",
+    "name": "{\"ko\": \"시스템 상태\", \"en\": \"System Status\"}",
+    "description": "{\"ko\": \"디스크/메모리/CPU 상태 확인\", \"en\": \"Check disk/memory/CPU status\"}",
+    "category": "System",
+    "icon": "💾",
+    "lang": "multi",
+    "params": [],
+    "file": "system/disk-usage.py",
+    "code": "def run():\n    import subprocess,os\n    print(\"\\U0001f4be System Status\\n\"+\"=\"*40)\n    for label,cmd in{\"Disk\":\"df -h /\",\"Memory\":\"free -h\",\"Uptime\":\"uptime -p\",\"Load\":\"cat /proc/loadavg\",\"Kernel\":\"uname -r\"}.items():\n        try:\n            r=subprocess.run(cmd,shell=True,capture_output=True,text=True,timeout=5)\n            if r.stdout.strip():print(f\"\\n  [{label}]\\n  {r.stdout.strip()}\")\n        except:pass"
+  },
+  {
+    "id": "process-monitor",
+    "name": "{\"ko\": \"프로세스 모니터\", \"en\": \"Process Monitor\"}",
+    "description": "{\"ko\": \"CPU/메모리 상위 프로세스\", \"en\": \"Top processes by CPU/memory\"}",
+    "category": "System",
+    "icon": "📋",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Number of processes",
+        "default": "10"
+      }
+    ],
+    "file": "system/process-monitor.py",
+    "code": "def run(count: str = \"10\"):\n    \"\"\"\n    count: Number of processes (default: 10)\n    \"\"\"\n    import subprocess\n    n=int(count)\n    print(f\"\\U0001f4cb Top {n} Processes\\n\"+\"=\"*50)\n    for title,cmd in[(\"By CPU\",f\"ps aux --sort=-%cpu | head -{n+1}\"),(\"By Memory\",f\"ps aux --sort=-%mem | head -{n+1}\")]:\n        print(f\"\\n  [{title}]\")\n        r=subprocess.run(cmd,shell=True,capture_output=True,text=True,timeout=5)\n        for line in r.stdout.strip().split('\\n'):print(f\"  {line}\")"
+  },
+  {
+    "id": "cron-parser",
+    "name": "{\"ko\": \"Cron 스케줄 해석\", \"en\": \"Cron Parser\"}",
+    "description": "{\"ko\": \"cron 표현식을 읽기 쉽게 변환\", \"en\": \"Parse cron expressions to readable format\"}",
+    "category": "System",
+    "icon": "⏰",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "expression",
+        "type": "str",
+        "desc": "Cron expression",
+        "default": "*/5 * * * *"
+      }
+    ],
+    "file": "system/cron-parser.py",
+    "code": "def run(expression: str = \"*/5 * * * *\"):\n    \"\"\"\n    expression: Cron expression (default: */5 * * * *)\n    \"\"\"\n    parts=expression.split()\n    if len(parts)!=5:print(f'\\u274c Invalid: need 5 fields');exit()\n    names=['Minute','Hour','Day','Month','Weekday']\n    ranges=['0-59','0-23','1-31','1-12','0-7']\n    print(f\"\\u23f0 Cron: {expression}\\n\"+\"=\"*40)\n    for n,v,r in zip(names,parts,ranges):\n        if v=='*':desc='every'\n        elif v.startswith('*/'):desc=f'every {v[2:]}'\n        else:desc=v\n        print(f\"  {n:<10}: {v:<8} ({desc}, range: {r})\")\n    m,h,d,mo,w=parts\n    print(f\"\\n  Summary: \",end='')\n    if m.startswith('*/'):print(f\"Every {m[2:]} minutes\",end=' ')\n    elif m=='0':print(f\"At minute 0\",end=' ')\n    if h!='*':print(f\"at hour {h}\",end=' ')\n    if d!='*':print(f\"on day {d}\",end=' ')\n    print()"
+  },
+  {
+    "id": "env-checker",
+    "name": "{\"ko\": \"환경 변수 탐색\", \"en\": \"Environment Variables\"}",
+    "description": "{\"ko\": \"시스템 환경변수 필터링/조회\", \"en\": \"Filter and list environment variables\"}",
+    "category": "System",
+    "icon": "🔧",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "filter",
+        "type": "str",
+        "desc": "Filter keyword (empty=all)",
+        "default": ""
+      }
+    ],
+    "file": "system/env-checker.py",
+    "code": "def run(filter: str = \"\"):\n    \"\"\"\n    filter: Filter keyword (empty=all) (default: )\n    \"\"\"\n    import os\n    print(f\"\\U0001f527 Environment Variables\\n\"+\"=\"*40)\n    vars=sorted(os.environ.items())\n    if filter:\n        vars=[(k,v)for k,v in vars if filter.lower()in k.lower()or filter.lower()in v.lower()]\n        print(f\"  Filter: '{filter}' ({len(vars)} matches)\")\n    for k,v in vars:print(f\"  {k}={v[:80]}\")"
+  },
+  {
+    "id": "password-gen",
+    "name": "{\"ko\": \"비밀번호 생성\", \"en\": \"Password Generator\"}",
+    "description": "{\"ko\": \"강력한 랜덤 비밀번호 생성\", \"en\": \"Generate strong random passwords\"}",
+    "category": "Security",
+    "icon": "🔑",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "length",
+        "type": "str",
+        "desc": "Length",
+        "default": "16"
+      },
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Count",
+        "default": "5"
+      }
+    ],
+    "file": "security/password-gen.py",
+    "code": "def run(length: str = \"16\", count: str = \"5\"):\n    \"\"\"\n    length: Length (default: 16)\n    count: Count (default: 5)\n    \"\"\"\n    import secrets,string\n    chars=string.ascii_letters+string.digits+string.punctuation\n    print(f\"\\U0001f511 Passwords (len={length})\\n\"+\"=\"*40)\n    for i in range(int(count)):\n        pw=''.join(secrets.choice(chars)for _ in range(int(length)))\n        strength=sum([any(c.isupper()for c in pw),any(c.islower()for c in pw),any(c.isdigit()for c in pw),any(c in string.punctuation for c in pw)])\n        bar='\\U0001f7e2'*strength+'\\u26aa'*(4-strength)\n        print(f\"  {i+1}. {pw}  {bar}\")"
+  },
+  {
+    "id": "jwt-decoder",
+    "name": "{\"ko\": \"JWT 디코더\", \"en\": \"JWT Decoder\"}",
+    "description": "{\"ko\": \"JWT 토큰 헤더/페이로드 파싱\", \"en\": \"Decode JWT token header & payload\"}",
+    "category": "Security",
+    "icon": "🎫",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "token",
+        "type": "str",
+        "desc": "JWT token"
+      }
+    ],
+    "file": "security/jwt-decoder.py",
+    "code": "def run(token: str):\n    \"\"\"\n    token: JWT token\n    \"\"\"\n    import base64,json\n    parts=token.split('.')\n    if len(parts)<2:print('\\u274c Not a valid JWT');exit()\n    def dec(s):\n        s+='='*(4-len(s)%4)\n        return json.loads(base64.urlsafe_b64decode(s))\n    print(f\"\\U0001f3ab JWT Decoder\\n\"+\"=\"*40)\n    print(f\"\\n  [Header]\\n{json.dumps(dec(parts[0]),indent=2)}\")\n    p=dec(parts[1])\n    print(f\"\\n  [Payload]\\n{json.dumps(p,indent=2,ensure_ascii=False)}\")\n    if 'exp' in p:\n        from datetime import datetime\n        exp=datetime.fromtimestamp(p['exp'])\n        diff=(exp-datetime.now()).total_seconds()/3600\n        print(f\"\\n  Expires: {exp} ({'\\U0001f7e2' if diff>0 else '\\U0001f534'} {diff:.1f}h)\")"
+  },
+  {
+    "id": "uuid-gen",
+    "name": "{\"ko\": \"UUID 생성\", \"en\": \"UUID Generator\"}",
+    "description": "{\"ko\": \"UUID v4 생성\", \"en\": \"Generate UUID v4 identifiers\"}",
+    "category": "Security",
+    "icon": "🆔",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Count",
+        "default": "5"
+      }
+    ],
+    "file": "security/uuid-gen.py",
+    "code": "def run(count: str = \"5\"):\n    \"\"\"\n    count: Count (default: 5)\n    \"\"\"\n    import uuid\n    print(f\"\\U0001f194 UUID Generator\\n\"+\"=\"*40)\n    for i in range(int(count)):print(f\"  {i+1}. {uuid.uuid4()}\")"
+  },
+  {
+    "id": "totp-gen",
+    "name": "{\"ko\": \"TOTP 생성\", \"en\": \"TOTP Generator\"}",
+    "description": "{\"ko\": \"2FA TOTP 코드 생성\", \"en\": \"Generate 2FA TOTP codes\"}",
+    "category": "Security",
+    "icon": "🔐",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "secret",
+        "type": "str",
+        "desc": "Base32 secret key"
+      }
+    ],
+    "file": "security/totp-gen.py",
+    "code": "def run(secret: str):\n    \"\"\"\n    secret: Base32 secret key\n    \"\"\"\n    import hmac,hashlib,struct,time,base64\n    def totp(secret,interval=30):\n        key=base64.b32decode(secret.upper()+'='*(8-len(secret)%8))\n        t=int(time.time()//interval)\n        msg=struct.pack('>Q',t)\n        h=hmac.new(key,msg,hashlib.sha1).digest()\n        o=h[-1]&0x0F\n        code=(struct.unpack('>I',h[o:o+4])[0]&0x7FFFFFFF)%1000000\n        remaining=interval-int(time.time())%interval\n        return f\"{code:06d}\",remaining\n    print(f\"\\U0001f510 TOTP Generator\\n\"+\"=\"*40)\n    code,rem=totp(secret)\n    print(f\"  Code: {code}\\n  Expires in: {rem}s\")"
+  },
+  {
+    "id": "password-strength",
+    "name": "{\"ko\": \"비밀번호 강도\", \"en\": \"Password Strength\"}",
+    "description": "{\"ko\": \"비밀번호 엔트로피/강도 분석\", \"en\": \"Analyze password entropy & strength\"}",
+    "category": "Security",
+    "icon": "💪",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "password",
+        "type": "str",
+        "desc": "Password to check"
+      }
+    ],
+    "file": "security/password-strength.py",
+    "code": "def run(password: str):\n    \"\"\"\n    password: Password to check\n    \"\"\"\n    import math,re,string\n    print(f\"\\U0001f4aa Password Strength\\n\"+\"=\"*40)\n    pool=0\n    if re.search(r'[a-z]',password):pool+=26;print('  \\u2705 Lowercase')\n    else:print('  \\u274c No lowercase')\n    if re.search(r'[A-Z]',password):pool+=26;print('  \\u2705 Uppercase')\n    else:print('  \\u274c No uppercase')\n    if re.search(r'\\d',password):pool+=10;print('  \\u2705 Digits')\n    else:print('  \\u274c No digits')\n    if re.search(r'[^a-zA-Z0-9]',password):pool+=32;print('  \\u2705 Symbols')\n    else:print('  \\u274c No symbols')\n    entropy=len(password)*math.log2(max(pool,1))\n    level='Weak' if entropy<40 else 'Fair' if entropy<60 else 'Strong' if entropy<80 else 'Very Strong'\n    print(f\"\\n  Length: {len(password)}\\n  Entropy: {entropy:.1f} bits\\n  Rating: {level}\")"
+  },
+  {
+    "id": "timezone-converter",
+    "name": "{\"ko\": \"시간대 변환\", \"en\": \"Timezone Converter\"}",
+    "description": "{\"ko\": \"전 세계 주요 시간대 현재 시간\", \"en\": \"Current time across world timezones\"}",
+    "category": "Productivity",
+    "icon": "🕐",
+    "lang": "multi",
+    "params": [],
+    "file": "productivity/timezone-converter.py",
+    "code": "def run():\n    from datetime import datetime,timezone,timedelta\n    zones={'UTC':0,'KST(Seoul)':9,'JST(Tokyo)':9,'CST(Beijing)':8,'SGT':8,'IST(India)':5.5,'CET(Europe)':1,'GMT(London)':0,'EST(NewYork)':-5,'PST(LA)':-8}\n    print(\"\\U0001f550 World Clocks\\n\"+\"=\"*45)\n    now=datetime.now(timezone.utc)\n    for name,off in zones.items():\n        t=now+timedelta(hours=off)\n        print(f\"  {name:<16} {t.strftime('%Y-%m-%d %H:%M:%S')} (UTC{off:+.1f})\")"
+  },
+  {
+    "id": "countdown",
+    "name": "{\"ko\": \"D-Day 카운트다운\", \"en\": \"D-Day Countdown\"}",
+    "description": "{\"ko\": \"특정 날짜까지 남은 시간\", \"en\": \"Time remaining until target date\"}",
+    "category": "Productivity",
+    "icon": "⏳",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "target_date",
+        "type": "str",
+        "desc": "Target date (YYYY-MM-DD)",
+        "default": "2025-12-31"
+      }
+    ],
+    "file": "productivity/countdown.py",
+    "code": "def run(target_date: str = \"2025-12-31\"):\n    \"\"\"\n    target_date: Target date (YYYY-MM-DD) (default: 2025-12-31)\n    \"\"\"\n    from datetime import datetime\n    target=datetime.strptime(target_date,'%Y-%m-%d')\n    now=datetime.now();diff=target-now\n    print(f\"\\u23f3 D-Day: {target_date}\\n\"+\"=\"*40)\n    if diff.total_seconds()>0:\n        d=diff.days;h=diff.seconds//3600;m=(diff.seconds%3600)//60\n        print(f\"  D-{d} ({d}d {h}h {m}m left)\")\n    else:\n        print(f\"  D+{abs(diff.days)} (passed {abs(diff.days)} days ago)\")"
+  },
+  {
+    "id": "unit-converter",
+    "name": "{\"ko\": \"단위 변환\", \"en\": \"Unit Converter\"}",
+    "description": "{\"ko\": \"길이/무게/온도 변환\", \"en\": \"Convert length/weight/temperature\"}",
+    "category": "Productivity",
+    "icon": "📐",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "value",
+        "type": "str",
+        "desc": "Value",
+        "default": "100"
+      },
+      {
+        "name": "from_unit",
+        "type": "str",
+        "desc": "From unit",
+        "default": "kg"
+      },
+      {
+        "name": "to_unit",
+        "type": "str",
+        "desc": "To unit",
+        "default": "lb"
+      }
+    ],
+    "file": "productivity/unit-converter.py",
+    "code": "def run(value: str = \"100\", from_unit: str = \"kg\", to_unit: str = \"lb\"):\n    \"\"\"\n    value: Value (default: 100)\n    from_unit: From unit (default: kg)\n    to_unit: To unit (default: lb)\n    \"\"\"\n    v=float(value)\n    conversions={'km_mi':0.621371,'mi_km':1.60934,'m_ft':3.28084,'ft_m':0.3048,'cm_in':0.393701,'in_cm':2.54,'kg_lb':2.20462,'lb_kg':0.453592,'g_oz':0.035274,'oz_g':28.3495,'l_gal':0.264172,'gal_l':3.78541}\n    key=f\"{from_unit}_{to_unit}\"\n    if key in conversions:\n        r=v*conversions[key]\n        print(f\"\\U0001f4d0 {v} {from_unit} = {r:.4f} {to_unit}\")\n    elif from_unit=='c' and to_unit=='f':print(f\"\\U0001f4d0 {v}°C = {v*9/5+32:.1f}°F\")\n    elif from_unit=='f' and to_unit=='c':print(f\"\\U0001f4d0 {v}°F = {(v-32)*5/9:.1f}°C\")\n    else:print(f\"\\u274c Unknown: {from_unit} \\u2192 {to_unit}\\n  Supported: km/mi, m/ft, cm/in, kg/lb, g/oz, l/gal, c/f\")"
+  },
+  {
+    "id": "random-picker",
+    "name": "{\"ko\": \"랜덤 선택기\", \"en\": \"Random Picker\"}",
+    "description": "{\"ko\": \"목록에서 랜덤 항목 선택\", \"en\": \"Pick random items from a list\"}",
+    "category": "Productivity",
+    "icon": "🎲",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "items",
+        "type": "str",
+        "desc": "Items (comma separated)",
+        "default": "A,B,C,D,E"
+      },
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Pick count",
+        "default": "1"
+      }
+    ],
+    "file": "productivity/random-picker.py",
+    "code": "def run(items: str = \"A,B,C,D,E\", count: str = \"1\"):\n    \"\"\"\n    items: Items (comma separated) (default: A,B,C,D,E)\n    count: Pick count (default: 1)\n    \"\"\"\n    import random\n    lst=[x.strip()for x in items.split(',')if x.strip()]\n    n=min(int(count),len(lst))\n    picks=random.sample(lst,n)\n    print(f\"\\U0001f3b2 Random Pick ({n}/{len(lst)})\\n\"+\"=\"*40)\n    for i,p in enumerate(picks):print(f\"  {i+1}. \\U0001f3af {p}\")"
+  },
+  {
+    "id": "pomodoro",
+    "name": "{\"ko\": \"포모도로 타이머\", \"en\": \"Pomodoro Timer\"}",
+    "description": "{\"ko\": \"집중/휴식 타이머 (실시간 카운트)\", \"en\": \"Focus/break timer with live countdown\"}",
+    "category": "Productivity",
+    "icon": "🍅",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "work_min",
+        "type": "str",
+        "desc": "Work minutes",
+        "default": "25"
+      }
+    ],
+    "file": "productivity/pomodoro.py",
+    "code": "def run(work_min: str = \"25\"):\n    \"\"\"\n    work_min: Work minutes (default: 25)\n    \"\"\"\n    import time\n    w=int(work_min);b=5\n    print(f\"\\U0001f345 Pomodoro: {w}min work + {b}min break\\n\"+\"=\"*40)\n    print(f\"  \\U0001f4aa WORK START\")\n    for s in range(w*60,0,-1):\n        if s%(60)==0:print(f\"  {s//60}:{s%60:02d} remaining...\")\n        time.sleep(1)\n    print(f\"  \\u2705 Work done!\\n\\n  \\u2615 BREAK ({b}min)\")\n    for s in range(b*60,0,-1):\n        if s%(60)==0:print(f\"  {s//60}:{s%60:02d} remaining...\")\n        time.sleep(1)\n    print(f\"  \\u2705 Break done! Great job!\")"
+  },
+  {
+    "id": "dice-roller",
+    "name": "{\"ko\": \"주사위 게임\", \"en\": \"Dice Roller\"}",
+    "description": "{\"ko\": \"D&D 스타일 주사위 굴리기\", \"en\": \"Roll D&D style dice (2d6+3 etc)\"}",
+    "category": "Games",
+    "icon": "🎲",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "dice",
+        "type": "str",
+        "desc": "Dice notation",
+        "default": "2d6+3"
+      }
+    ],
+    "file": "games/dice-roller.py",
+    "code": "def run(dice: str = \"2d6+3\"):\n    \"\"\"\n    dice: Dice notation (default: 2d6+3)\n    \"\"\"\n    import random,re\n    print(f\"\\U0001f3b2 Dice: {dice}\\n\"+\"=\"*40)\n    m=re.match(r'(\\d+)d(\\d+)([+-]\\d+)?',dice)\n    if not m:print('\\u274c Format: NdS+M (e.g. 2d6+3)');exit()\n    n,s,mod=int(m[1]),int(m[2]),int(m[3]or 0)\n    rolls=[random.randint(1,s)for _ in range(n)]\n    total=sum(rolls)+mod\n    print(f\"  Rolls: {rolls}\\n  Sum: {sum(rolls)} + {mod} = {total}\")\n    if n>1:print(f\"  Min possible: {n+mod}\\n  Max possible: {n*s+mod}\")"
+  },
+  {
+    "id": "ascii-art",
+    "name": "{\"ko\": \"ASCII 아트\", \"en\": \"ASCII Art\"}",
+    "description": "{\"ko\": \"텍스트를 ASCII 아트로 변환\", \"en\": \"Convert text to ASCII art\"}",
+    "category": "Games",
+    "icon": "🎨",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text (short)",
+        "default": "HELLO"
+      }
+    ],
+    "file": "games/ascii-art.py",
+    "code": "def run(text: str = \"HELLO\"):\n    \"\"\"\n    text: Text (short) (default: HELLO)\n    \"\"\"\n    font={'A':['  #  ','# # #','#####','#   #','#   #'],'B':['#### ','#   #','#### ','#   #','#### '],'C':['#####','#    ','#    ','#    ','#####'],'D':['#### ','#   #','#   #','#   #','#### '],'E':['#####','#    ','#### ','#    ','#####'],'F':['#####','#    ','#### ','#    ','#    '],'G':['#####','#    ','# ###','#   #','#####'],'H':['#   #','#   #','#####','#   #','#   #'],'I':['#####','  #  ','  #  ','  #  ','#####'],'J':['#####','   # ','   # ','#  # ','#### '],'K':['#  # ','# #  ','##   ','# #  ','#  # '],'L':['#    ','#    ','#    ','#    ','#####'],'M':['#   #','## ##','# # #','#   #','#   #'],'N':['#   #','##  #','# # #','#  ##','#   #'],'O':['#####','#   #','#   #','#   #','#####'],'P':['#### ','#   #','#### ','#    ','#    '],'Q':['#####','#   #','# # #','#  # ','## ##'],'R':['#### ','#   #','#### ','# #  ','#  ##'],'S':['#####','#    ','#####','    #','#####'],'T':['#####','  #  ','  #  ','  #  ','  #  '],'U':['#   #','#   #','#   #','#   #','#####'],'V':['#   #','#   #','#   #',' # # ','  #  '],'W':['#   #','#   #','# # #','## ##','#   #'],'X':['#   #',' # # ','  #  ',' # # ','#   #'],'Y':['#   #',' # # ','  #  ','  #  ','  #  '],'Z':['#####','   # ','  #  ',' #   ','#####'],' ':['     ','     ','     ','     ','     ']}\n    print(f\"\\U0001f3a8 ASCII Art\\n\"+\"=\"*40)\n    for row in range(5):\n        line=''\n        for ch in text.upper():\n            if ch in font:line+=font[ch][row]+' '\n            else:line+=ch*5+' '\n        print(f\"  {line}\")"
+  },
+  {
+    "id": "fortune-cookie",
+    "name": "{\"ko\": \"포춘 쿠키\", \"en\": \"Fortune Cookie\"}",
+    "description": "{\"ko\": \"랜덤 명언/격언 출력\", \"en\": \"Random inspirational quotes\"}",
+    "category": "Games",
+    "icon": "🥠",
+    "lang": "multi",
+    "params": [],
+    "file": "games/fortune-cookie.py",
+    "code": "def run():\n    import random\n    quotes=[\n    'The best way to predict the future is to create it. - Peter Drucker',\n    'Stay hungry, stay foolish. - Steve Jobs',\n    'The only way to do great work is to love what you do. - Steve Jobs',\n    'In the middle of difficulty lies opportunity. - Albert Einstein',\n    'Simplicity is the ultimate sophistication. - Leonardo da Vinci',\n    'Innovation distinguishes between a leader and a follower. - Steve Jobs',\n    'The journey of a thousand miles begins with one step. - Lao Tzu',\n    'Talk is cheap. Show me the code. - Linus Torvalds',\n    'First, solve the problem. Then, write the code. - John Johnson',\n    'Code is like humor. When you have to explain it, it is bad. - Cory House',\n    'Debugging is twice as hard as writing the code in the first place.',\n    'There are only two hard things in CS: cache invalidation and naming things.',\n    'Any fool can write code that a computer can understand. Good programmers write code that humans can understand. - Martin Fowler',\n    'Programs must be written for people to read, and only incidentally for machines to execute. - Abelson',\n    'The best error message is the one that never shows up. - Thomas Fuchs',\n    ]\n    q=random.choice(quotes)\n    print(f\"\\U0001f960 Fortune Cookie\\n\"+\"=\"*45+f\"\\n\\n  \\\"{q}\\\"\")"
+  },
+  {
+    "id": "maze-gen",
+    "name": "{\"ko\": \"미로 생성\", \"en\": \"Maze Generator\"}",
+    "description": "{\"ko\": \"랜덤 미로 텍스트 생성\", \"en\": \"Generate random text-based maze\"}",
+    "category": "Games",
+    "icon": "🏰",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "size",
+        "type": "str",
+        "desc": "Maze size",
+        "default": "10"
+      }
+    ],
+    "file": "games/maze-gen.py",
+    "code": "def run(size: str = \"10\"):\n    \"\"\"\n    size: Maze size (default: 10)\n    \"\"\"\n    import random\n    n=int(size)\n    maze=[[1]*(2*n+1)for _ in range(2*n+1)]\n    for i in range(n):\n        for j in range(n):maze[2*i+1][2*j+1]=0\n    visited=set();stack=[(0,0)];visited.add((0,0))\n    while stack:\n        x,y=stack[-1];neighbors=[]\n        for dx,dy in[(0,1),(0,-1),(1,0),(-1,0)]:\n            nx,ny=x+dx,y+dy\n            if 0<=nx<n and 0<=ny<n and(nx,ny)not in visited:neighbors.append((nx,ny,dx,dy))\n        if neighbors:\n            nx,ny,dx,dy=random.choice(neighbors)\n            maze[2*x+1+dx][2*y+1+dy]=0\n            visited.add((nx,ny));stack.append((nx,ny))\n        else:stack.pop()\n    maze[1][0]=0;maze[2*n-1][2*n]=0\n    print(f\"\\U0001f3f0 Maze ({n}x{n})\\n\")\n    for row in maze:print('  '+''.join('\\u2588\\u2588'if c else'  'for c in row))"
+  },
+  {
+    "id": "number-guess",
+    "name": "{\"ko\": \"숫자 맞추기\", \"en\": \"Number Guessing\"}",
+    "description": "{\"ko\": \"이진 탐색으로 숫자 맞추기 시뮬레이션\", \"en\": \"Binary search number guessing simulation\"}",
+    "category": "Games",
+    "icon": "🔢",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "max_num",
+        "type": "str",
+        "desc": "Max number",
+        "default": "100"
+      }
+    ],
+    "file": "games/number-guess.py",
+    "code": "def run(max_num: str = \"100\"):\n    \"\"\"\n    max_num: Max number (default: 100)\n    \"\"\"\n    import random\n    mx=int(max_num);target=random.randint(1,mx)\n    print(f\"\\U0001f522 Guess the Number (1-{mx})\\n\"+\"=\"*40)\n    lo,hi,tries=1,mx,0\n    while lo<=hi:\n        guess=(lo+hi)//2;tries+=1\n        if guess==target:print(f\"  #{tries}: {guess} \\U0001f389 CORRECT!\");break\n        elif guess<target:print(f\"  #{tries}: {guess} \\u2b06 Too low\");lo=guess+1\n        else:print(f\"  #{tries}: {guess} \\u2b07 Too high\");hi=guess-1\n    print(f\"\\n  Answer: {target} (found in {tries} tries)\")"
+  },
+  {
+    "id": "ping-test",
+    "name": "{\"ko\": \"핑 테스트\", \"en\": \"Ping Test\"}",
+    "description": "{\"ko\": \"여러 호스트 응답 시간 측정\", \"en\": \"Measure response time for multiple hosts\"}",
+    "category": "Network",
+    "icon": "📡",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "hosts",
+        "type": "str",
+        "desc": "Hosts (comma separated)",
+        "default": "google.com,cloudflare.com,github.com"
+      }
+    ],
+    "file": "network/ping-test.py",
+    "code": "def run(hosts: str = \"google.com,cloudflare.com,github.com\"):\n    \"\"\"\n    hosts: Hosts (comma separated) (default: google.com,cloudflare.com,github.com)\n    \"\"\"\n    import subprocess\n    print(\"\\U0001f4e1 Ping Test\\n\"+\"=\"*40)\n    for h in hosts.split(','):\n        h=h.strip()\n        try:\n            r=subprocess.run(['ping','-c','3',h],capture_output=True,text=True,timeout=10)\n            for l in r.stdout.split('\\n'):\n                if 'avg' in l or 'rtt' in l:print(f\"  {h}: {l.strip()}\");break\n            else:print(f\"  {h}: {r.stdout.strip().split(chr(10))[-1]}\")\n        except Exception as e:print(f\"  {h}: \\u274c {e}\")"
+  },
+  {
+    "id": "hackernews",
+    "name": "{\"ko\": \"Hacker News 인기글\", \"en\": \"Hacker News Top\"}",
+    "description": "{\"ko\": \"HN 상위 뉴스 목록\", \"en\": \"Top stories from Hacker News\"}",
+    "category": "Network",
+    "icon": "📰",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "count",
+        "type": "str",
+        "desc": "Count",
+        "default": "10"
+      }
+    ],
+    "file": "network/hackernews.py",
+    "code": "def run(count: str = \"10\"):\n    \"\"\"\n    count: Count (default: 10)\n    \"\"\"\n    import urllib.request,json\n    ids=json.loads(urllib.request.urlopen('https://hacker-news.firebaseio.com/v0/topstories.json',timeout=10).read())\n    print(f\"\\U0001f4f0 HN Top {count}\\n\"+\"=\"*50)\n    for j,sid in enumerate(ids[:int(count)]):\n        s=json.loads(urllib.request.urlopen(f'https://hacker-news.firebaseio.com/v0/item/{sid}.json',timeout=10).read())\n        print(f\"  {j+1}. [{s.get('score',0)}\\u2b06] {s.get('title','')}\")\n        if s.get('url'):print(f\"     {s['url'][:70]}\")"
+  },
+  {
+    "id": "github-trending",
+    "name": "{\"ko\": \"GitHub 트렌딩\", \"en\": \"GitHub Trending\"}",
+    "description": "{\"ko\": \"GitHub 인기 저장소 조회\", \"en\": \"Trending GitHub repositories\"}",
+    "category": "Network",
+    "icon": "🐙",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "language",
+        "type": "str",
+        "desc": "Language",
+        "default": "python"
+      }
+    ],
+    "file": "network/github-trending.py",
+    "code": "def run(language: str = \"python\"):\n    \"\"\"\n    language: Language (default: python)\n    \"\"\"\n    import urllib.request,json\n    url=f'https://api.github.com/search/repositories?q=language:{language}&sort=stars&order=desc&per_page=10'\n    req=urllib.request.Request(url,headers={'User-Agent':'Mozilla/5.0'})\n    with urllib.request.urlopen(req,timeout=10) as r:data=json.loads(r.read())\n    print(f\"\\U0001f419 GitHub Top {language}\\n\"+\"=\"*50)\n    for i,repo in enumerate(data.get('items',[])[:10]):\n        print(f\"  {i+1}. \\u2b50{repo['stargazers_count']:,} {repo['full_name']}\")\n        print(f\"     {repo.get('description','')[:60]}\")"
+  },
+  {
+    "id": "speed-test",
+    "name": "{\"ko\": \"다운로드 속도 측정\", \"en\": \"Download Speed Test\"}",
+    "description": "{\"ko\": \"간이 다운로드 속도 측정\", \"en\": \"Quick download speed measurement\"}",
+    "category": "Network",
+    "icon": "⚡",
+    "lang": "multi",
+    "params": [],
+    "file": "network/speed-test.py",
+    "code": "def run():\n    import urllib.request,time\n    url='http://speedtest.tele2.net/1MB.zip'\n    print(\"\\u26a1 Speed Test\\n\"+\"=\"*40+\"\\n  Downloading 1MB test file...\")\n    t0=time.time()\n    try:\n        with urllib.request.urlopen(url,timeout=30) as r:data=r.read()\n        elapsed=time.time()-t0;size=len(data)\n        mbps=(size*8)/(elapsed*1000000)\n        print(f\"  Size: {size:,} bytes\\n  Time: {elapsed:.2f}s\\n  Speed: {mbps:.2f} Mbps\")\n    except Exception as e:print(f\"  \\u274c {e}\")"
+  },
+  {
+    "id": "prime-checker",
+    "name": "{\"ko\": \"소수 판별\", \"en\": \"Prime Checker\"}",
+    "description": "{\"ko\": \"소수 확인 + 근처 소수 찾기\", \"en\": \"Check if number is prime + nearby primes\"}",
+    "category": "Math",
+    "icon": "🔢",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "number",
+        "type": "str",
+        "desc": "Number",
+        "default": "97"
+      }
+    ],
+    "file": "math/prime-checker.py",
+    "code": "def run(number: str = \"97\"):\n    \"\"\"\n    number: Number (default: 97)\n    \"\"\"\n    n=int(number)\n    def is_prime(x):\n        if x<2:return False\n        for i in range(2,int(x**0.5)+1):\n            if x%i==0:return False\n        return True\n    print(f\"\\U0001f522 Prime Check: {n}\\n\"+\"=\"*40)\n    print(f\"  {n} is {'\\u2705 PRIME' if is_prime(n) else '\\u274c NOT prime'}\")\n    if not is_prime(n):\n        factors=[]\n        x=n\n        for i in range(2,int(x**0.5)+1):\n            while x%i==0:factors.append(i);x//=i\n        if x>1:factors.append(x)\n        print(f\"  Factors: {' \\u00d7 '.join(map(str,factors))}\")\n    print('\\n  Nearby primes: ',end='')\n    found=0;x=max(2,n-10)\n    while found<5:\n        if is_prime(x):print(x,end=' ');found+=1\n        x+=1"
+  },
+  {
+    "id": "fibonacci",
+    "name": "{\"ko\": \"피보나치 수열\", \"en\": \"Fibonacci Sequence\"}",
+    "description": "{\"ko\": \"N번째까지 피보나치 수열 + 황금비\", \"en\": \"Fibonacci sequence + golden ratio\"}",
+    "category": "Math",
+    "icon": "🌀",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "n",
+        "type": "str",
+        "desc": "Count",
+        "default": "20"
+      }
+    ],
+    "file": "math/fibonacci.py",
+    "code": "def run(n: str = \"20\"):\n    \"\"\"\n    n: Count (default: 20)\n    \"\"\"\n    n=int(n)\n    a,b=0,1;seq=[a]\n    for _ in range(n-1):a,b=b,a+b;seq.append(a)\n    print(f\"\\U0001f300 Fibonacci ({n})\\n\"+\"=\"*40)\n    for i,v in enumerate(seq):print(f\"  F({i})={v:,}\",end='  ')\n        if(i+1)%5==0:print()\n    if len(seq)>=2:print(f\"\\n\\n  Golden ratio: {seq[-1]/seq[-2]:.10f}\\n  Phi:          1.6180339887...\")"
+  },
+  {
+    "id": "statistics",
+    "name": "{\"ko\": \"통계 계산기\", \"en\": \"Statistics Calculator\"}",
+    "description": "{\"ko\": \"평균/중앙값/표준편차 계산\", \"en\": \"Mean/median/stddev calculator\"}",
+    "category": "Math",
+    "icon": "📈",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "numbers",
+        "type": "str",
+        "desc": "Numbers (comma separated)",
+        "default": "10,20,30,40,50,60,70,80,90,100"
+      }
+    ],
+    "file": "math/statistics.py",
+    "code": "def run(numbers: str = \"10,20,30,40,50,60,70,80,90,100\"):\n    \"\"\"\n    numbers: Numbers (comma separated) (default: 10,20,30,40,50,60,70,80,90,100)\n    \"\"\"\n    import math\n    nums=sorted(float(x.strip())for x in numbers.split(',')if x.strip())\n    n=len(nums);mean=sum(nums)/n\n    median=nums[n//2]if n%2 else(nums[n//2-1]+nums[n//2])/2\n    variance=sum((x-mean)**2 for x in nums)/n\n    stddev=math.sqrt(variance)\n    print(f\"\\U0001f4c8 Statistics ({n} values)\\n\"+\"=\"*40)\n    print(f\"  Min:    {min(nums):,.2f}\\n  Max:    {max(nums):,.2f}\\n  Sum:    {sum(nums):,.2f}\")\n    print(f\"  Mean:   {mean:,.2f}\\n  Median: {median:,.2f}\\n  StdDev: {stddev:,.2f}\\n  Var:    {variance:,.2f}\")"
+  },
+  {
+    "id": "matrix-calc",
+    "name": "{\"ko\": \"행렬 연산\", \"en\": \"Matrix Calculator\"}",
+    "description": "{\"ko\": \"행렬 곱셈, 전치, 행렬식\", \"en\": \"Matrix multiply, transpose, determinant\"}",
+    "category": "Math",
+    "icon": "🧮",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "matrix_a",
+        "type": "str",
+        "desc": "Matrix A (rows separated by ;)",
+        "default": "1,2;3,4"
+      },
+      {
+        "name": "operation",
+        "type": "str",
+        "desc": "Operation: det, transpose, square",
+        "default": "det"
+      }
+    ],
+    "file": "math/matrix-calc.py",
+    "code": "def run(matrix_a: str = \"1,2;3,4\", operation: str = \"det\"):\n    \"\"\"\n    matrix_a: Matrix A (rows separated by ;) (default: 1,2;3,4)\n    operation: Operation: det, transpose, square (default: det)\n    \"\"\"\n    def parse(s):return[[float(x)for x in row.split(',')]for row in s.split(';')]\n    A=parse(matrix_a)\n    print(f\"\\U0001f9ee Matrix ({operation})\\n\"+\"=\"*40)\n    print('  A =')\n    for row in A:print(f\"    [{' '.join(f'{x:>6.2f}'for x in row)}]\")\n    if operation=='det':\n        if len(A)==2:d=A[0][0]*A[1][1]-A[0][1]*A[1][0]\n        elif len(A)==3:d=A[0][0]*(A[1][1]*A[2][2]-A[1][2]*A[2][1])-A[0][1]*(A[1][0]*A[2][2]-A[1][2]*A[2][0])+A[0][2]*(A[1][0]*A[2][1]-A[1][1]*A[2][0])\n        else:d='(only 2x2/3x3)'\n        print(f\"\\n  det(A) = {d}\")\n    elif operation=='transpose':\n        T=list(map(list,zip(*A)))\n        print('\\n  A^T =')\n        for row in T:print(f\"    [{' '.join(f'{x:>6.2f}'for x in row)}]\")\n    elif operation=='square':\n        n=len(A)\n        R=[[sum(A[i][k]*A[k][j]for k in range(len(A[0])))for j in range(n)]for i in range(n)]\n        print('\\n  A*A =')\n        for row in R:print(f\"    [{' '.join(f'{x:>6.2f}'for x in row)}]\")"
+  },
+  {
+    "id": "arena-spectator",
+    "name": "{\"ko\": \"아레나 관전\", \"en\": \"Arena Spectator\"}",
+    "description": "{\"ko\": \"진행 중인 게임 실시간 관전\", \"en\": \"Watch a live arena game\"}",
+    "category": "Games",
+    "icon": "👁️",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "game_id",
+        "type": "str",
+        "desc": "Game ID to watch"
+      }
+    ],
+    "file": "games/arena-spectator.py",
+    "code": "def run(game_id: str):\n    \"\"\"\n    game_id: Game ID to watch\n    \"\"\"\n    import urllib.request,json,time,os\n    ARENA=os.environ.get('ARENA_URL','http://15.165.31.212:8081')\n    def get(p):\n        try:\n            with urllib.request.urlopen(f'{ARENA}{p}',timeout=10) as r:return json.loads(r.read())\n        except:return{}\n    print(f\"\\U0001f441 Spectating: {game_id}\\n\"+\"=\"*45)\n    seen=0\n    for _ in range(300):\n        state=get(f'/arena/games/{game_id}/state')\n        if state.get('status')=='finished':print(f\"\\n\\U0001f3c1 Game over! Winner: {state.get('winner','?')}\");break\n        log=state.get('chat_log',[])\n        for msg in log[seen:]:\n            t=msg.get('type','');p=msg.get('player','?');d=msg.get('data',{})\n            if t=='speak':print(f\"  \\U0001f4ac {p}: {d.get('message','')[:80]}\")\n            elif t=='vote':print(f\"  \\U0001f5f3 {p} \\u2192 {d.get('target','?')}\")\n            elif t=='eliminated':print(f\"  \\u274c {p} eliminated\")\n            elif t=='system':print(f\"  \\u2139 {d.get('message','')}\")\n        seen=len(log)\n        time.sleep(3)"
+  },
+  {
+    "id": "arena-stats",
+    "name": "{\"ko\": \"아레나 통계\", \"en\": \"Arena Statistics\"}",
+    "description": "{\"ko\": \"최근 게임 결과/승률 통계\", \"en\": \"Recent game results & win rates\"}",
+    "category": "Games",
+    "icon": "📊",
+    "lang": "multi",
+    "params": [],
+    "file": "games/arena-stats.py",
+    "code": "def run():\n    import urllib.request,json,os\n    ARENA=os.environ.get('ARENA_URL','http://15.165.31.212:8081')\n    try:\n        with urllib.request.urlopen(f'{ARENA}/arena/games?status=finished&limit=20',timeout=10) as r:data=json.loads(r.read())\n    except Exception as e:print(f'\\u274c {e}');exit()\n    games=data.get('games',[])\n    print(f\"\\U0001f4ca Arena Stats ({len(games)} recent games)\\n\"+\"=\"*45)\n    wins={}\n    for g in games:\n        w=g.get('winner','?')\n        print(f\"  {g['id'][:8]} | Winner: {w} | Players: {g.get('player_count','?')}\")\n        wins[w]=wins.get(w,0)+1\n    if wins:\n        print('\\n  Win counts:')\n        for w,c in sorted(wins.items(),key=lambda x:-x[1]):print(f\"    {w}: {c}\")"
+  },
+  {
+    "id": "qr-text",
+    "name": "{\"ko\": \"QR코드 텍스트\", \"en\": \"QR Code Text\"}",
+    "description": "{\"ko\": \"텍스트 해시 기반 ASCII 패턴\", \"en\": \"Text hash-based ASCII pattern\"}",
+    "category": "Data & Text",
+    "icon": "📱",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "text",
+        "type": "str",
+        "desc": "Text",
+        "default": "Hello"
+      }
+    ],
+    "file": "data_&_text/qr-text.py",
+    "code": "def run(text: str = \"Hello\"):\n    \"\"\"\n    text: Text (default: Hello)\n    \"\"\"\n    import hashlib\n    print(\"QR Pattern\\n\"+\"=\"*40+\"\\n  Text: \"+text)\n    h=hashlib.sha256(text.encode()).hexdigest()\n    for y in range(15):\n        row=\"  \"\n        for x in range(15):\n            idx=(y*15+x)%len(h)\n            if y<2 or y>=13 or x<2 or x>=13:row+=chr(9608)*2\n            elif int(h[idx],16)>7:row+=chr(9608)*2\n            else:row+=\"  \"\n        print(row)\n"
+  },
+  {
+    "id": "color-converter",
+    "name": "{\"ko\": \"색상 변환\", \"en\": \"Color Converter\"}",
+    "description": "{\"ko\": \"HEX/RGB/HSL 색상 코드 변환\", \"en\": \"Convert HEX/RGB/HSL color codes\"}",
+    "category": "Data & Text",
+    "icon": "🎨",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "color",
+        "type": "str",
+        "desc": "Color (#FF5500 or 255,85,0)",
+        "default": "#FF5500"
+      }
+    ],
+    "file": "data_&_text/color-converter.py",
+    "code": "def run(color: str = \"#FF5500\"):\n    \"\"\"\n    color: Color (#FF5500 or 255,85,0) (default: #FF5500)\n    \"\"\"\n    print(\"Color Converter\\n\"+\"=\"*40)\n    if color.startswith(\"#\"):\n        h=color.lstrip(\"#\");r,g,b=int(h[0:2],16),int(h[2:4],16),int(h[4:6],16)\n    else:\n        r,g,b=map(int,color.split(\",\"));h=f\"{r:02x}{g:02x}{b:02x}\"\n    print(f\"  HEX: #{h.upper()}\\n  RGB: ({r},{g},{b})\")\n    mx,mn=max(r,g,b)/255,min(r,g,b)/255;l=(mx+mn)/2\n    if mx==mn:hue=s=0\n    else:\n        d=mx-mn;s=d/(2-mx-mn)if l>0.5 else d/(mx+mn)\n        if mx==r/255:hue=((g/255-b/255)/d+(6 if g<b else 0))*60\n        elif mx==g/255:hue=((b/255-r/255)/d+2)*60\n        else:hue=((r/255-g/255)/d+4)*60\n    print(f\"  HSL: ({hue:.0f}, {s*100:.0f}%, {l*100:.0f}%)\")\n"
+  },
+  {
+    "id": "arena-agent-v1",
+    "name": "{\"ko\": \"마피아게임 에이전트\", \"en\": \"Mafia Game Agent\"}",
+    "description": "{\"ko\": \"AI Arena 마피아 게임에 자동으로 참여하는 에이전트\", \"en\": \"AI agent that automatically plays Arena Mafia game\"}",
+    "category": "Games",
+    "icon": "🎮",
+    "lang": "ko",
+    "params": [
+      {
+        "name": "game_id",
+        "type": "str",
+        "desc": "참가할 게임 ID"
+      },
+      {
+        "name": "agent_name",
+        "type": "str",
+        "desc": "에이전트 이름",
+        "default": "Xoul에이전트"
+      },
+      {
+        "name": "persona",
+        "type": "str",
+        "desc": "에이전트 성격",
+        "default": "분석적이고 논리적인 성격."
+      }
+    ],
+    "file": "games/arena-agent-v1.py",
+    "code": "def run(game_id: str, agent_name: str = \"Xoul에이전트\", persona: str = \"분석적이고 논리적인 성격.\"):\n    \"\"\"\n    game_id: 참가할 게임 ID\n    agent_name: 에이전트 이름 (default: Xoul에이전트)\n    persona: 에이전트 성격 (default: 분석적이고 논리적인 성격.)\n    \"\"\"\n    \"\"\"\n    🎭 AI Mafia Arena Agent — 워크플로우 실행용 독립 스크립트\n    # arena-loop\n\n    워크플로우의 code 스텝에서 run_python_code(timeout=600)으로 실행.\n    - Arena 서버 API 폴링\n    - Ollama LLM으로 자율 발언/투표/밤행동\n    - 게임 종료 시 결과 반환\n    \"\"\"\n    import urllib.request\n    import json\n    import time\n    import os\n    import sys\n\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    # 설정\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    # VM에서 실행 시 AWS 아레나 서버 사용 (로컬 fallback)\n    ARENA_URL = os.environ.get(\"ARENA_URL\", \"http://15.165.31.212:8081\")\n    HOST = \"10.0.2.2\" if os.path.exists(\"/root/xoul\") else \"localhost\"\n    OLLAMA_URL = f\"http://{HOST}:11434\"\n    OLLAMA_MODEL = \"gpt-oss:20b\"\n\n    # JWT 생성 — config.json에서 시크릿 읽기\n    CONFIG_PATHS = [\n        os.environ.get(\"XOUL_CONFIG\", \"\"),\n        os.path.join(os.path.dirname(__file__), \"..\", \"config.json\"),  # arena_server/../config.json\n        \"/root/xoul/config.json\",\n    ]\n    def _load_jwt_secret():\n        for p in CONFIG_PATHS:\n            if p and os.path.exists(p):\n                try:\n                    with open(p, encoding=\"utf-8-sig\") as f:\n                        c = json.load(f)\n                    return c.get(\"server\", {}).get(\"api_key\", \"xoul-secret-key\")\n                except Exception:\n                    pass\n        return \"xoul-secret-key\"\n\n    JWT_SECRET = _load_jwt_secret()\n\n    import jwt as pyjwt\n    import warnings\n    warnings.filterwarnings(\"ignore\", message=\".*key size.*\")\n\n    def make_token(user_id):\n        return pyjwt.encode({\"sub\": user_id, \"email\": f\"{user_id}@arena\"}, JWT_SECRET, algorithm=\"HS256\")\n\n    AGENT_NAME = os.environ.get(\"ARENA_AGENT_NAME\", \"Xoul에이전트\")\n    PERSONA = os.environ.get(\"ARENA_PERSONA\", \"분석적이고 논리적인 성격. 증거 기반으로 판단.\")\n\n    # config에서 언어 설정 로드\n    def _load_lang():\n        for p in CONFIG_PATHS:\n            if p and os.path.exists(p):\n                try:\n                    with open(p, encoding=\"utf-8-sig\") as f:\n                        c = json.load(f)\n                    return c.get(\"assistant\", {}).get(\"language\", \"ko\")\n                except Exception:\n                    pass\n        return \"ko\"\n\n    LANG = _load_lang()\n    LANG_INSTRUCTION = {\n        \"ko\": \"반드시 한국어로 답하세요.\",\n        \"en\": \"Always respond in English.\",\n        \"ja\": \"必ず日本語で答えてください。\",\n    }.get(LANG, f\"Respond in {LANG}.\")\n\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    # API 호출\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    def api_get(path, token=None):\n        req = urllib.request.Request(f\"{ARENA_URL}{path}\")\n        if token:\n            req.add_header(\"Authorization\", f\"Bearer {token}\")\n        try:\n            with urllib.request.urlopen(req, timeout=10) as r:\n                return json.loads(r.read())\n        except Exception as e:\n            return {\"error\": str(e)}\n\n    def api_post(path, data, token=None):\n        body = json.dumps(data).encode()\n        req = urllib.request.Request(f\"{ARENA_URL}{path}\", data=body,\n                                     headers={\"Content-Type\": \"application/json\"})\n        if token:\n            req.add_header(\"Authorization\", f\"Bearer {token}\")\n        try:\n            with urllib.request.urlopen(req, timeout=10) as r:\n                return json.loads(r.read())\n        except Exception as e:\n            return {\"error\": str(e)}\n\n\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    # LLM 호출\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    def _clean_llm_output(text):\n        \"\"\"LLM 응답 기본 정리 (앞뒤 공백, 과도한 줄바꿈 제거)\"\"\"\n        if not text:\n            return \"\"\n        import re\n        # 여러 줄이면 첫 번째 비어있지 않은 줄들을 이어붙이기\n        lines = [l.strip() for l in text.strip().split(\"\\n\") if l.strip()]\n        result = \" \".join(lines)\n        # 200자 제한\n        return result[:200]\n\n\n    def call_llm(messages, max_tokens=8192):\n        payload = json.dumps({\n            \"model\": OLLAMA_MODEL,\n            \"messages\": messages,\n            \"max_tokens\": max_tokens,\n            \"temperature\": 0.8,\n            \"think\": True,\n        }).encode()\n        req = urllib.request.Request(\n            f\"{OLLAMA_URL}/v1/chat/completions\",\n            data=payload,\n            headers={\"Content-Type\": \"application/json\", \"Authorization\": \"Bearer none\"}\n        )\n        try:\n            with urllib.request.urlopen(req, timeout=120) as resp:\n                d = json.loads(resp.read())\n                msg = d[\"choices\"][0][\"message\"]\n                content = (msg.get(\"content\") or \"\").strip()\n                reasoning = (msg.get(\"reasoning\") or \"\").strip()\n                print(f\"   [LLM] content({len(content)}): {content[:60]}...\")\n                if reasoning:\n                    print(f\"   [LLM] reasoning({len(reasoning)}): {reasoning[:60]}...\")\n                if not content and reasoning:\n                    lines = [l.strip() for l in reasoning.split(\"\\n\") if l.strip()]\n                    content = lines[-1] if lines else \"\"\n                result = _clean_llm_output(content)\n                print(f\"   [LLM] final: {result[:60]}...\")\n                return result\n        except Exception as e:\n            print(f\"   [LLM] ERROR: {e}\")\n            return f\"(LLM 오류: {e})\"\n\n\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    # 이름 매핑\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    _name_map = {}  # P1 -> \"Xoul에이전트\" 등\n\n    def _pid_to_name(pid):\n        return _name_map.get(pid, pid)\n\n    def _names_list(pids):\n        return ', '.join(_pid_to_name(p) for p in pids)\n\n    def _build_name_map(state):\n        \"\"\"state에서 player_id→이름 매핑 구축\"\"\"\n        global _name_map\n        for p in state.get(\"players\", []):\n            _name_map[p[\"player_id\"]] = p.get(\"agent_name\", p[\"player_id\"])\n\n\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    # 게임 설명 가져오기\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    _game_description = \"\"\n\n    def fetch_game_description():\n        \"\"\"서버에서 게임 규칙 설명을 가져와 시스템 프롬프트에 사용\"\"\"\n        global _game_description\n        try:\n            desc = api_get(\"/arena/docs\")\n            if isinstance(desc, dict) and not desc.get(\"error\"):\n                _game_description = desc.get(\"description\", \"\")\n        except:\n            pass\n\n\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    # 프롬프트 빌더\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    def _strip_prefix(text):\n        \"\"\"LLM 응답에서 '발언:', '대사:', 이름 접두사 등 제거\"\"\"\n        import re\n        # '발언:', '대사:' 제거\n        text = re.sub(r'^(발언:|\\s*대사:\\s*)', '', text).strip()\n        # '이름: ' 접두사 제거 (예: 'Xoul에이전트: 내용')\n        text = re.sub(r'^[\\w가-힣]+:\\s*', '', text).strip()\n        # 'I'm sorry' 등 영어 거부 응답 처리\n        if text.lower().startswith(\"i'm sorry\") or text.lower().startswith(\"i cannot\"):\n            return \"\"\n        return text\n\n\n    def build_speak_prompt(state):\n        role = state.get(\"my_role\", \"citizen\")\n        role_kr = {\"citizen\": \"시민\", \"mafia\": \"마피아\", \"police\": \"경찰\"}.get(role, role)\n        chats = state.get(\"chat_log\", [])\n        speaks = [c for c in chats if c.get(\"type\") == \"speak\"]\n        chat_str = \"\\n\".join(f\"  {_pid_to_name(c['player'])}: {c['data'].get('message','')}\" for c in speaks[-10:])\n\n        system = f\"\"\"당신은 '{AGENT_NAME}'. {PERSONA}\n    당신은 [{role_kr}]. {\"마피아를 찾아내세요.\" if role != \"mafia\" else \"정체를 숨기고 시민인 척 하세요.\"}\n\n    ❗규칙:\n    - {LANG_INSTRUCTION}\n    - 이름표 없이 대사만 출력. '이름:' 형식 금지.\n    - 1~2문장으로 짧게.\"\"\"\n        if _game_description:\n            system = _game_description + \"\\n\\n\" + system\n        # 첫 발언 여부\n        my_speaks = [c for c in speaks if c.get(\"player\") == state.get(\"_my_pid\")]\n        rnd = state.get('round', 1)\n\n        if len(my_speaks) == 0 and rnd == 1:\n            hint = \"첫 라운드입니다. 캐릭터로서 간단한 자기소개를 해주세요.\"\n        elif rnd == 1:\n            hint = \"다른 사람들의 자기소개를 듣고 느낀 점이나 의심을 말하세요.\"\n        else:\n            hint = \"대화를 분석하고 의심되는 사람을 언급하세요.\"\n\n        user = f\"[R{rnd} 토론] 생존자: {_names_list(state.get('alive',[]))}\\n\\n대화:\\n{chat_str}\\n\\n{hint}\\n1~2문장으로 캐릭터 대사만 출력하세요.\"\n        return [{\"role\": \"system\", \"content\": system}, {\"role\": \"user\", \"content\": user}]\n\n    def build_vote_prompt(state):\n        chats = state.get(\"chat_log\", [])\n        speaks = [c for c in chats if c.get(\"type\") == \"speak\"]\n        chat_str = \"\\n\".join(f\"  {_pid_to_name(c['player'])}: {c['data'].get('message','')}\" for c in speaks[-14:])\n        alive_names = [_pid_to_name(p) for p in state.get(\"alive\", []) if p != state.get(\"_my_pid\")]\n\n        user = f\"투표 시간. 생존자: {_names_list(state.get('alive',[]))}\\n대화:\\n{chat_str}\\n\\n처형할 사람의 이름만 출력:\"\n        return [{\"role\": \"system\", \"content\": f\"당신은 '{AGENT_NAME}'. {PERSONA}\"}, {\"role\": \"user\", \"content\": user}]\n\n    def build_night_prompt(state):\n        role = state.get(\"my_role\", \"citizen\")\n        if role == \"mafia\":\n            action_desc = \"제거할\"\n        else:\n            action_desc = \"조사할\"\n        alive_names = [_pid_to_name(p) for p in state.get(\"alive\", []) if p != state.get(\"_my_pid\")]\n        user = f\"밤 시간입니다. 마피아 게임의 밤 페이즈입니다. {action_desc} 대상을 한 명 선택하세요.\\n생존자: {', '.join(alive_names)}\\n\\n이름만 출력:\"\n        return [{\"role\": \"system\", \"content\": f\"마피아 게임의 [{{'mafia':'마피아','police':'경찰'}}.get(role, role)] 역할. 대상 이름만 출력하세요.\"}, {\"role\": \"user\", \"content\": user}]\n\n    def extract_pid(text, valid_pids):\n        \"\"\"응답에서 player ID 추출 (이름 또는 PID 매칭)\"\"\"\n        import re\n        # PID 직접 매칭\n        for pid in re.findall(r'P\\d+', text):\n            if pid in valid_pids:\n                return pid\n        # 이름으로 매칭\n        for pid in valid_pids:\n            name = _pid_to_name(pid)\n            if name in text:\n                return pid\n        return valid_pids[0] if valid_pids else None\n\n\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    # 메인 게임 루프\n    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\n    def main():\n        user_id = f\"arena-agent-{int(time.time()) % 10000}\"\n        token = make_token(user_id)\n\n        # 환경변수로 game_id가 지정된 경우 바로 참가\n        env_game_id = os.environ.get(\"ARENA_GAME_ID\", \"\")\n\n        # 1. 대기 중인 게임 찾기 (또는 환경변수에서 지정)\n        if env_game_id:\n            game_id = env_game_id\n            print(f\"✅ 환경변수에서 게임 ID 지정: {game_id}\")\n        else:\n            print(\"🔍 대기 중인 게임 찾는 중...\")\n            game_id = None\n            while not game_id:  # arena-loop\n                games = api_get(\"/arena/games?status=waiting\")\n                if games.get(\"games\"):\n                    game_id = games[\"games\"][0][\"id\"]\n                    countdown = games[\"games\"][0].get(\"starts_in_seconds\")\n                    real_count = games[\"games\"][0].get(\"real_player_count\", 0)\n                    if countdown is not None:\n                        print(f\"✅ 대기 게임 발견: {game_id} (참가자 {real_count}명, {countdown}초 후 시작)\")\n                    else:\n                        print(f\"✅ 대기 게임 발견: {game_id} (참가자 대기 중)\")\n                else:\n                    time.sleep(3)\n                    continue\n\n        if not game_id:\n            print(\"❌ 게임 참가 실패\")\n            return\n\n        # 2. 참가\n        join = api_post(f\"/arena/games/{game_id}/join\",\n                        {\"agent_name\": AGENT_NAME, \"persona_prompt\": PERSONA}, token)\n        my_pid = join.get(\"player_id\")\n        if not my_pid:\n            print(f\"❌ 참가 실패: {join}\")\n            return\n        print(f\"✅ 참가 완료: {my_pid} ({AGENT_NAME})\")\n\n        # 3. 게임 시작 대기\n        print(\"⏳ 게임 시작 대기...\")\n        while True:  # arena-loop\n            state = api_get(f\"/arena/games/{game_id}/state?player_id={my_pid}\", token)\n            if state.get(\"status\") == \"playing\":\n                print(\"✅ 게임 시작!\")\n                break\n            if state.get(\"status\") == \"finished\":\n                print(\"❌ 게임이 이미 끝남\")\n                return\n            time.sleep(3)\n\n        # 이름 매핑 구축 + 게임 설명 가져오기\n        _build_name_map(state)\n        fetch_game_description()\n        role = state.get(\"my_role\", \"?\")\n        role_kr = {\"citizen\": \"시민\", \"mafia\": \"마피아\", \"police\": \"경찰\"}.get(role, role)\n        print(f\"   참가자: {_names_list(state.get('alive', []))}\")\n        print(f\"   🎭 내 역할: [{role_kr}]\")\n\n        # 4. 게임 루프\n        last_action = None\n        while True:  # arena-loop\n            state = api_get(f\"/arena/games/{game_id}/state?player_id={my_pid}\", token)\n            if state.get(\"error\"):\n                time.sleep(2)\n                continue\n\n            status = state.get(\"status\")\n            if status == \"finished\":\n                winner = state.get(\"winner\", \"?\")\n                print(f\"\\n🏁 게임 종료! 승자: {winner}\")\n                print(f\"   내 역할: {state.get('my_role')}\")\n                return\n\n            action = state.get(\"pending_action\")\n            state[\"_my_pid\"] = my_pid\n\n            if action == \"speak\":\n                # 서버가 action=speak으로 보내면 아직 발언 가능한 것\n                prompt = build_speak_prompt(state)\n                response = call_llm(prompt)\n                response = _strip_prefix(response)  # \"발언:\" 접두사 제거\n                if not response or response.startswith(\"(LLM\"):\n                    print(f\"   ⚠️ LLM 실패: {response[:80] if response else 'empty'}\")\n                    import random\n                    response = random.choice([\"아직 확실한 근거는 없지만, 좀 더 지켜봐야 할 것 같습니다.\", \"의심되는 사람이 있긴 한데, 좀 더 들어보겠습니다.\", \"누군가 말을 돌리고 있는 것 같아요.\"])\n                if len(response) > 200:\n                    response = response[:200]\n                result = api_post(f\"/arena/games/{game_id}/speak\",\n                                {\"player_id\": my_pid, \"message\": response}, token)\n                if result.get(\"ok\"):\n                    print(f\"💬 R{state.get('round')}: {response[:60]}\")\n                else:\n                    time.sleep(2)  # speak 실패 시 잠깐 대기\n\n            elif action == \"vote\" and last_action != f\"vote-{state.get('round')}\":\n                prompt = build_vote_prompt(state)\n                response = call_llm(prompt, max_tokens=8192)\n                valid = [p for p in state.get(\"alive\", []) if p != my_pid]\n                target = extract_pid(response, valid)\n                if target:\n                    api_post(f\"/arena/games/{game_id}/vote\",\n                            {\"player_id\": my_pid, \"target\": target}, token)\n                    print(f\"🗳️  R{state.get('round')}: → {_pid_to_name(target)}\")\n                last_action = f\"vote-{state.get('round')}\"\n\n            elif action == \"night_action\" and last_action != f\"night-{state.get('round')}\":\n                prompt = build_night_prompt(state)\n                response = call_llm(prompt, max_tokens=8192)\n                valid = [p for p in state.get(\"alive\", []) if p != my_pid]\n                target = extract_pid(response, valid)\n                act = \"kill\" if state.get(\"my_role\") == \"mafia\" else \"investigate\"\n                if target:\n                    api_post(f\"/arena/games/{game_id}/night\",\n                            {\"player_id\": my_pid, \"action\": act, \"target\": target}, token)\n                    print(f\"🌙 R{state.get('round')}: {act} → {target}\")\n                last_action = f\"night-{state.get('round')}\"\n\n            time.sleep(2)\n\n\n    if __name__ == \"__main__\":\n        main()\n"
+  }
+]
