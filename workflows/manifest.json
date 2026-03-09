@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "id": "test_7266",
+    "name": "test",
+    "description": "test",
+    "category": "Other",
+    "icon": "📦",
+    "lang": "multi",
+    "steps": [],
+    "hint_tools": [],
+    "schedule": "daily 09:00",
+    "file": "other/test_7266.json"
+  }
+]
