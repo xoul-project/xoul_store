@@ -1,0 +1,7 @@
+{
+  "name": "test",
+  "description": "test",
+  "steps": [],
+  "hint_tools": [],
+  "schedule": "daily 09:00"
+}
