@@ -844,5 +844,26 @@
       }
     ],
     "file": "games/arena-agent-v1.py"
+  },
+  {
+    "id": "binance_portfolio_8412",
+    "name": "Binance Portfolio",
+    "description": "Fetch Binance spot/futures balance, positions & prices",
+    "category": "Other",
+    "icon": "📦",
+    "lang": "multi",
+    "params": [
+      {
+        "name": "api_key",
+        "type": "str",
+        "desc": "Binance API Key"
+      },
+      {
+        "name": "api_secret",
+        "type": "str",
+        "desc": "Binance API Secret"
+      }
+    ],
+    "file": "other/binance_portfolio_8412.py"
   }
 ]
