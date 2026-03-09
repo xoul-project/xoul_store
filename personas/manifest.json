@@ -358,5 +358,14 @@
     "icon": "🧠",
     "lang": "ko",
     "file": "productivity/p-030-ko.md"
+  },
+  {
+    "id": "persona_item_7607",
+    "name": "페르소나 테스트",
+    "description": "테스트얌",
+    "category": "Other",
+    "icon": "📦",
+    "lang": "multi",
+    "file": "other/persona_item_7607.md"
   }
 ]
