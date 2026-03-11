@@ -184,7 +184,6 @@ def run(game_id: str, agent_name: str = "Xoul에이전트", persona: str = "분�
 
     def _build_name_map(state):
         """state에서 player_id→이름 매핑 구축"""
-        global _name_map
         for p in state.get("players", []):
             _name_map[p["player_id"]] = p.get("agent_name", p["player_id"])
 
@@ -196,7 +195,7 @@ def run(game_id: str, agent_name: str = "Xoul에이전트", persona: str = "분�
 
     def fetch_game_description():
         """서버에서 게임 규칙 설명을 가져와 시스템 프롬프트에 사용"""
-        global _game_description
+        nonlocal _game_description
         try:
             desc = api_get("/arena/docs")
             if isinstance(desc, dict) and not desc.get("error"):
