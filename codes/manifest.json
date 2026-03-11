@@ -818,7 +818,7 @@
     "file": "data_&_text/color-converter.py"
   },
   {
-    "id": "arena-agent-v1",
+    "id": "mafia-agent-v1",
     "name": "{\"ko\": \"마피아게임 에이전트\", \"en\": \"Mafia Game Agent\"}",
     "description": "{\"ko\": \"AI Arena 마피아 게임에 자동으로 참여하는 에이전트\", \"en\": \"AI agent that automatically plays Arena Mafia game\"}",
     "category": "Games",
@@ -843,7 +843,7 @@
         "default": "분석적이고 논리적인 성격."
       }
     ],
-    "file": "games/arena-agent-v1.py"
+    "file": "games/mafia-agent-v1.py"
   },
   {
     "id": "binance_portfolio_8412",
