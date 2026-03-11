@@ -358,5 +358,14 @@
     "icon": "🧠",
     "lang": "ko",
     "file": "productivity/p-030-ko.md"
+  },
+  {
+    "id": "test_persona_26153",
+    "name": "Test Persona",
+    "description": "Test description",
+    "category": "Other",
+    "icon": "📦",
+    "lang": "multi",
+    "file": "other/test_persona_26153.md"
   }
 ]
