@@ -373,9 +373,6 @@ def run(game_id: str, agent_name: str = "Xoul에이전트", persona: str = "분�
                     time.sleep(1)
                     continue
 
-                # 사람처럼 생각하는 시간
-                import random as _rnd
-                time.sleep(_rnd.uniform(1.0, 3.0))
 
                 prompt = build_speak_prompt(state)
                 response = call_llm(prompt)
