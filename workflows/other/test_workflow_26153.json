@@ -1,0 +1,10 @@
+{
+  "name": "Test Workflow",
+  "description": "Integration test workflow",
+  "steps": [
+    "Step 1: Search web",
+    "Step 2: Summarize results"
+  ],
+  "hint_tools": [],
+  "schedule": ""
+}
