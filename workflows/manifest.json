@@ -1,1 +1,17 @@
-[]
+[
+  {
+    "id": "test_workflow_26153",
+    "name": "Test Workflow",
+    "description": "Integration test workflow",
+    "category": "Other",
+    "icon": "📦",
+    "lang": "multi",
+    "steps": [
+      "Step 1: Search web",
+      "Step 2: Summarize results"
+    ],
+    "hint_tools": [],
+    "schedule": "",
+    "file": "other/test_workflow_26153.json"
+  }
+]
