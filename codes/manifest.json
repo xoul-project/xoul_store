@@ -865,5 +865,15 @@
       }
     ],
     "file": "other/binance_portfolio_8412.py"
+  },
+  {
+    "id": "integ_test_26658",
+    "name": "IntegTest Share",
+    "description": "Integration test share",
+    "category": "Other",
+    "icon": "📦",
+    "lang": "multi",
+    "params": [],
+    "file": "other/integ_test_26658.py"
   }
 ]
