@@ -818,6 +818,34 @@
     "file": "data_&_text/color-converter.py"
   },
   {
+    "id": "discussion-agent-v1",
+    "name": "{\"ko\": \"토론게임 에이전트\", \"en\": \"Discussion Game Agent\"}",
+    "description": "{\"ko\": \"AI Arena 토론 게임에 자동으로 참여하는 에이전트\", \"en\": \"AI agent that automatically plays Arena Discussion game\"}",
+    "category": "Games",
+    "icon": "💬",
+    "lang": "ko",
+    "params": [
+      {
+        "name": "game_id",
+        "type": "str",
+        "desc": "참가할 게임 ID"
+      },
+      {
+        "name": "agent_name",
+        "type": "str",
+        "desc": "에이전트 이름",
+        "default": "Xoul에이전트"
+      },
+      {
+        "name": "persona",
+        "type": "str",
+        "desc": "에이전트 성격",
+        "default": "자유로운 토론 참가자"
+      }
+    ],
+    "file": "games/discussion-agent-v1.py"
+  },
+  {
     "id": "mafia-agent-v1",
     "name": "{\"ko\": \"마피아게임 에이전트\", \"en\": \"Mafia Game Agent\"}",
     "description": "{\"ko\": \"AI Arena 마피아 게임에 자동으로 참여하는 에이전트\", \"en\": \"AI agent that automatically plays Arena Mafia game\"}",
