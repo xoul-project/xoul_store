@@ -1,0 +1,146 @@
+[
+  {
+    "id": "wf-001",
+    "name": {"ko": "모닝 브리핑", "en": "Morning Briefing"},
+    "description": {"ko": "오늘 날씨, 주요 뉴스, 일정을 한눈에 정리해서 메신저로 보내줍니다", "en": "Get today's weather, top news, and schedule summary sent to your messenger"},
+    "category": "Daily Routine",
+    "icon": "☀️",
+    "lang": "multi",
+    "steps": [
+      {"type": "prompt", "content": {"ko": "오늘 날짜와 요일을 확인하고, 서울 날씨를 조회해줘. 기온, 날씨 상태, 우산 필요 여부를 정리해줘.", "en": "Check today's date and day of the week, then get the weather for Seoul. Summarize temperature, conditions, and whether an umbrella is needed."}},
+      {"type": "prompt", "content": {"ko": "오늘의 주요 뉴스 토픽 3개를 웹 검색으로 찾아서 한 줄 요약해줘.", "en": "Search the web for 3 major news topics today and summarize each in one line."}},
+      {"type": "prompt", "content": {"ko": "위 날씨와 뉴스 내용을 '☀️ 모닝 브리핑' 제목으로 깔끔하게 정리해서 메신저로 보내줘.", "en": "Compile the weather and news above into a clean '☀️ Morning Briefing' message and send it via messenger."}}
+    ],
+    "hint_tools": "weather,web_search,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-002",
+    "name": {"ko": "오늘의 환율 알림", "en": "Daily Exchange Rate Alert"},
+    "description": {"ko": "주요 통화 환율을 조회하고 메신저로 알려줍니다", "en": "Check major currency exchange rates and send via messenger"},
+    "category": "Finance",
+    "icon": "💱",
+    "lang": "multi",
+    "steps": [
+      {"type": "prompt", "content": {"ko": "환율 조회 코드를 실행해서 USD 기준 주요 통화 환율을 확인해줘.", "en": "Run the Exchange Rates code to check major currency rates based on USD."}},
+      {"type": "prompt", "content": {"ko": "결과를 '💱 오늘의 환율' 제목으로 정리해서 메신저로 보내줘. 원/달러 환율은 강조해줘.", "en": "Format the results as '💱 Today's Exchange Rates' and send via messenger. Highlight the KRW/USD rate."}}
+    ],
+    "hint_tools": "run_stored_code,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-003",
+    "name": {"ko": "이메일 요약 리포트", "en": "Email Summary Report"},
+    "description": {"ko": "읽지 않은 이메일을 확인하고 요약해서 메신저로 알려줍니다", "en": "Check unread emails, summarize them, and notify via messenger"},
+    "category": "Productivity",
+    "icon": "📧",
+    "lang": "multi",
+    "steps": [
+      {"type": "prompt", "content": {"ko": "읽지 않은 이메일 목록을 확인해줘.", "en": "Check the list of unread emails."}},
+      {"type": "prompt", "content": {"ko": "각 이메일의 발신자와 제목을 정리하고, '📧 이메일 요약' 제목으로 메신저에 보내줘. 중요해 보이는 건 ⚠️로 표시해줘.", "en": "Summarize each email's sender and subject, then send as '📧 Email Summary' via messenger. Mark important-looking ones with ⚠️."}}
+    ],
+    "hint_tools": "list_emails,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-004",
+    "name": {"ko": "뉴스 리서치 & 파일 저장", "en": "News Research & Save"},
+    "description": {"ko": "특정 주제의 최신 뉴스를 검색하고 요약 리포트를 파일로 저장합니다", "en": "Search latest news on a topic and save a summary report as a file"},
+    "category": "Research",
+    "icon": "📰",
+    "lang": "multi",
+    "steps": [
+      {"type": "prompt", "content": {"ko": "AI 최신 뉴스를 웹에서 3번 검색해서 다양한 소스의 정보를 수집해줘.", "en": "Search the web 3 times for the latest AI news to gather information from various sources."}},
+      {"type": "prompt", "content": {"ko": "수집한 내용을 마크다운 형식의 뉴스 리포트로 정리해서 /root/share/news_report.md 파일로 저장해줘. 출처 URL도 포함해줘.", "en": "Compile the gathered content into a markdown news report and save to /root/share/news_report.md. Include source URLs."}}
+    ],
+    "hint_tools": "web_search,write_file",
+    "schedule": ""
+  },
+  {
+    "id": "wf-005",
+    "name": {"ko": "암호화폐 시황 브리핑", "en": "Crypto Market Briefing"},
+    "description": {"ko": "주요 코인 시세와 공포/탐욕 지수를 확인하고 메신저로 전송합니다", "en": "Check major coin prices and Fear & Greed index, then send via messenger"},
+    "category": "Finance",
+    "icon": "📈",
+    "lang": "multi",
+    "steps": [
+      {"type": "code_name", "content": {"ko": "암호화폐 시세", "en": "Crypto Prices"}},
+      {"type": "code_name", "content": {"ko": "공포/탐욕 지수", "en": "Fear & Greed Index"}},
+      {"type": "prompt", "content": {"ko": "위 코인 시세와 공포/탐욕 지수를 '📈 크립토 시황' 제목으로 깔끔하게 정리해서 메신저로 보내줘.", "en": "Compile the coin prices and Fear & Greed index above into a clean '📈 Crypto Market' summary and send via messenger."}}
+    ],
+    "hint_tools": "run_stored_code,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-006",
+    "name": {"ko": "주간 날씨 예보", "en": "Weekly Weather Forecast"},
+    "description": {"ko": "7일간 날씨 예보를 확인하고 메신저로 보내줍니다", "en": "Check the 7-day weather forecast and send via messenger"},
+    "category": "Daily Routine",
+    "icon": "🌤️",
+    "lang": "multi",
+    "steps": [
+      {"type": "prompt", "content": {"ko": "서울의 7일간 날씨 예보를 조회해줘.", "en": "Get the 7-day weather forecast for Seoul."}},
+      {"type": "prompt", "content": {"ko": "각 날의 최고/최저 기온, 날씨, 비 올 확률을 이모지와 함께 정리해서 '🌤️ 주간 날씨' 제목으로 메신저에 보내줘.", "en": "Format each day's high/low temp, weather, and rain probability with emojis, then send as '🌤️ Weekly Weather' via messenger."}}
+    ],
+    "hint_tools": "weather,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-007",
+    "name": {"ko": "시스템 상태 점검", "en": "System Health Check"},
+    "description": {"ko": "VM의 디스크, 메모리, CPU 상태를 확인하고 알려줍니다", "en": "Check VM disk, memory, and CPU status and report"},
+    "category": "System",
+    "icon": "💾",
+    "lang": "multi",
+    "steps": [
+      {"type": "code_name", "content": {"ko": "시스템 상태", "en": "System Status"}},
+      {"type": "prompt", "content": {"ko": "시스템 상태를 분석해서 문제가 있으면 ⚠️로 경고하고, 정상이면 ✅로 표시해서 메신저로 보내줘.", "en": "Analyze the system status. Warn with ⚠️ if there are issues, mark ✅ if normal, and send via messenger."}}
+    ],
+    "hint_tools": "run_stored_code,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-008",
+    "name": {"ko": "기술 트렌드 브리핑", "en": "Tech Trend Briefing"},
+    "description": {"ko": "Hacker News 인기글과 GitHub 트렌딩을 확인하고 정리합니다", "en": "Check Hacker News top stories and GitHub trending repos, then summarize"},
+    "category": "Research",
+    "icon": "🔥",
+    "lang": "multi",
+    "steps": [
+      {"type": "code_name", "content": {"ko": "Hacker News 인기글", "en": "Hacker News Top"}},
+      {"type": "code_name", "content": {"ko": "GitHub 트렌딩", "en": "GitHub Trending"}},
+      {"type": "prompt", "content": {"ko": "HN 인기글과 GitHub 트렌딩 결과를 '🔥 기술 트렌드 브리핑' 제목으로 핵심만 정리해서 메신저로 보내줘.", "en": "Summarize the HN top stories and GitHub trending results into a '🔥 Tech Trend Briefing' and send via messenger."}}
+    ],
+    "hint_tools": "run_stored_code,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-009",
+    "name": {"ko": "오늘 일정 리마인더", "en": "Today's Schedule Reminder"},
+    "description": {"ko": "오늘의 일정과 기억된 정보를 확인하고 메신저로 알려줍니다", "en": "Check today's events and stored memories, then send a reminder via messenger"},
+    "category": "Productivity",
+    "icon": "📅",
+    "lang": "multi",
+    "steps": [
+      {"type": "prompt", "content": {"ko": "오늘 날짜를 확인하고, 오늘의 일정을 조회해줘. 기억(recall)에서 오늘과 관련된 반복 일정도 찾아봐.", "en": "Check today's date, list today's events, and search memories (recall) for any recurring schedules related to today."}},
+      {"type": "prompt", "content": {"ko": "일정과 기억된 반복 일정을 합쳐서 '📅 오늘의 일정' 제목으로 시간 순서대로 정리하고 메신저로 보내줘.", "en": "Combine events and recurring schedules into '📅 Today's Schedule', sorted by time, and send via messenger."}}
+    ],
+    "hint_tools": "get_datetime,list_events,recall,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-010",
+    "name": {"ko": "주식 시황 요약", "en": "Stock Market Summary"},
+    "description": {"ko": "주요 주식 시세를 확인하고 시장 동향을 메신저로 보냅니다", "en": "Check major stock prices and send market trends via messenger"},
+    "category": "Finance",
+    "icon": "📊",
+    "lang": "multi",
+    "steps": [
+      {"type": "prompt", "content": {"ko": "웹에서 '오늘 미국 주식시장 동향 S&P500 나스닥'을 검색해줘.", "en": "Search the web for 'today US stock market trends S&P500 NASDAQ'."}},
+      {"type": "code_name", "content": {"ko": "환율 조회", "en": "Exchange Rates"}},
+      {"type": "prompt", "content": {"ko": "주식시장 동향과 환율을 합쳐서 '📊 오늘의 시장' 제목으로 핵심만 정리해서 메신저로 보내줘.", "en": "Combine stock market trends and exchange rates into a '📊 Today's Market' summary and send via messenger."}}
+    ],
+    "hint_tools": "web_search,run_stored_code,send_notification",
+    "schedule": ""
+  }
+]
