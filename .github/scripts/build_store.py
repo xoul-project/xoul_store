@@ -48,4 +48,21 @@ for entry in personas:
 with open(os.path.join(DIST, "personas.json"), "w", encoding="utf-8") as f:
     json.dump(personas, f, ensure_ascii=False, indent=2)
 
-print(f"✅ Built: {len(codes)} codes, {len(personas)} personas → dist/")
+# ─── WORKFLOWS ───
+wf_manifest = os.path.join(ROOT, "workflows", "manifest.json")
+with open(wf_manifest, "r", encoding="utf-8") as f:
+    wf_entries = json.load(f)
+
+workflows = []
+for entry in wf_entries:
+    wf_path = os.path.join(ROOT, "workflows", entry.get("file", ""))
+    if os.path.isfile(wf_path):
+        with open(wf_path, "r", encoding="utf-8") as f:
+            wf_data = json.load(f)
+        wf_data["id"] = entry.get("id", entry.get("file", ""))
+        workflows.append(wf_data)
+
+with open(os.path.join(DIST, "workflows.json"), "w", encoding="utf-8") as f:
+    json.dump(workflows, f, ensure_ascii=False, indent=2)
+
+print(f"✅ Built: {len(codes)} codes, {len(personas)} personas, {len(workflows)} workflows → dist/")

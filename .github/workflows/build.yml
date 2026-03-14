@@ -18,7 +18,7 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Build codes.json & personas.json
+      - name: Build codes.json, personas.json & workflows.json
         run: python .github/scripts/build_store.py
 
       - name: Commit generated files
