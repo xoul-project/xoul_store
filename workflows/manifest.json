@@ -88,5 +88,17 @@
     "icon": "📊",
     "lang": "multi",
     "file": "finance/wf-010-stock-summary.json"
+  },
+  {
+    "id": "workflow_item_5011",
+    "name": "테스트",
+    "description": "테스",
+    "category": "Other",
+    "icon": "📦",
+    "lang": "multi",
+    "steps": [],
+    "hint_tools": [],
+    "schedule": "",
+    "file": "other/workflow_item_5011.json"
   }
 ]
