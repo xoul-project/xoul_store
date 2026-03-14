@@ -64,8 +64,8 @@
     "icon": "📈",
     "lang": "multi",
     "steps": [
-      {"type": "code_name", "content": "crypto-prices"},
-      {"type": "code_name", "content": "fear-greed"},
+      {"type": "code_name", "content": {"ko": "암호화폐 시세", "en": "Crypto Prices"}},
+      {"type": "code_name", "content": {"ko": "공포/탐욕 지수", "en": "Fear & Greed Index"}},
       {"type": "prompt", "content": {"ko": "위 코인 시세와 공포/탐욕 지수를 '📈 크립토 시황' 제목으로 깔끔하게 정리해서 메신저로 보내줘.", "en": "Compile the coin prices and Fear & Greed index above into a clean '📈 Crypto Market' summary and send via messenger."}}
     ],
     "hint_tools": "run_stored_code,send_notification",
@@ -93,7 +93,7 @@
     "icon": "💾",
     "lang": "multi",
     "steps": [
-      {"type": "code_name", "content": "disk-usage"},
+      {"type": "code_name", "content": {"ko": "시스템 상태", "en": "System Status"}},
       {"type": "prompt", "content": {"ko": "시스템 상태를 분석해서 문제가 있으면 ⚠️로 경고하고, 정상이면 ✅로 표시해서 메신저로 보내줘.", "en": "Analyze the system status. Warn with ⚠️ if there are issues, mark ✅ if normal, and send via messenger."}}
     ],
     "hint_tools": "run_stored_code,send_notification",
@@ -107,8 +107,8 @@
     "icon": "🔥",
     "lang": "multi",
     "steps": [
-      {"type": "code_name", "content": "hackernews"},
-      {"type": "code_name", "content": "github-trending"},
+      {"type": "code_name", "content": {"ko": "Hacker News 인기글", "en": "Hacker News Top"}},
+      {"type": "code_name", "content": {"ko": "GitHub 트렌딩", "en": "GitHub Trending"}},
       {"type": "prompt", "content": {"ko": "HN 인기글과 GitHub 트렌딩 결과를 '🔥 기술 트렌드 브리핑' 제목으로 핵심만 정리해서 메신저로 보내줘.", "en": "Summarize the HN top stories and GitHub trending results into a '🔥 Tech Trend Briefing' and send via messenger."}}
     ],
     "hint_tools": "run_stored_code,send_notification",
@@ -137,7 +137,7 @@
     "lang": "multi",
     "steps": [
       {"type": "prompt", "content": {"ko": "웹에서 '오늘 미국 주식시장 동향 S&P500 나스닥'을 검색해줘.", "en": "Search the web for 'today US stock market trends S&P500 NASDAQ'."}},
-      {"type": "code_name", "content": "exchange-rates"},
+      {"type": "code_name", "content": {"ko": "환율 조회", "en": "Exchange Rates"}},
       {"type": "prompt", "content": {"ko": "주식시장 동향과 환율을 합쳐서 '📊 오늘의 시장' 제목으로 핵심만 정리해서 메신저로 보내줘.", "en": "Combine stock market trends and exchange rates into a '📊 Today's Market' summary and send via messenger."}}
     ],
     "hint_tools": "web_search,run_stored_code,send_notification",
