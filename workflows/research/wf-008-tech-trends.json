@@ -1,0 +1,15 @@
+{
+  "id": "wf-008",
+  "name": {"ko": "기술 트렌드 브리핑", "en": "Tech Trend Briefing"},
+  "description": {"ko": "Hacker News 인기글과 GitHub 트렌딩을 확인하고 정리합니다", "en": "Check Hacker News top stories and GitHub trending repos, then summarize"},
+  "category": "Research",
+  "icon": "🔥",
+  "lang": "multi",
+  "steps": [
+    {"type": "code_name", "content": "hackernews"},
+    {"type": "code_name", "content": "github-trending"},
+    {"type": "prompt", "content": {"ko": "HN 인기글과 GitHub 트렌딩 결과를 '🔥 기술 트렌드 브리핑' 제목으로 핵심만 정리해서 메신저로 보내줘.", "en": "Summarize the HN top stories and GitHub trending results into a '🔥 Tech Trend Briefing' and send via messenger."}}
+  ],
+  "hint_tools": "run_stored_code,send_notification",
+  "schedule": ""
+}

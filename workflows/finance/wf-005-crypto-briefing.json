@@ -1,0 +1,15 @@
+{
+  "id": "wf-005",
+  "name": {"ko": "암호화폐 시황 브리핑", "en": "Crypto Market Briefing"},
+  "description": {"ko": "주요 코인 시세와 공포/탐욕 지수를 확인하고 메신저로 전송합니다", "en": "Check major coin prices and Fear & Greed index, then send via messenger"},
+  "category": "Finance",
+  "icon": "📈",
+  "lang": "multi",
+  "steps": [
+    {"type": "code_name", "content": "crypto-prices"},
+    {"type": "code_name", "content": "fear-greed"},
+    {"type": "prompt", "content": {"ko": "위 코인 시세와 공포/탐욕 지수를 '📈 크립토 시황' 제목으로 깔끔하게 정리해서 메신저로 보내줘.", "en": "Compile the coin prices and Fear & Greed index above into a clean '📈 Crypto Market' summary and send via messenger."}}
+  ],
+  "hint_tools": "run_stored_code,send_notification",
+  "schedule": ""
+}

@@ -1,1 +1,92 @@
-[]
+[
+  {
+    "id": "wf-001",
+    "name": "{\"ko\": \"모닝 브리핑\", \"en\": \"Morning Briefing\"}",
+    "description": "{\"ko\": \"오늘 날씨, 주요 뉴스, 일정을 한눈에 정리해서 메신저로 보내줍니다\", \"en\": \"Get today's weather, top news, and schedule summary sent to your messenger\"}",
+    "category": "Daily Routine",
+    "icon": "☀️",
+    "lang": "multi",
+    "file": "daily_routine/wf-001-morning-briefing.json"
+  },
+  {
+    "id": "wf-002",
+    "name": "{\"ko\": \"오늘의 환율 알림\", \"en\": \"Daily Exchange Rate Alert\"}",
+    "description": "{\"ko\": \"주요 통화 환율을 조회하고 메신저로 알려줍니다\", \"en\": \"Check major currency exchange rates and send via messenger\"}",
+    "category": "Finance",
+    "icon": "💱",
+    "lang": "multi",
+    "file": "finance/wf-002-exchange-rate.json"
+  },
+  {
+    "id": "wf-003",
+    "name": "{\"ko\": \"이메일 요약 리포트\", \"en\": \"Email Summary Report\"}",
+    "description": "{\"ko\": \"읽지 않은 이메일을 확인하고 요약해서 메신저로 알려줍니다\", \"en\": \"Check unread emails, summarize them, and notify via messenger\"}",
+    "category": "Productivity",
+    "icon": "📧",
+    "lang": "multi",
+    "file": "productivity/wf-003-email-summary.json"
+  },
+  {
+    "id": "wf-004",
+    "name": "{\"ko\": \"뉴스 리서치 & 파일 저장\", \"en\": \"News Research & Save\"}",
+    "description": "{\"ko\": \"특정 주제의 최신 뉴스를 검색하고 요약 리포트를 파일로 저장합니다\", \"en\": \"Search latest news on a topic and save a summary report as a file\"}",
+    "category": "Research",
+    "icon": "📰",
+    "lang": "multi",
+    "file": "research/wf-004-news-research.json"
+  },
+  {
+    "id": "wf-005",
+    "name": "{\"ko\": \"암호화폐 시황 브리핑\", \"en\": \"Crypto Market Briefing\"}",
+    "description": "{\"ko\": \"주요 코인 시세와 공포/탐욕 지수를 확인하고 메신저로 전송합니다\", \"en\": \"Check major coin prices and Fear & Greed index, then send via messenger\"}",
+    "category": "Finance",
+    "icon": "📈",
+    "lang": "multi",
+    "file": "finance/wf-005-crypto-briefing.json"
+  },
+  {
+    "id": "wf-006",
+    "name": "{\"ko\": \"주간 날씨 예보\", \"en\": \"Weekly Weather Forecast\"}",
+    "description": "{\"ko\": \"7일간 날씨 예보를 확인하고 메신저로 보내줍니다\", \"en\": \"Check the 7-day weather forecast and send via messenger\"}",
+    "category": "Daily Routine",
+    "icon": "🌤️",
+    "lang": "multi",
+    "file": "daily_routine/wf-006-weekly-weather.json"
+  },
+  {
+    "id": "wf-007",
+    "name": "{\"ko\": \"시스템 상태 점검\", \"en\": \"System Health Check\"}",
+    "description": "{\"ko\": \"VM의 디스크, 메모리, CPU 상태를 확인하고 알려줍니다\", \"en\": \"Check VM disk, memory, and CPU status and report\"}",
+    "category": "System",
+    "icon": "💾",
+    "lang": "multi",
+    "file": "system/wf-007-system-health.json"
+  },
+  {
+    "id": "wf-008",
+    "name": "{\"ko\": \"기술 트렌드 브리핑\", \"en\": \"Tech Trend Briefing\"}",
+    "description": "{\"ko\": \"Hacker News 인기글과 GitHub 트렌딩을 확인하고 정리합니다\", \"en\": \"Check Hacker News top stories and GitHub trending repos, then summarize\"}",
+    "category": "Research",
+    "icon": "🔥",
+    "lang": "multi",
+    "file": "research/wf-008-tech-trends.json"
+  },
+  {
+    "id": "wf-009",
+    "name": "{\"ko\": \"오늘 일정 리마인더\", \"en\": \"Today's Schedule Reminder\"}",
+    "description": "{\"ko\": \"오늘의 일정과 기억된 정보를 확인하고 메신저로 알려줍니다\", \"en\": \"Check today's events and stored memories, then send a reminder via messenger\"}",
+    "category": "Productivity",
+    "icon": "📅",
+    "lang": "multi",
+    "file": "productivity/wf-009-schedule-reminder.json"
+  },
+  {
+    "id": "wf-010",
+    "name": "{\"ko\": \"주식 시황 요약\", \"en\": \"Stock Market Summary\"}",
+    "description": "{\"ko\": \"주요 주식 시세를 확인하고 시장 동향을 메신저로 보냅니다\", \"en\": \"Check major stock prices and send market trends via messenger\"}",
+    "category": "Finance",
+    "icon": "📊",
+    "lang": "multi",
+    "file": "finance/wf-010-stock-summary.json"
+  }
+]

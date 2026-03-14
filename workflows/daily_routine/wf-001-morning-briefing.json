@@ -1,0 +1,15 @@
+{
+  "id": "wf-001",
+  "name": {"ko": "모닝 브리핑", "en": "Morning Briefing"},
+  "description": {"ko": "오늘 날씨, 주요 뉴스, 일정을 한눈에 정리해서 메신저로 보내줍니다", "en": "Get today's weather, top news, and schedule summary sent to your messenger"},
+  "category": "Daily Routine",
+  "icon": "☀️",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "오늘 날짜와 요일을 확인하고, 서울 날씨를 조회해줘. 기온, 날씨 상태, 우산 필요 여부를 정리해줘.", "en": "Check today's date and day of the week, then get the weather for Seoul. Summarize temperature, conditions, and whether an umbrella is needed."}},
+    {"type": "prompt", "content": {"ko": "오늘의 주요 뉴스 토픽 3개를 웹 검색으로 찾아서 한 줄 요약해줘.", "en": "Search the web for 3 major news topics today and summarize each in one line."}},
+    {"type": "prompt", "content": {"ko": "위 날씨와 뉴스 내용을 '☀️ 모닝 브리핑' 제목으로 깔끔하게 정리해서 메신저로 보내줘.", "en": "Compile the weather and news above into a clean '☀️ Morning Briefing' message and send it via messenger."}}
+  ],
+  "hint_tools": "weather,web_search,send_notification,get_datetime",
+  "schedule": ""
+}

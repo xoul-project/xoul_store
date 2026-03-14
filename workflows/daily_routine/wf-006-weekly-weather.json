@@ -1,0 +1,14 @@
+{
+  "id": "wf-006",
+  "name": {"ko": "주간 날씨 예보", "en": "Weekly Weather Forecast"},
+  "description": {"ko": "7일간 날씨 예보를 확인하고 메신저로 보내줍니다", "en": "Check the 7-day weather forecast and send via messenger"},
+  "category": "Daily Routine",
+  "icon": "🌤️",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "서울의 7일간 날씨 예보를 조회해줘.", "en": "Get the 7-day weather forecast for Seoul."}},
+    {"type": "prompt", "content": {"ko": "각 날의 최고/최저 기온, 날씨, 비 올 확률을 이모지와 함께 정리해서 '🌤️ 주간 날씨' 제목으로 메신저에 보내줘.", "en": "Format each day's high/low temp, weather, and rain probability with emojis, then send as '🌤️ Weekly Weather' via messenger."}}
+  ],
+  "hint_tools": "weather,send_notification",
+  "schedule": ""
+}

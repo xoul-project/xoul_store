@@ -1,0 +1,14 @@
+{
+  "id": "wf-004",
+  "name": {"ko": "뉴스 리서치 & 파일 저장", "en": "News Research & Save"},
+  "description": {"ko": "특정 주제의 최신 뉴스를 검색하고 요약 리포트를 파일로 저장합니다", "en": "Search latest news on a topic and save a summary report as a file"},
+  "category": "Research",
+  "icon": "📰",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "AI 최신 뉴스를 웹에서 3번 검색해서 다양한 소스의 정보를 수집해줘.", "en": "Search the web 3 times for the latest AI news to gather information from various sources."}},
+    {"type": "prompt", "content": {"ko": "수집한 내용을 마크다운 형식의 뉴스 리포트로 정리해서 /root/share/news_report.md 파일로 저장해줘. 출처 URL도 포함해줘.", "en": "Compile the gathered content into a markdown news report and save to /root/share/news_report.md. Include source URLs."}}
+  ],
+  "hint_tools": "web_search,write_file",
+  "schedule": ""
+}
