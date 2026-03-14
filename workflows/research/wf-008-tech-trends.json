@@ -6,8 +6,8 @@
   "icon": "🔥",
   "lang": "multi",
   "steps": [
-    {"type": "code_name", "content": "hackernews"},
-    {"type": "code_name", "content": "github-trending"},
+    {"type": "code", "content": "hackernews"},
+    {"type": "code", "content": "github-trending"},
     {"type": "prompt", "content": {"ko": "HN 인기글과 GitHub 트렌딩 결과를 '🔥 기술 트렌드 브리핑' 제목으로 핵심만 정리해서 메신저로 보내줘.", "en": "Summarize the HN top stories and GitHub trending results into a '🔥 Tech Trend Briefing' and send via messenger."}}
   ],
   "hint_tools": "run_stored_code,send_notification",

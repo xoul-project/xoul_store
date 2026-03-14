@@ -6,7 +6,7 @@
   "icon": "💾",
   "lang": "multi",
   "steps": [
-    {"type": "code_name", "content": "disk-usage"},
+    {"type": "code", "content": "disk-usage"},
     {"type": "prompt", "content": {"ko": "시스템 상태를 분석해서 문제가 있으면 ⚠️로 경고하고, 정상이면 ✅로 표시해서 메신저로 보내줘.", "en": "Analyze the system status. Warn with ⚠️ if there are issues, mark ✅ if normal, and send via messenger."}}
   ],
   "hint_tools": "run_stored_code,send_notification",

@@ -7,7 +7,7 @@
   "lang": "multi",
   "steps": [
     {"type": "prompt", "content": {"ko": "웹에서 '오늘 미국 주식시장 동향 S&P500 나스닥'을 검색해줘.", "en": "Search the web for 'today US stock market trends S&P500 NASDAQ'."}},
-    {"type": "code_name", "content": "exchange-rates"},
+    {"type": "code", "content": "exchange-rates"},
     {"type": "prompt", "content": {"ko": "주식시장 동향과 환율을 합쳐서 '📊 오늘의 시장' 제목으로 핵심만 정리해서 메신저로 보내줘.", "en": "Combine stock market trends and exchange rates into a '📊 Today's Market' summary and send via messenger."}}
   ],
   "hint_tools": "web_search,run_stored_code,send_notification",
