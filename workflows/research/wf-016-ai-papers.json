@@ -1,0 +1,39 @@
+{
+  "id": "wf-016",
+  "name": {
+    "ko": "AI 논문 트래커",
+    "en": "AI Paper Tracker"
+  },
+  "description": {
+    "ko": "최신 AI/ML 논문 검색, 요약, 파일 저장, 알림",
+    "en": "Track latest AI/ML papers, summarize, save, notify"
+  },
+  "category": "Research",
+  "icon": "🎓",
+  "lang": "multi",
+  "steps": [
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'arxiv AI machine learning new papers this week' 검색.",
+        "en": "Search 'arxiv AI ML new papers this week'."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'huggingface papers daily top trending' 검색.",
+        "en": "Search 'huggingface papers daily trending'."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "논문 5편 선별, 제목/저자/3줄요약/링크를 /root/share/ai_papers.md 저장, '🎓 AI 논문 Top 5' 메신저 전송.",
+        "en": "Select 5 papers, save to /root/share/ai_papers.md, send '🎓 Top 5 AI Papers' via messenger."
+      }
+    }
+  ],
+  "hint_tools": "web_search,write_file,send_notification",
+  "schedule": ""
+}

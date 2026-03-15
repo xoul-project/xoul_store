@@ -1,0 +1,43 @@
+{
+  "id": "wf-013",
+  "name": {
+    "ko": "아침 생산성 대시보드",
+    "en": "Morning Productivity Dashboard"
+  },
+  "description": {
+    "ko": "날씨+일정+뉴스+시장 올인원 아침 브리핑",
+    "en": "All-in-one morning: weather+schedule+news+market"
+  },
+  "category": "Productivity",
+  "icon": "🌅",
+  "lang": "multi",
+  "steps": [
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "서울 오늘 날씨 조회, 오늘 일정 확인.",
+        "en": "Get Seoul weather and today's schedule."
+      }
+    },
+    {
+      "type": "code",
+      "content": "crypto-prices"
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "주요 뉴스 헤드라인 3개 검색.",
+        "en": "Search 3 major news headlines."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "날씨+일정+코인+뉴스를 '🌅 모닝 대시보드'로 섹션별 정리, 메신저 전송.",
+        "en": "Combine into '🌅 Morning Dashboard' with sections, send via messenger."
+      }
+    }
+  ],
+  "hint_tools": "weather,list_events,run_stored_code,web_search,send_notification",
+  "schedule": ""
+}

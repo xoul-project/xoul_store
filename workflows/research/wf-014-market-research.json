@@ -1,0 +1,46 @@
+{
+  "id": "wf-014",
+  "name": {
+    "ko": "주간 시장 리서치 리포트",
+    "en": "Weekly Market Research Report"
+  },
+  "description": {
+    "ko": "글로벌 시장 동향 다각도 검색, 분석 리포트 파일 저장",
+    "en": "Multi-angle global market research, save analysis report"
+  },
+  "category": "Research",
+  "icon": "📋",
+  "lang": "multi",
+  "steps": [
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'이번 주 글로벌 경제 주요 이슈' 검색.",
+        "en": "Search 'this week global economy issues'."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'이번 주 테크 기업 실적 발표 일정' 검색.",
+        "en": "Search 'this week tech earnings schedule'."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'연준 금리 전망 최신' 검색.",
+        "en": "Search 'Fed rate outlook latest'."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "종합 '📋 주간 시장 리서치 리포트' 마크다운으로 /root/share/weekly_market.md 저장, 출처+투자 시사점, 요약 메신저 전송.",
+        "en": "Compile into '📋 Weekly Market Research' markdown, save to /root/share/weekly_market.md, send via messenger."
+      }
+    }
+  ],
+  "hint_tools": "web_search,write_file,send_notification",
+  "schedule": ""
+}

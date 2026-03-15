@@ -1,0 +1,39 @@
+{
+  "id": "wf-018",
+  "name": {
+    "ko": "콘텐츠 제작 어시스턴트",
+    "en": "Content Creation Assistant"
+  },
+  "description": {
+    "ko": "트렌드 분석 → 블로그/SNS 콘텐츠 자동 생성",
+    "en": "Trend analysis → auto-generate blog/SNS content"
+  },
+  "category": "Productivity",
+  "icon": "✍️",
+  "lang": "multi",
+  "steps": [
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'오늘 트위터 트렌드 한국' 검색.",
+        "en": "Search 'today trending topics social media'."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "기술 트렌드 하나 골라 블로그 포스트(제목/소개/본문3단/결론) 800자 작성.",
+        "en": "Pick tech trend, write ~800 char blog post."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "블로그를 /root/share/blog_draft.md 저장, 트위터 280자+링크드인 포스트 추가, '✍️ 콘텐츠 3종 완료' 메신저 알림.",
+        "en": "Save to /root/share/blog_draft.md, add Twitter+LinkedIn versions, send '✍️ 3 Contents Created' via messenger."
+      }
+    }
+  ],
+  "hint_tools": "web_search,write_file,send_notification",
+  "schedule": ""
+}

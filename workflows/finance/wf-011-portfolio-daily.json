@@ -1,0 +1,40 @@
+{
+  "id": "wf-011",
+  "name": {
+    "ko": "포트폴리오 데일리 리포트",
+    "en": "Portfolio Daily Report"
+  },
+  "description": {
+    "ko": "주식, 암호화폐, 환율을 한눈에 확인하고 종합 리포트로 메신저 전송",
+    "en": "Check stocks, crypto & exchange rates, send combined report via messenger"
+  },
+  "category": "Finance",
+  "icon": "💼",
+  "lang": "multi",
+  "steps": [
+    {
+      "type": "code",
+      "content": "crypto-prices"
+    },
+    {
+      "type": "code",
+      "content": "exchange-rates"
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "주요 미국 주식(AAPL, MSFT, NVDA, TSLA) 현재 시세를 웹 검색으로 확인해줘.",
+        "en": "Search current prices of AAPL, MSFT, NVDA, TSLA."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "암호화폐, 환율, 주식 데이터를 합쳐서 '💼 포트폴리오 데일리 리포트' 표 형식으로 정리, 변동 큰 항목 ⚠️ 표시, 메신저 전송.",
+        "en": "Combine crypto+forex+stocks into '💼 Portfolio Daily Report' table, mark big movers ⚠️, send via messenger."
+      }
+    }
+  ],
+  "hint_tools": "run_stored_code,web_search,send_notification",
+  "schedule": ""
+}

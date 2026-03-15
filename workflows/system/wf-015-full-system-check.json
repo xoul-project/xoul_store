@@ -1,0 +1,40 @@
+{
+  "id": "wf-015",
+  "name": {
+    "ko": "시스템 & 네트워크 풀 점검",
+    "en": "Full System & Network Check"
+  },
+  "description": {
+    "ko": "디스크+메모리+IP+외부 연결 종합 점검",
+    "en": "Disk+memory+IP+connectivity check"
+  },
+  "category": "System",
+  "icon": "🔧",
+  "lang": "multi",
+  "steps": [
+    {
+      "type": "code",
+      "content": "disk-usage"
+    },
+    {
+      "type": "code",
+      "content": "ip-info"
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'free -h', 'uptime' 실행, 메모리와 가동시간 확인.",
+        "en": "Run 'free -h' and 'uptime'."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'🔧 인프라 점검 리포트'로 정리, ✅/⚠️/🔴 표시, 권장사항 포함, 메신저 전송.",
+        "en": "Compile as '🔧 Infrastructure Report', ✅/⚠️/🔴, include recommendations, send via messenger."
+      }
+    }
+  ],
+  "hint_tools": "run_stored_code,run_command,send_notification",
+  "schedule": ""
+}

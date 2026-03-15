@@ -1,0 +1,46 @@
+{
+  "id": "wf-020",
+  "name": {
+    "ko": "프로젝트 상태 리포트",
+    "en": "Project Status Report"
+  },
+  "description": {
+    "ko": "커밋+파일+기술트렌드 종합 리포트",
+    "en": "Commits+files+tech trends report"
+  },
+  "category": "Productivity",
+  "icon": "📊",
+  "lang": "multi",
+  "steps": [
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'git log --oneline -20' 실행, 최근 커밋 확인.",
+        "en": "Run 'git log --oneline -20'."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "/root/xoul의 .py 파일 목록 및 크기 확인.",
+        "en": "List .py files in /root/xoul with sizes."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "Python/FastAPI/Ollama 최신 뉴스 검색.",
+        "en": "Search Python/FastAPI/Ollama news."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "종합 '📊 프로젝트 상태 리포트' /root/share/project_status.md 저장, 개선제안 3가지, 요약 메신저 전송.",
+        "en": "Save '📊 Project Status Report', include 3 suggestions, send summary via messenger."
+      }
+    }
+  ],
+  "hint_tools": "run_command,list_files,web_search,write_file,send_notification",
+  "schedule": ""
+}

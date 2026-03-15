@@ -1,0 +1,36 @@
+{
+  "id": "wf-012",
+  "name": {
+    "ko": "사이트 모니터링 & 알림",
+    "en": "Site Monitoring & Alert"
+  },
+  "description": {
+    "ko": "주요 웹사이트 응답 상태 확인, 이상 시 알림",
+    "en": "Monitor key websites, alert on issues"
+  },
+  "category": "System",
+  "icon": "🏥",
+  "lang": "multi",
+  "steps": [
+    {
+      "type": "code",
+      "content": "http-status"
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "https://github.com, https://api.openai.com, https://google.com 도 각각 run_stored_code로 체크해줘.",
+        "en": "Also check github.com, api.openai.com, google.com via run_stored_code."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "결과를 '🏥 사이트 모니터링'으로 정리, 2초 이상/에러 🔴, 정상 🟢, 메신저 전송.",
+        "en": "Compile as '🏥 Site Monitoring', >2s/error 🔴, normal 🟢, send via messenger."
+      }
+    }
+  ],
+  "hint_tools": "run_stored_code,send_notification",
+  "schedule": ""
+}

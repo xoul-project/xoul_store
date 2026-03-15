@@ -1,0 +1,39 @@
+{
+  "id": "wf-019",
+  "name": {
+    "ko": "주간 지출 리뷰",
+    "en": "Weekly Expense Review"
+  },
+  "description": {
+    "ko": "기억 속 지출 분석, 소비 패턴 리포트",
+    "en": "Analyze expenses from memory, spending report"
+  },
+  "category": "Productivity",
+  "icon": "💳",
+  "lang": "multi",
+  "steps": [
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "기억(recall)에서 '지출/결제/구매/비용' 기록 찾기.",
+        "en": "Search memories for 'spending/payment/purchase/expense'."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "카테고리별 분류, 총액/비율 계산.",
+        "en": "Categorize with totals and percentages."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "'💳 주간 지출 리뷰'를 /root/share/expense_review.md 저장, 이모지 차트+절약 팁, 요약 메신저 전송.",
+        "en": "Save '💳 Weekly Expense Review' to /root/share/expense_review.md, send via messenger."
+      }
+    }
+  ],
+  "hint_tools": "recall,write_file,send_notification",
+  "schedule": ""
+}
