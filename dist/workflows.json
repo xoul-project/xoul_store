@@ -330,11 +330,28 @@
     "schedule": ""
   },
   {
-    "name": "테스트",
-    "description": "테스",
-    "steps": [],
-    "hint_tools": [],
-    "schedule": "",
-    "id": "workflow_item_5011"
+    "id": "wf-011",
+    "name": {
+      "ko": "포트폴리오 데일리 리포트",
+      "en": "Portfolio Daily Report"
+    },
+    "description": {
+      "ko": "테스트",
+      "en": "Test"
+    },
+    "category": "Finance",
+    "icon": "💼",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "테스트",
+          "en": "test"
+        }
+      }
+    ],
+    "hint_tools": "web_search",
+    "schedule": ""
   }
 ]
