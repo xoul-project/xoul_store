@@ -336,5 +336,409 @@
     "hint_tools": [],
     "schedule": "",
     "id": "workflow_item_5011"
+  },
+  {
+    "id": "wf-011",
+    "name": {
+      "ko": "포트폴리오 데일리 리포트",
+      "en": "Portfolio Daily Report"
+    },
+    "description": {
+      "ko": "주식, 암호화폐, 환율을 한눈에 확인하고 종합 리포트로 메신저 전송",
+      "en": "Check stocks, crypto & exchange rates, send combined report via messenger"
+    },
+    "category": "Finance",
+    "icon": "💼",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "code",
+        "content": "crypto-prices"
+      },
+      {
+        "type": "code",
+        "content": "exchange-rates"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "주요 미국 주식(AAPL, MSFT, NVDA, TSLA) 현재 시세를 웹 검색으로 확인해줘.",
+          "en": "Search current prices of AAPL, MSFT, NVDA, TSLA."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "암호화폐, 환율, 주식 데이터를 합쳐서 '💼 포트폴리오 데일리 리포트' 표 형식으로 정리, 변동 큰 항목 ⚠️ 표시, 메신저 전송.",
+          "en": "Combine crypto+forex+stocks into '💼 Portfolio Daily Report' table, mark big movers ⚠️, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,web_search,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-012",
+    "name": {
+      "ko": "사이트 모니터링 & 알림",
+      "en": "Site Monitoring & Alert"
+    },
+    "description": {
+      "ko": "주요 웹사이트 응답 상태 확인, 이상 시 알림",
+      "en": "Monitor key websites, alert on issues"
+    },
+    "category": "System",
+    "icon": "🏥",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "code",
+        "content": "http-status"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "https://github.com, https://api.openai.com, https://google.com 도 각각 run_stored_code로 체크해줘.",
+          "en": "Also check github.com, api.openai.com, google.com via run_stored_code."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "결과를 '🏥 사이트 모니터링'으로 정리, 2초 이상/에러 🔴, 정상 🟢, 메신저 전송.",
+          "en": "Compile as '🏥 Site Monitoring', >2s/error 🔴, normal 🟢, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-013",
+    "name": {
+      "ko": "아침 생산성 대시보드",
+      "en": "Morning Productivity Dashboard"
+    },
+    "description": {
+      "ko": "날씨+일정+뉴스+시장 올인원 아침 브리핑",
+      "en": "All-in-one morning: weather+schedule+news+market"
+    },
+    "category": "Productivity",
+    "icon": "🌅",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "서울 오늘 날씨 조회, 오늘 일정 확인.",
+          "en": "Get Seoul weather and today's schedule."
+        }
+      },
+      {
+        "type": "code",
+        "content": "crypto-prices"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "주요 뉴스 헤드라인 3개 검색.",
+          "en": "Search 3 major news headlines."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "날씨+일정+코인+뉴스를 '🌅 모닝 대시보드'로 섹션별 정리, 메신저 전송.",
+          "en": "Combine into '🌅 Morning Dashboard' with sections, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "weather,list_events,run_stored_code,web_search,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-014",
+    "name": {
+      "ko": "주간 시장 리서치 리포트",
+      "en": "Weekly Market Research Report"
+    },
+    "description": {
+      "ko": "글로벌 시장 동향 다각도 검색, 분석 리포트 파일 저장",
+      "en": "Multi-angle global market research, save analysis report"
+    },
+    "category": "Research",
+    "icon": "📋",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'이번 주 글로벌 경제 주요 이슈' 검색.",
+          "en": "Search 'this week global economy issues'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'이번 주 테크 기업 실적 발표 일정' 검색.",
+          "en": "Search 'this week tech earnings schedule'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'연준 금리 전망 최신' 검색.",
+          "en": "Search 'Fed rate outlook latest'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "종합 '📋 주간 시장 리서치 리포트' 마크다운으로 /root/share/weekly_market.md 저장, 출처+투자 시사점, 요약 메신저 전송.",
+          "en": "Compile into '📋 Weekly Market Research' markdown, save to /root/share/weekly_market.md, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "web_search,write_file,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-015",
+    "name": {
+      "ko": "시스템 & 네트워크 풀 점검",
+      "en": "Full System & Network Check"
+    },
+    "description": {
+      "ko": "디스크+메모리+IP+외부 연결 종합 점검",
+      "en": "Disk+memory+IP+connectivity check"
+    },
+    "category": "System",
+    "icon": "🔧",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "code",
+        "content": "disk-usage"
+      },
+      {
+        "type": "code",
+        "content": "ip-info"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'free -h', 'uptime' 실행, 메모리와 가동시간 확인.",
+          "en": "Run 'free -h' and 'uptime'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🔧 인프라 점검 리포트'로 정리, ✅/⚠️/🔴 표시, 권장사항 포함, 메신저 전송.",
+          "en": "Compile as '🔧 Infrastructure Report', ✅/⚠️/🔴, include recommendations, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,run_command,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-016",
+    "name": {
+      "ko": "AI 논문 트래커",
+      "en": "AI Paper Tracker"
+    },
+    "description": {
+      "ko": "최신 AI/ML 논문 검색, 요약, 파일 저장, 알림",
+      "en": "Track latest AI/ML papers, summarize, save, notify"
+    },
+    "category": "Research",
+    "icon": "🎓",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'arxiv AI machine learning new papers this week' 검색.",
+          "en": "Search 'arxiv AI ML new papers this week'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'huggingface papers daily top trending' 검색.",
+          "en": "Search 'huggingface papers daily trending'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "논문 5편 선별, 제목/저자/3줄요약/링크를 /root/share/ai_papers.md 저장, '🎓 AI 논문 Top 5' 메신저 전송.",
+          "en": "Select 5 papers, save to /root/share/ai_papers.md, send '🎓 Top 5 AI Papers' via messenger."
+        }
+      }
+    ],
+    "hint_tools": "web_search,write_file,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-017",
+    "name": {
+      "ko": "일일 보안 점검",
+      "en": "Daily Security Audit"
+    },
+    "description": {
+      "ko": "SSH 접속, 실패 시도, 열린 포트 + 보안 뉴스",
+      "en": "SSH logs, failed attempts, open ports + security news"
+    },
+    "category": "System",
+    "icon": "🛡️",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "code",
+        "content": "security-check"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'오늘 주요 보안 취약점 CVE 뉴스' 검색.",
+          "en": "Search 'today major CVE news'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "보안 점검+뉴스를 '🛡️ 일일 보안 리포트'로 작성, 비정상 🔴 강조, 권고 포함, 메신저 전송.",
+          "en": "Combine into '🛡️ Daily Security Report', highlight abnormal 🔴, recommendations, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,web_search,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-018",
+    "name": {
+      "ko": "콘텐츠 제작 어시스턴트",
+      "en": "Content Creation Assistant"
+    },
+    "description": {
+      "ko": "트렌드 분석 → 블로그/SNS 콘텐츠 자동 생성",
+      "en": "Trend analysis → auto-generate blog/SNS content"
+    },
+    "category": "Productivity",
+    "icon": "✍️",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'오늘 트위터 트렌드 한국' 검색.",
+          "en": "Search 'today trending topics social media'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기술 트렌드 하나 골라 블로그 포스트(제목/소개/본문3단/결론) 800자 작성.",
+          "en": "Pick tech trend, write ~800 char blog post."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "블로그를 /root/share/blog_draft.md 저장, 트위터 280자+링크드인 포스트 추가, '✍️ 콘텐츠 3종 완료' 메신저 알림.",
+          "en": "Save to /root/share/blog_draft.md, add Twitter+LinkedIn versions, send '✍️ 3 Contents Created' via messenger."
+        }
+      }
+    ],
+    "hint_tools": "web_search,write_file,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-019",
+    "name": {
+      "ko": "주간 지출 리뷰",
+      "en": "Weekly Expense Review"
+    },
+    "description": {
+      "ko": "기억 속 지출 분석, 소비 패턴 리포트",
+      "en": "Analyze expenses from memory, spending report"
+    },
+    "category": "Productivity",
+    "icon": "💳",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 '지출/결제/구매/비용' 기록 찾기.",
+          "en": "Search memories for 'spending/payment/purchase/expense'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "카테고리별 분류, 총액/비율 계산.",
+          "en": "Categorize with totals and percentages."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'💳 주간 지출 리뷰'를 /root/share/expense_review.md 저장, 이모지 차트+절약 팁, 요약 메신저 전송.",
+          "en": "Save '💳 Weekly Expense Review' to /root/share/expense_review.md, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,write_file,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-020",
+    "name": {
+      "ko": "프로젝트 상태 리포트",
+      "en": "Project Status Report"
+    },
+    "description": {
+      "ko": "커밋+파일+기술트렌드 종합 리포트",
+      "en": "Commits+files+tech trends report"
+    },
+    "category": "Productivity",
+    "icon": "📊",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'git log --oneline -20' 실행, 최근 커밋 확인.",
+          "en": "Run 'git log --oneline -20'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "/root/xoul의 .py 파일 목록 및 크기 확인.",
+          "en": "List .py files in /root/xoul with sizes."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "Python/FastAPI/Ollama 최신 뉴스 검색.",
+          "en": "Search Python/FastAPI/Ollama news."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "종합 '📊 프로젝트 상태 리포트' /root/share/project_status.md 저장, 개선제안 3가지, 요약 메신저 전송.",
+          "en": "Save '📊 Project Status Report', include 3 suggestions, send summary via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_command,list_files,web_search,write_file,send_notification",
+    "schedule": ""
   }
 ]
