@@ -893,5 +893,15 @@
       }
     ],
     "file": "other/binance_portfolio_8412.py"
+  },
+  {
+    "id": "security-check",
+    "name": "{\"ko\": \"보안 점검\", \"en\": \"Security Check\"}",
+    "description": "{\"ko\": \"SSH 로그인, 실패 시도, 열린 포트\", \"en\": \"SSH logins, failed attempts, open ports\"}",
+    "category": "System",
+    "icon": "🛡️",
+    "lang": "multi",
+    "params": [],
+    "file": "system/security-check.py"
   }
 ]

@@ -100,5 +100,45 @@
     "hint_tools": [],
     "schedule": "",
     "file": "other/workflow_item_5011.json"
+  },
+  {
+    "id": "wf-011",
+    "file": "finance/wf-011-portfolio-daily.json"
+  },
+  {
+    "id": "wf-012",
+    "file": "system/wf-012-site-monitor.json"
+  },
+  {
+    "id": "wf-013",
+    "file": "productivity/wf-013-morning-dashboard.json"
+  },
+  {
+    "id": "wf-014",
+    "file": "research/wf-014-market-research.json"
+  },
+  {
+    "id": "wf-015",
+    "file": "system/wf-015-full-system-check.json"
+  },
+  {
+    "id": "wf-016",
+    "file": "research/wf-016-ai-papers.json"
+  },
+  {
+    "id": "wf-017",
+    "file": "system/wf-017-security-audit.json"
+  },
+  {
+    "id": "wf-018",
+    "file": "productivity/wf-018-content-creator.json"
+  },
+  {
+    "id": "wf-019",
+    "file": "productivity/wf-019-expense-review.json"
+  },
+  {
+    "id": "wf-020",
+    "file": "productivity/wf-020-project-status.json"
   }
 ]
