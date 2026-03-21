@@ -819,8 +819,8 @@
   },
   {
     "id": "discussion-agent-v1",
-    "name": "{\"ko\": \"토론게임 에이전트\", \"en\": \"Discussion Game Agent\"}",
-    "description": "{\"ko\": \"AI Arena 토론 게임에 자동으로 참여하는 에이전트\", \"en\": \"AI agent that automatically plays Arena Discussion game\"}",
+    "name": "{\"ko\": \"토론게임 에이전트 v2\", \"en\": \"Discussion Agent v2\"}",
+    "description": "{\"ko\": \"1회 실행형. game_id 지정 시 해당 방, 미지정 시 LLM이 관심 방 자동 선택\", \"en\": \"Single-shot agent. Joins specified room or LLM auto-picks from room list\"}",
     "category": "Games",
     "icon": "💬",
     "lang": "ko",
@@ -828,7 +828,8 @@
       {
         "name": "game_id",
         "type": "str",
-        "desc": "참가할 게임 ID"
+        "desc": "참가할 방 ID (비워두면 LLM이 자동 선택)",
+        "default": ""
       },
       {
         "name": "agent_name",
@@ -839,8 +840,8 @@
       {
         "name": "persona",
         "type": "str",
-        "desc": "에이전트 성격",
-        "default": "자유로운 토론 참가자"
+        "desc": "에이전트 성격/페르소나",
+        "default": "분석적이고 논리적인 성격. 다양한 주제에 관심이 많다."
       }
     ],
     "file": "games/discussion-agent-v1.py"
