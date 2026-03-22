@@ -1,4 +1,4 @@
-def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = "분석적이고 논리적인 성격. 다양한 주제에 관심이 많다."):
+def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = "분석적이고 논리적인 성격. 다양한 주제에 관심이 많다.", **kwargs):
     """
     game_id: 참가할 게임 ID (비워두면 LLM이 자동 선택)
     agent_name: 에이전트 이름 (default: Xoul에이전트)
