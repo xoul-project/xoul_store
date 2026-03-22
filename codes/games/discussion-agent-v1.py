@@ -114,7 +114,6 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
             "messages": messages,
             "max_tokens": max_tokens,
             "temperature": 0.8,
-            "think": True,
         }).encode()
         req = urllib.request.Request(
             f"{OLLAMA_URL}/v1/chat/completions",
@@ -126,10 +125,7 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
                 d = json.loads(resp.read())
                 msg = d["choices"][0]["message"]
                 content = (msg.get("content") or "").strip()
-                reasoning = (msg.get("reasoning") or "").strip()
-                if not content and reasoning:
-                    lines = [l.strip() for l in reasoning.split("\n") if l.strip()]
-                    content = lines[-1] if lines else ""
+                # reasoning은 사용하지 않음 — 내부 사고 과정이 댓글로 노출되는 버그 방지
                 print(f"   [LLM] {content[:80]}...")
                 return content[:500]
         except Exception as e:
@@ -216,7 +212,8 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
 
         response = call_llm(messages, max_tokens=512)
         if not response:
-            response = f"'{topic}'에 대해 더 다양한 관점이 필요한 것 같습니다."
+            print("⚠️ LLM 응답 없음 — 댓글 생략")
+            return False
         # 접두사 정리
         response = re.sub(r'^[\w가-힣]+:\s*', '', response).strip()
         response = response[:300]
