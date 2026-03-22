@@ -740,5 +740,776 @@
     ],
     "hint_tools": "run_command,list_files,web_search,write_file,send_notification",
     "schedule": ""
+  },
+  {
+    "id": "wf-021",
+    "name": {
+      "ko": "습관 체크인",
+      "en": "Daily Habit Check-in"
+    },
+    "description": {
+      "ko": "매일 습관 달성 여부를 체크하고 스트릭을 기록합니다",
+      "en": "Check daily habit completion and track streaks"
+    },
+    "category": "Daily Routine",
+    "icon": "✅",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 '습관 목록/habit list'을 검색해줘. 없으면 기본 습관 5개(물 2L, 운동 30분, 독서 20분, 명상 10분, 11시 전 취침)를 제안해줘.",
+          "en": "Search memories for 'habit list'. If none, suggest 5 defaults: drink 2L water, exercise 30min, read 20min, meditate 10min, sleep by 11pm."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "각 습관의 오늘 완료 여부를 사용자에게 물어봐. 완료 ✅, 미완료 ❌로 체크하고, 메모가 있으면 기록해.",
+          "en": "Ask user about each habit's completion today. Mark ✅ done, ❌ not done, note any comments."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "결과를 '✅ 습관 체크 — [날짜]'로 정리해서 habit_[날짜] 키로 메모리에 저장하고, 점수(완료/전체)와 스트릭 정보를 메신저로 보내줘.",
+          "en": "Format as '✅ Habit Check — [date]', save to memory as habit_[date], send score and streak info via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-022",
+    "name": {
+      "ko": "수면 기록",
+      "en": "Sleep Log"
+    },
+    "description": {
+      "ko": "취침/기상 시간과 수면 품질을 기록하고 패턴을 분석합니다",
+      "en": "Log sleep/wake times, quality, and analyze patterns"
+    },
+    "category": "Daily Routine",
+    "icon": "😴",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "사용자에게 어젯밤 취침 시간, 오늘 기상 시간, 수면 품질(1~5점)을 물어봐.",
+          "en": "Ask user for last night's bedtime, this morning's wake time, and sleep quality (1-5)."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 최근 7일 수면 기록(sleep_log)을 검색해서 평균 수면 시간과 품질 추이를 분석해.",
+          "en": "Search memories for recent 7 days sleep_log entries, analyze average sleep duration and quality trends."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'😴 수면 기록 — [날짜]'로 정리. 총 수면 시간, 품질 ⭐, 주간 평균 포함. sleep_log_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Format as '😴 Sleep Log — [date]' with total hours, quality ⭐, weekly avg. Save as sleep_log_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-023",
+    "name": {
+      "ko": "기분 체크",
+      "en": "Mood Tracker"
+    },
+    "description": {
+      "ko": "오늘의 감정을 기록하고 패턴을 파악합니다",
+      "en": "Log today's emotions and identify patterns"
+    },
+    "category": "Daily Routine",
+    "icon": "🎭",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "지금 기분을 물어봐. 😊좋음/🙂괜찮음/😐보통/😔우울/😢힘듦 중 선택 + 에너지 레벨(1~5) + 영향 요인(일, 관계, 건강, 날씨, 수면 등).",
+          "en": "Ask current mood: 😊Great/🙂Good/😐Okay/😔Low/😢Bad, energy level (1-5), and factors (work, relationships, health, weather, sleep)."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 최근 7일 mood 기록을 검색. 패턴 분석: 기분이 좋은/나쁜 요일, 주요 영향 요인.",
+          "en": "Search memories for recent 7 days mood entries. Analyze patterns: best/worst days, main factors."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🎭 기분 체크 — [날짜]'로 정리. 기분에 맞는 셀프케어 팁 1개 추가. mood_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Format as '🎭 Mood Check — [date]' with a self-care tip. Save as mood_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-024",
+    "name": {
+      "ko": "감사 일기",
+      "en": "Gratitude Journal"
+    },
+    "description": {
+      "ko": "오늘 감사한 3가지를 기록하고 긍정적 마인드를 키웁니다",
+      "en": "Record 3 things you're grateful for today and build positivity"
+    },
+    "category": "Daily Routine",
+    "icon": "🙏",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "오늘 감사한 것 3가지를 물어봐. 크든 작든 상관없이. 답변이 짧으면 '왜 감사한지'도 한 줄 더 물어봐.",
+          "en": "Ask for 3 things grateful for today. Big or small. If answers are short, ask 'why' for each."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "추가로 오늘 하루를 한 문장으로 요약하면? / 내일 기대되는 것 하나는? 물어봐.",
+          "en": "Also ask: summarize today in one sentence? One thing looking forward to tomorrow?"
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🙏 감사 일기 — [날짜]'로 따뜻하게 정리. gratitude_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Format warmly as '🙏 Gratitude Journal — [date]'. Save as gratitude_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-025",
+    "name": {
+      "ko": "물 마시기 체크",
+      "en": "Water Intake Check"
+    },
+    "description": {
+      "ko": "하루 수분 섭취를 추적하고 리마인드합니다",
+      "en": "Track daily water intake and send reminders"
+    },
+    "category": "Daily Routine",
+    "icon": "💧",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "오늘 지금까지 물을 얼마나 마셨는지 물어봐. 컵 수(250ml 기준) 또는 리터로.",
+          "en": "Ask how much water they've had today. In cups (250ml) or liters."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "목표 2L 대비 현재 진행률 계산. 남은 양과 남은 시간 기준으로 '시간당 X잔' 페이스 알려줘.",
+          "en": "Calculate progress vs 2L goal. Based on remaining amount and hours, suggest 'X cups per hour' pace."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "진행률 바(█░)와 함께 '💧 수분 체크 — [시간]'으로 정리. water_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Format with progress bar (█░) as '💧 Water Check — [time]'. Save as water_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-026",
+    "name": {
+      "ko": "오늘 뭐 먹지?",
+      "en": "What Should I Eat?"
+    },
+    "description": {
+      "ko": "날씨와 기분에 맞는 식사 메뉴를 추천합니다",
+      "en": "Get meal recommendations based on weather and mood"
+    },
+    "category": "Daily Routine",
+    "icon": "🍽️",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "현재 날씨를 확인하고, 사용자에게 지금 기분(든든하게/가볍게/매콤하게/달달하게)과 함께 먹을 인원수를 물어봐.",
+          "en": "Check current weather, ask user their craving (hearty/light/spicy/sweet) and number of people."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "날씨+기분 조합으로 한식/양식/일식/중식에서 메뉴 3가지를 추천해줘. 각 메뉴별 예상 칼로리, 조리 난이도(상/중/하), 예상 시간도 알려줘.",
+          "en": "Based on weather+mood, recommend 3 meals from Korean/Western/Japanese/Chinese cuisine. Include estimated calories, difficulty (easy/medium/hard), and cook time."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🍽️ 오늘의 추천 메뉴'로 정리. 선택한 메뉴의 간단 레시피(재료+5단계)도 포함. 메신저 전송.",
+          "en": "Format as '🍽️ Today's Menu Picks' with a quick recipe (ingredients + 5 steps) for chosen meal. Send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "weather,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-027",
+    "name": {
+      "ko": "독서 기록",
+      "en": "Reading Tracker"
+    },
+    "description": {
+      "ko": "읽고 있는 책의 진도를 기록하고 독서 노트를 남깁니다",
+      "en": "Track reading progress and save book notes"
+    },
+    "category": "Productivity",
+    "icon": "📚",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 'reading_list/독서' 검색. 현재 읽는 책 확인. 없으면 새 책 제목/저자를 물어봐.",
+          "en": "Search memories for 'reading_list'. Check current book. If none, ask for new book title/author."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "오늘 읽은 범위(페이지/챕터), 읽은 시간, 핵심 메모 1~2줄을 물어봐.",
+          "en": "Ask pages/chapters read today, reading time, and 1-2 key notes."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'📚 독서 기록 — [날짜]'로 정리. 전체 진행률 바, 예상 완독일 계산. reading_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Format as '📚 Reading Log — [date]' with progress bar and estimated finish date. Save as reading_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-028",
+    "name": {
+      "ko": "운동 기록",
+      "en": "Exercise Log"
+    },
+    "description": {
+      "ko": "오늘 운동을 기록하고 주간 운동량을 추적합니다",
+      "en": "Log today's workout and track weekly exercise volume"
+    },
+    "category": "Daily Routine",
+    "icon": "💪",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "오늘 한 운동 종류(달리기/웨이트/요가/걷기/자전거/수영 등), 시간, 강도(상/중/하)를 물어봐.",
+          "en": "Ask exercise type (running/weights/yoga/walking/cycling/swimming), duration, and intensity (high/medium/low)."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 이번 주 exercise_log 검색. 주간 운동 횟수, 총 시간, 운동별 분포 분석.",
+          "en": "Search memories for this week's exercise_log. Analyze weekly count, total time, and exercise distribution."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'💪 운동 기록 — [날짜]'로 정리. 칼로리 추정, 주간 목표 대비 진행률, 내일 추천 운동 포함. exercise_log_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Format as '💪 Exercise Log — [date]' with calorie estimate, weekly goal progress, tomorrow's suggestion. Save as exercise_log_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-029",
+    "name": {
+      "ko": "집중 모드",
+      "en": "Focus Mode"
+    },
+    "description": {
+      "ko": "뽀모도로 타이머를 시작하고 집중 세션을 관리합니다",
+      "en": "Start a Pomodoro timer and manage focus sessions"
+    },
+    "category": "Productivity",
+    "icon": "🍅",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "지금 집중할 작업 이름과 원하는 집중 시간(기본 25분)을 물어봐.",
+          "en": "Ask what task to focus on and desired focus duration (default 25 min)."
+        }
+      },
+      {
+        "type": "code",
+        "content": "pomodoro"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "세션 완료! 작업 성과를 물어보고, '🍅 집중 완료 — [작업]'으로 정리. focus_[날짜_시간]으로 메모리 저장, 메신저 전송.",
+          "en": "Session done! Ask about progress, format as '🍅 Focus Complete — [task]'. Save as focus_[date_time], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-030",
+    "name": {
+      "ko": "기념일 체크",
+      "en": "Anniversary Checker"
+    },
+    "description": {
+      "ko": "다가오는 생일과 기념일을 확인하고 알려줍니다",
+      "en": "Check upcoming birthdays and anniversaries"
+    },
+    "category": "Daily Routine",
+    "icon": "🎂",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "code",
+        "content": "countdown"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 '생일/기념일/birthday/anniversary' 검색. 이번 주, 이번 달 다가오는 날짜 확인.",
+          "en": "Search memories for 'birthday/anniversary'. Find upcoming dates this week and this month."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🎂 기념일 체크'로 정리. 3일 이내 ⚠️ 강조, 선물 아이디어 1~2개 제안, 축하 메시지 템플릿 포함. 메신저 전송.",
+          "en": "Format as '🎂 Anniversary Check'. Highlight within 3 days ⚠️, suggest 1-2 gift ideas, include message templates. Send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,recall,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-031",
+    "name": {
+      "ko": "저축 목표 체크",
+      "en": "Savings Goal Tracker"
+    },
+    "description": {
+      "ko": "저축 목표 대비 현재 진행률을 확인하고 조언합니다",
+      "en": "Check savings progress vs goal and get advice"
+    },
+    "category": "Finance",
+    "icon": "🐷",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 'savings_goal/저축목표' 검색. 없으면 목표 금액과 기간을 물어봐.",
+          "en": "Search memories for 'savings_goal'. If none, ask for target amount and timeline."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "현재까지 저축한 금액을 물어보고, 목표 대비 진행률, 남은 기간 동안 월별 필요 저축액 계산.",
+          "en": "Ask current saved amount, calculate progress vs goal and required monthly savings for remaining time."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🐷 저축 현황'으로 진행률 바, 월별 목표, 절약 팁 3가지 포함해서 정리. savings_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Format as '🐷 Savings Status' with progress bar, monthly target, 3 saving tips. Save as savings_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-032",
+    "name": {
+      "ko": "주간 회고",
+      "en": "Weekly Review"
+    },
+    "description": {
+      "ko": "한 주를 돌아보고 다음 주 목표를 설정합니다",
+      "en": "Reflect on the week and set next week's goals"
+    },
+    "category": "Productivity",
+    "icon": "📋",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 이번 주 daily_plan, habit, exercise_log, mood 기록들을 전부 검색해줘.",
+          "en": "Search memories for this week's daily_plan, habit, exercise_log, mood entries."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "이번 주 성과 3가지, 아쉬운 점 2가지, 핵심 인사이트 1가지를 정리해줘.",
+          "en": "Summarize 3 wins, 2 missed items, and 1 key insight from the week."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "다음 주 집중할 것 TOP 3을 사용자에게 물어보고, '📋 주간 회고 — [주차]'로 정리. weekly_review_[주차]로 메모리 저장, /root/share/weekly_review.md 파일 저장, 메신저 전송.",
+          "en": "Ask user for next week TOP 3 focus items, format as '📋 Weekly Review — [week]'. Save as weekly_review_[week], save file /root/share/weekly_review.md, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,write_file,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-033",
+    "name": {
+      "ko": "여행 준비 체크리스트",
+      "en": "Travel Prep Checklist"
+    },
+    "description": {
+      "ko": "여행 목적지에 맞는 짐 목록과 준비 사항을 생성합니다",
+      "en": "Generate packing list and prep checklist for your trip"
+    },
+    "category": "Productivity",
+    "icon": "✈️",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "여행 정보를 물어봐: 목적지, 기간(박), 목적(여행/출장/모험), 특별 활동 계획.",
+          "en": "Ask trip details: destination, duration (nights), purpose (leisure/business/adventure), special activities planned."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "목적지의 여행 기간 날씨를 검색해줘. 기온, 강수 확률, 특이 날씨를 확인.",
+          "en": "Search weather for the destination during travel dates. Check temperature, rain probability, special conditions."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "날씨+목적 기반으로 짐 목록(의류/세면도구/전자기기/서류/기타) 체크리스트와 출발 전 할 일 리스트 생성. '✈️ 여행 준비 — [목적지]'로 정리, /root/share/travel_checklist.md 저장, 메신저 전송.",
+          "en": "Generate packing list (clothing/toiletries/electronics/documents/extras) and pre-departure checklist based on weather+purpose. Format as '✈️ Travel Prep — [destination]', save to /root/share/travel_checklist.md, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "web_search,weather,write_file,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-034",
+    "name": {
+      "ko": "셀프케어 타임",
+      "en": "Self-Care Time"
+    },
+    "description": {
+      "ko": "스트레스 해소와 힐링을 위한 맞춤 셀프케어 루틴을 제안합니다",
+      "en": "Get personalized self-care routine suggestions for stress relief"
+    },
+    "category": "Daily Routine",
+    "icon": "🧘",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "현재 상태를 물어봐: 스트레스 레벨(1~10), 피로도(1~10), 가용 시간(15분/30분/1시간), 선호(실내/실외).",
+          "en": "Ask current state: stress level (1-10), fatigue (1-10), available time (15/30/60 min), preference (indoor/outdoor)."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "상태에 맞는 셀프케어 활동 3가지 추천. 각각 효과, 소요 시간, 구체적 방법을 포함. 높은 스트레스면 호흡법/명상, 피곤하면 스트레칭/음악/산책 등.",
+          "en": "Recommend 3 self-care activities matching their state. Include benefits, time, and specific how-to. High stress: breathing/meditation. Fatigued: stretching/music/walking."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🧘 셀프케어 — [날짜]'로 따뜻하게 정리. '오늘 나를 위한 한 마디' 명언도 추가. 메신저 전송.",
+          "en": "Format warmly as '🧘 Self-Care — [date]'. Add an inspirational quote. Send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-035",
+    "name": {
+      "ko": "영어 단어 퀴즈",
+      "en": "English Vocab Quiz"
+    },
+    "description": {
+      "ko": "매일 영어 단어 5개를 배우고 퀴즈로 복습합니다",
+      "en": "Learn 5 English words daily and review with quiz"
+    },
+    "category": "Productivity",
+    "icon": "🇬🇧",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 'english_vocab' 검색해서 이미 배운 단어 확인. 안 겹치는 새 단어 5개를 중급 난이도로 뜻(한/영), 예문, 발음 기호와 함께 카드 형식으로 보여줘.",
+          "en": "Search memories for 'english_vocab' to avoid repeats. Present 5 new intermediate words with definition (KR/EN), example sentence, and pronunciation as flashcards."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "바로 퀴즈! 빈칸 채우기 2문제, 뜻 맞추기 2문제, 문장 만들기 1문제 출제.",
+          "en": "Quiz time! 2 fill-in-the-blank, 2 meaning match, 1 sentence creation questions."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "채점 후 '🇬🇧 영어 퀴즈 — [날짜]'로 점수, 틀린 단어 복습, 격려 한마디 정리. english_vocab_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Grade and format as '🇬🇧 Vocab Quiz — [date]' with score, wrong word review, encouragement. Save as english_vocab_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-036",
+    "name": {
+      "ko": "하루 마무리 일기",
+      "en": "Daily Wrap-up Journal"
+    },
+    "description": {
+      "ko": "하루를 돌아보며 성과, 감정, 내일 계획을 정리합니다",
+      "en": "Reflect on the day's achievements, emotions, and tomorrow's plan"
+    },
+    "category": "Daily Routine",
+    "icon": "🌙",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "오늘 하루를 돌아보자. 1) 오늘 가장 잘한 것은? 2) 아쉬웠던 것은? 3) 내일 꼭 하고 싶은 것은?",
+          "en": "Let's reflect on today. 1) What went best? 2) What was disappointing? 3) What do you want to do tomorrow?"
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 오늘 habit, mood, exercise 기록을 확인. 오늘 전체 활동 요약 생성.",
+          "en": "Search memories for today's habit, mood, exercise entries. Generate today's activity summary."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🌙 하루 마무리 — [날짜]'로 따뜻하게 정리. 하루 점수(⭐1~5), 내일 TOP 3, 격려 한마디 포함. daily_journal_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Format warmly as '🌙 Day's End — [date]' with day score (⭐1-5), tomorrow TOP 3, encouraging words. Save as daily_journal_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-037",
+    "name": {
+      "ko": "장보기 목록 생성",
+      "en": "Grocery List Generator"
+    },
+    "description": {
+      "ko": "냉장고 상태와 식단에 맞는 장보기 목록을 만듭니다",
+      "en": "Generate grocery list based on fridge status and meal plans"
+    },
+    "category": "Daily Routine",
+    "icon": "🛒",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "이번 주 먹고 싶은 메뉴 3~5개를 물어봐. 또는 '아무거나 추천'이면 한식 위주로 5끼 추천.",
+          "en": "Ask for 3-5 meals they want this week. If 'anything', suggest 5 Korean-style meals."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "메뉴별 필요한 식재료를 정리하고, 코너별(채소/육류/유제품/양념/기타)로 분류한 장보기 목록 생성. 수량과 예상 가격도 포함.",
+          "en": "List ingredients per meal, organize by section (produce/meat/dairy/seasoning/other). Include quantities and estimated prices."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🛒 장보기 목록'으로 체크박스 포맷 정리. 예상 총액 표시. /root/share/grocery_list.md 저장, 메신저 전송.",
+          "en": "Format as '🛒 Grocery List' with checkboxes. Show estimated total. Save to /root/share/grocery_list.md, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "write_file,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-038",
+    "name": {
+      "ko": "청소 스케줄",
+      "en": "Cleaning Schedule"
+    },
+    "description": {
+      "ko": "오늘 할 청소 구역과 체크리스트를 알려줍니다",
+      "en": "Get today's cleaning zone and checklist"
+    },
+    "category": "Daily Routine",
+    "icon": "🧹",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "오늘 요일을 확인하고, 요일별 청소 구역 배정: 월=침실, 화=주방, 수=화장실, 목=거실, 금=빨래, 토=대청소 로테이션, 일=휴식.",
+          "en": "Check today's day and assign zone: Mon=bedroom, Tue=kitchen, Wed=bathroom, Thu=living room, Fri=laundry, Sat=deep clean rotation, Sun=rest."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "해당 구역의 청소 체크리스트(5~7항목)를 체크박스로 생성. 예상 소요 시간도 표시. 추가로 15분 퀵 정리(주방 카운터/테이블/침대) 항목도 포함.",
+          "en": "Create a checklist (5-7 items) with checkboxes for that zone. Include estimated time. Add a 15-min quick tidy section (counter/table/bed)."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🧹 오늘의 청소 — [요일] [구역]'으로 정리. 메신저 전송.",
+          "en": "Format as '🧹 Today's Cleaning — [day] [zone]'. Send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "get_datetime,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-039",
+    "name": {
+      "ko": "목표 점검",
+      "en": "Goal Check-in"
+    },
+    "description": {
+      "ko": "분기/월 목표 진행 상황을 점검하고 조정합니다",
+      "en": "Review quarterly/monthly goal progress and adjust"
+    },
+    "category": "Productivity",
+    "icon": "🎯",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 'goal/목표' 검색. 현재 목표 목록 확인. 없으면 인생 목표 영역(커리어/재정/건강/학습/관계)에서 3개 설정하도록 안내.",
+          "en": "Search memories for 'goal'. Check current goals. If none, guide setting 3 goals from life areas (career/finance/health/learning/relationships)."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "각 목표별 현재 진행률(%), 이번 달 한 것, 막히는 것을 물어봐.",
+          "en": "For each goal, ask current progress (%), what was done this month, and blockers."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "'🎯 목표 점검 — [날짜]'로 진행률 바, 남은 기간, 조정 제안 포함 정리. goals_[날짜]로 메모리 저장, 메신저 전송.",
+          "en": "Format as '🎯 Goal Check-in — [date]' with progress bars, time remaining, adjustment suggestions. Save as goals_[date], send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,memorize,send_notification,get_datetime",
+    "schedule": ""
+  },
+  {
+    "id": "wf-040",
+    "name": {
+      "ko": "D-Day 리마인더",
+      "en": "D-Day Reminder"
+    },
+    "description": {
+      "ko": "중요한 날까지 남은 시간을 계산하고 준비 사항을 체크합니다",
+      "en": "Calculate time remaining to important dates and check preparations"
+    },
+    "category": "Daily Routine",
+    "icon": "⏳",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "기억(recall)에서 'd-day/디데이/deadline/마감' 검색. 등록된 D-Day 목록 확인. 없으면 새 D-Day(이름, 날짜)를 등록하도록 물어봐.",
+          "en": "Search memories for 'd-day/deadline'. Check registered D-Days. If none, ask to register new ones (name, date)."
+        }
+      },
+      {
+        "type": "code",
+        "content": "countdown"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "각 D-Day별 남은 일수, 긴급도(🔴 7일 이내/🟡 30일 이내/🟢 그 외), 준비할 것 체크리스트를 정리. '⏳ D-Day 현황'으로 메신저 전송.",
+          "en": "For each D-Day show remaining days, urgency (🔴 within 7d/🟡 within 30d/🟢 other), prep checklist. Format as '⏳ D-Day Status', send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "recall,run_stored_code,send_notification,get_datetime",
+    "schedule": ""
   }
 ]
