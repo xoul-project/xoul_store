@@ -140,5 +140,85 @@
   {
     "id": "wf-020",
     "file": "productivity/wf-020-project-status.json"
+  },
+  {
+    "id": "wf-021",
+    "file": "daily_routine/wf-021-habit-checkin.json"
+  },
+  {
+    "id": "wf-022",
+    "file": "daily_routine/wf-022-sleep-log.json"
+  },
+  {
+    "id": "wf-023",
+    "file": "daily_routine/wf-023-mood-tracker.json"
+  },
+  {
+    "id": "wf-024",
+    "file": "daily_routine/wf-024-gratitude-journal.json"
+  },
+  {
+    "id": "wf-025",
+    "file": "daily_routine/wf-025-water-reminder.json"
+  },
+  {
+    "id": "wf-026",
+    "file": "daily_routine/wf-026-meal-recommend.json"
+  },
+  {
+    "id": "wf-027",
+    "file": "productivity/wf-027-reading-tracker.json"
+  },
+  {
+    "id": "wf-028",
+    "file": "daily_routine/wf-028-exercise-log.json"
+  },
+  {
+    "id": "wf-029",
+    "file": "productivity/wf-029-focus-mode.json"
+  },
+  {
+    "id": "wf-030",
+    "file": "daily_routine/wf-030-anniversary-check.json"
+  },
+  {
+    "id": "wf-031",
+    "file": "finance/wf-031-savings-goal.json"
+  },
+  {
+    "id": "wf-032",
+    "file": "productivity/wf-032-weekly-review.json"
+  },
+  {
+    "id": "wf-033",
+    "file": "productivity/wf-033-travel-prep.json"
+  },
+  {
+    "id": "wf-034",
+    "file": "daily_routine/wf-034-self-care.json"
+  },
+  {
+    "id": "wf-035",
+    "file": "productivity/wf-035-english-quiz.json"
+  },
+  {
+    "id": "wf-036",
+    "file": "daily_routine/wf-036-daily-wrapup.json"
+  },
+  {
+    "id": "wf-037",
+    "file": "daily_routine/wf-037-grocery-list.json"
+  },
+  {
+    "id": "wf-038",
+    "file": "daily_routine/wf-038-cleaning-schedule.json"
+  },
+  {
+    "id": "wf-039",
+    "file": "productivity/wf-039-goal-checkin.json"
+  },
+  {
+    "id": "wf-040",
+    "file": "daily_routine/wf-040-dday-reminder.json"
   }
 ]
