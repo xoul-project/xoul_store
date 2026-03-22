@@ -1,0 +1,15 @@
+{
+  "id": "wf-032",
+  "name": {"ko": "주간 회고", "en": "Weekly Review"},
+  "description": {"ko": "한 주를 돌아보고 다음 주 목표를 설정합니다", "en": "Reflect on the week and set next week's goals"},
+  "category": "Productivity",
+  "icon": "📋",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "기억(recall)에서 이번 주 daily_plan, habit, exercise_log, mood 기록들을 전부 검색해줘.", "en": "Search memories for this week's daily_plan, habit, exercise_log, mood entries."}},
+    {"type": "prompt", "content": {"ko": "이번 주 성과 3가지, 아쉬운 점 2가지, 핵심 인사이트 1가지를 정리해줘.", "en": "Summarize 3 wins, 2 missed items, and 1 key insight from the week."}},
+    {"type": "prompt", "content": {"ko": "다음 주 집중할 것 TOP 3을 사용자에게 물어보고, '📋 주간 회고 — [주차]'로 정리. weekly_review_[주차]로 메모리 저장, /root/share/weekly_review.md 파일 저장, 메신저 전송.", "en": "Ask user for next week TOP 3 focus items, format as '📋 Weekly Review — [week]'. Save as weekly_review_[week], save file /root/share/weekly_review.md, send via messenger."}}
+  ],
+  "hint_tools": "recall,memorize,write_file,send_notification,get_datetime",
+  "schedule": ""
+}

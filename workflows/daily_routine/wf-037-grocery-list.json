@@ -1,0 +1,15 @@
+{
+  "id": "wf-037",
+  "name": {"ko": "장보기 목록 생성", "en": "Grocery List Generator"},
+  "description": {"ko": "냉장고 상태와 식단에 맞는 장보기 목록을 만듭니다", "en": "Generate grocery list based on fridge status and meal plans"},
+  "category": "Daily Routine",
+  "icon": "🛒",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "이번 주 먹고 싶은 메뉴 3~5개를 물어봐. 또는 '아무거나 추천'이면 한식 위주로 5끼 추천.", "en": "Ask for 3-5 meals they want this week. If 'anything', suggest 5 Korean-style meals."}},
+    {"type": "prompt", "content": {"ko": "메뉴별 필요한 식재료를 정리하고, 코너별(채소/육류/유제품/양념/기타)로 분류한 장보기 목록 생성. 수량과 예상 가격도 포함.", "en": "List ingredients per meal, organize by section (produce/meat/dairy/seasoning/other). Include quantities and estimated prices."}},
+    {"type": "prompt", "content": {"ko": "'🛒 장보기 목록'으로 체크박스 포맷 정리. 예상 총액 표시. /root/share/grocery_list.md 저장, 메신저 전송.", "en": "Format as '🛒 Grocery List' with checkboxes. Show estimated total. Save to /root/share/grocery_list.md, send via messenger."}}
+  ],
+  "hint_tools": "write_file,send_notification",
+  "schedule": ""
+}

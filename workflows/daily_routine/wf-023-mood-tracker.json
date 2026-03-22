@@ -1,0 +1,15 @@
+{
+  "id": "wf-023",
+  "name": {"ko": "기분 체크", "en": "Mood Tracker"},
+  "description": {"ko": "오늘의 감정을 기록하고 패턴을 파악합니다", "en": "Log today's emotions and identify patterns"},
+  "category": "Daily Routine",
+  "icon": "🎭",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "지금 기분을 물어봐. 😊좋음/🙂괜찮음/😐보통/😔우울/😢힘듦 중 선택 + 에너지 레벨(1~5) + 영향 요인(일, 관계, 건강, 날씨, 수면 등).", "en": "Ask current mood: 😊Great/🙂Good/😐Okay/😔Low/😢Bad, energy level (1-5), and factors (work, relationships, health, weather, sleep)."}},
+    {"type": "prompt", "content": {"ko": "기억(recall)에서 최근 7일 mood 기록을 검색. 패턴 분석: 기분이 좋은/나쁜 요일, 주요 영향 요인.", "en": "Search memories for recent 7 days mood entries. Analyze patterns: best/worst days, main factors."}},
+    {"type": "prompt", "content": {"ko": "'🎭 기분 체크 — [날짜]'로 정리. 기분에 맞는 셀프케어 팁 1개 추가. mood_[날짜]로 메모리 저장, 메신저 전송.", "en": "Format as '🎭 Mood Check — [date]' with a self-care tip. Save as mood_[date], send via messenger."}}
+  ],
+  "hint_tools": "recall,memorize,send_notification,get_datetime",
+  "schedule": ""
+}

@@ -1,0 +1,15 @@
+{
+  "id": "wf-033",
+  "name": {"ko": "여행 준비 체크리스트", "en": "Travel Prep Checklist"},
+  "description": {"ko": "여행 목적지에 맞는 짐 목록과 준비 사항을 생성합니다", "en": "Generate packing list and prep checklist for your trip"},
+  "category": "Productivity",
+  "icon": "✈️",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "여행 정보를 물어봐: 목적지, 기간(박), 목적(여행/출장/모험), 특별 활동 계획.", "en": "Ask trip details: destination, duration (nights), purpose (leisure/business/adventure), special activities planned."}},
+    {"type": "prompt", "content": {"ko": "목적지의 여행 기간 날씨를 검색해줘. 기온, 강수 확률, 특이 날씨를 확인.", "en": "Search weather for the destination during travel dates. Check temperature, rain probability, special conditions."}},
+    {"type": "prompt", "content": {"ko": "날씨+목적 기반으로 짐 목록(의류/세면도구/전자기기/서류/기타) 체크리스트와 출발 전 할 일 리스트 생성. '✈️ 여행 준비 — [목적지]'로 정리, /root/share/travel_checklist.md 저장, 메신저 전송.", "en": "Generate packing list (clothing/toiletries/electronics/documents/extras) and pre-departure checklist based on weather+purpose. Format as '✈️ Travel Prep — [destination]', save to /root/share/travel_checklist.md, send via messenger."}}
+  ],
+  "hint_tools": "web_search,weather,write_file,send_notification",
+  "schedule": ""
+}

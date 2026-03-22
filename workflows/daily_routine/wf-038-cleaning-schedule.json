@@ -1,0 +1,15 @@
+{
+  "id": "wf-038",
+  "name": {"ko": "청소 스케줄", "en": "Cleaning Schedule"},
+  "description": {"ko": "오늘 할 청소 구역과 체크리스트를 알려줍니다", "en": "Get today's cleaning zone and checklist"},
+  "category": "Daily Routine",
+  "icon": "🧹",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "오늘 요일을 확인하고, 요일별 청소 구역 배정: 월=침실, 화=주방, 수=화장실, 목=거실, 금=빨래, 토=대청소 로테이션, 일=휴식.", "en": "Check today's day and assign zone: Mon=bedroom, Tue=kitchen, Wed=bathroom, Thu=living room, Fri=laundry, Sat=deep clean rotation, Sun=rest."}},
+    {"type": "prompt", "content": {"ko": "해당 구역의 청소 체크리스트(5~7항목)를 체크박스로 생성. 예상 소요 시간도 표시. 추가로 15분 퀵 정리(주방 카운터/테이블/침대) 항목도 포함.", "en": "Create a checklist (5-7 items) with checkboxes for that zone. Include estimated time. Add a 15-min quick tidy section (counter/table/bed)."}},
+    {"type": "prompt", "content": {"ko": "'🧹 오늘의 청소 — [요일] [구역]'으로 정리. 메신저 전송.", "en": "Format as '🧹 Today's Cleaning — [day] [zone]'. Send via messenger."}}
+  ],
+  "hint_tools": "get_datetime,send_notification",
+  "schedule": ""
+}

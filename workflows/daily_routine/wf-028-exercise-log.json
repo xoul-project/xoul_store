@@ -1,0 +1,15 @@
+{
+  "id": "wf-028",
+  "name": {"ko": "운동 기록", "en": "Exercise Log"},
+  "description": {"ko": "오늘 운동을 기록하고 주간 운동량을 추적합니다", "en": "Log today's workout and track weekly exercise volume"},
+  "category": "Daily Routine",
+  "icon": "💪",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "오늘 한 운동 종류(달리기/웨이트/요가/걷기/자전거/수영 등), 시간, 강도(상/중/하)를 물어봐.", "en": "Ask exercise type (running/weights/yoga/walking/cycling/swimming), duration, and intensity (high/medium/low)."}},
+    {"type": "prompt", "content": {"ko": "기억(recall)에서 이번 주 exercise_log 검색. 주간 운동 횟수, 총 시간, 운동별 분포 분석.", "en": "Search memories for this week's exercise_log. Analyze weekly count, total time, and exercise distribution."}},
+    {"type": "prompt", "content": {"ko": "'💪 운동 기록 — [날짜]'로 정리. 칼로리 추정, 주간 목표 대비 진행률, 내일 추천 운동 포함. exercise_log_[날짜]로 메모리 저장, 메신저 전송.", "en": "Format as '💪 Exercise Log — [date]' with calorie estimate, weekly goal progress, tomorrow's suggestion. Save as exercise_log_[date], send via messenger."}}
+  ],
+  "hint_tools": "recall,memorize,send_notification,get_datetime",
+  "schedule": ""
+}

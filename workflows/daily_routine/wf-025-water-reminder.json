@@ -1,0 +1,15 @@
+{
+  "id": "wf-025",
+  "name": {"ko": "물 마시기 체크", "en": "Water Intake Check"},
+  "description": {"ko": "하루 수분 섭취를 추적하고 리마인드합니다", "en": "Track daily water intake and send reminders"},
+  "category": "Daily Routine",
+  "icon": "💧",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "오늘 지금까지 물을 얼마나 마셨는지 물어봐. 컵 수(250ml 기준) 또는 리터로.", "en": "Ask how much water they've had today. In cups (250ml) or liters."}},
+    {"type": "prompt", "content": {"ko": "목표 2L 대비 현재 진행률 계산. 남은 양과 남은 시간 기준으로 '시간당 X잔' 페이스 알려줘.", "en": "Calculate progress vs 2L goal. Based on remaining amount and hours, suggest 'X cups per hour' pace."}},
+    {"type": "prompt", "content": {"ko": "진행률 바(█░)와 함께 '💧 수분 체크 — [시간]'으로 정리. water_[날짜]로 메모리 저장, 메신저 전송.", "en": "Format with progress bar (█░) as '💧 Water Check — [time]'. Save as water_[date], send via messenger."}}
+  ],
+  "hint_tools": "memorize,send_notification,get_datetime",
+  "schedule": ""
+}

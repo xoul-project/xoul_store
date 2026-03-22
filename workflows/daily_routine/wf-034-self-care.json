@@ -1,0 +1,15 @@
+{
+  "id": "wf-034",
+  "name": {"ko": "셀프케어 타임", "en": "Self-Care Time"},
+  "description": {"ko": "스트레스 해소와 힐링을 위한 맞춤 셀프케어 루틴을 제안합니다", "en": "Get personalized self-care routine suggestions for stress relief"},
+  "category": "Daily Routine",
+  "icon": "🧘",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "현재 상태를 물어봐: 스트레스 레벨(1~10), 피로도(1~10), 가용 시간(15분/30분/1시간), 선호(실내/실외).", "en": "Ask current state: stress level (1-10), fatigue (1-10), available time (15/30/60 min), preference (indoor/outdoor)."}},
+    {"type": "prompt", "content": {"ko": "상태에 맞는 셀프케어 활동 3가지 추천. 각각 효과, 소요 시간, 구체적 방법을 포함. 높은 스트레스면 호흡법/명상, 피곤하면 스트레칭/음악/산책 등.", "en": "Recommend 3 self-care activities matching their state. Include benefits, time, and specific how-to. High stress: breathing/meditation. Fatigued: stretching/music/walking."}},
+    {"type": "prompt", "content": {"ko": "'🧘 셀프케어 — [날짜]'로 따뜻하게 정리. '오늘 나를 위한 한 마디' 명언도 추가. 메신저 전송.", "en": "Format warmly as '🧘 Self-Care — [date]'. Add an inspirational quote. Send via messenger."}}
+  ],
+  "hint_tools": "send_notification,get_datetime",
+  "schedule": ""
+}

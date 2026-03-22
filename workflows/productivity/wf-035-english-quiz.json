@@ -1,0 +1,15 @@
+{
+  "id": "wf-035",
+  "name": {"ko": "영어 단어 퀴즈", "en": "English Vocab Quiz"},
+  "description": {"ko": "매일 영어 단어 5개를 배우고 퀴즈로 복습합니다", "en": "Learn 5 English words daily and review with quiz"},
+  "category": "Productivity",
+  "icon": "🇬🇧",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "기억(recall)에서 'english_vocab' 검색해서 이미 배운 단어 확인. 안 겹치는 새 단어 5개를 중급 난이도로 뜻(한/영), 예문, 발음 기호와 함께 카드 형식으로 보여줘.", "en": "Search memories for 'english_vocab' to avoid repeats. Present 5 new intermediate words with definition (KR/EN), example sentence, and pronunciation as flashcards."}},
+    {"type": "prompt", "content": {"ko": "바로 퀴즈! 빈칸 채우기 2문제, 뜻 맞추기 2문제, 문장 만들기 1문제 출제.", "en": "Quiz time! 2 fill-in-the-blank, 2 meaning match, 1 sentence creation questions."}},
+    {"type": "prompt", "content": {"ko": "채점 후 '🇬🇧 영어 퀴즈 — [날짜]'로 점수, 틀린 단어 복습, 격려 한마디 정리. english_vocab_[날짜]로 메모리 저장, 메신저 전송.", "en": "Grade and format as '🇬🇧 Vocab Quiz — [date]' with score, wrong word review, encouragement. Save as english_vocab_[date], send via messenger."}}
+  ],
+  "hint_tools": "recall,memorize,send_notification,get_datetime",
+  "schedule": ""
+}

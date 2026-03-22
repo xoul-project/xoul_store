@@ -1,0 +1,15 @@
+{
+  "id": "wf-040",
+  "name": {"ko": "D-Day 리마인더", "en": "D-Day Reminder"},
+  "description": {"ko": "중요한 날까지 남은 시간을 계산하고 준비 사항을 체크합니다", "en": "Calculate time remaining to important dates and check preparations"},
+  "category": "Daily Routine",
+  "icon": "⏳",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "기억(recall)에서 'd-day/디데이/deadline/마감' 검색. 등록된 D-Day 목록 확인. 없으면 새 D-Day(이름, 날짜)를 등록하도록 물어봐.", "en": "Search memories for 'd-day/deadline'. Check registered D-Days. If none, ask to register new ones (name, date)."}},
+    {"type": "code", "content": "countdown"},
+    {"type": "prompt", "content": {"ko": "각 D-Day별 남은 일수, 긴급도(🔴 7일 이내/🟡 30일 이내/🟢 그 외), 준비할 것 체크리스트를 정리. '⏳ D-Day 현황'으로 메신저 전송.", "en": "For each D-Day show remaining days, urgency (🔴 within 7d/🟡 within 30d/🟢 other), prep checklist. Format as '⏳ D-Day Status', send via messenger."}}
+  ],
+  "hint_tools": "recall,run_stored_code,send_notification,get_datetime",
+  "schedule": ""
+}

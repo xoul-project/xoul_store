@@ -1,0 +1,15 @@
+{
+  "id": "wf-022",
+  "name": {"ko": "수면 기록", "en": "Sleep Log"},
+  "description": {"ko": "취침/기상 시간과 수면 품질을 기록하고 패턴을 분석합니다", "en": "Log sleep/wake times, quality, and analyze patterns"},
+  "category": "Daily Routine",
+  "icon": "😴",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "사용자에게 어젯밤 취침 시간, 오늘 기상 시간, 수면 품질(1~5점)을 물어봐.", "en": "Ask user for last night's bedtime, this morning's wake time, and sleep quality (1-5)."}},
+    {"type": "prompt", "content": {"ko": "기억(recall)에서 최근 7일 수면 기록(sleep_log)을 검색해서 평균 수면 시간과 품질 추이를 분석해.", "en": "Search memories for recent 7 days sleep_log entries, analyze average sleep duration and quality trends."}},
+    {"type": "prompt", "content": {"ko": "'😴 수면 기록 — [날짜]'로 정리. 총 수면 시간, 품질 ⭐, 주간 평균 포함. sleep_log_[날짜]로 메모리 저장, 메신저 전송.", "en": "Format as '😴 Sleep Log — [date]' with total hours, quality ⭐, weekly avg. Save as sleep_log_[date], send via messenger."}}
+  ],
+  "hint_tools": "recall,memorize,send_notification,get_datetime",
+  "schedule": ""
+}

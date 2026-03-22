@@ -1,0 +1,15 @@
+{
+  "id": "wf-036",
+  "name": {"ko": "하루 마무리 일기", "en": "Daily Wrap-up Journal"},
+  "description": {"ko": "하루를 돌아보며 성과, 감정, 내일 계획을 정리합니다", "en": "Reflect on the day's achievements, emotions, and tomorrow's plan"},
+  "category": "Daily Routine",
+  "icon": "🌙",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "오늘 하루를 돌아보자. 1) 오늘 가장 잘한 것은? 2) 아쉬웠던 것은? 3) 내일 꼭 하고 싶은 것은?", "en": "Let's reflect on today. 1) What went best? 2) What was disappointing? 3) What do you want to do tomorrow?"}},
+    {"type": "prompt", "content": {"ko": "기억(recall)에서 오늘 habit, mood, exercise 기록을 확인. 오늘 전체 활동 요약 생성.", "en": "Search memories for today's habit, mood, exercise entries. Generate today's activity summary."}},
+    {"type": "prompt", "content": {"ko": "'🌙 하루 마무리 — [날짜]'로 따뜻하게 정리. 하루 점수(⭐1~5), 내일 TOP 3, 격려 한마디 포함. daily_journal_[날짜]로 메모리 저장, 메신저 전송.", "en": "Format warmly as '🌙 Day's End — [date]' with day score (⭐1-5), tomorrow TOP 3, encouraging words. Save as daily_journal_[date], send via messenger."}}
+  ],
+  "hint_tools": "recall,memorize,send_notification,get_datetime",
+  "schedule": ""
+}

@@ -1,0 +1,15 @@
+{
+  "id": "wf-027",
+  "name": {"ko": "독서 기록", "en": "Reading Tracker"},
+  "description": {"ko": "읽고 있는 책의 진도를 기록하고 독서 노트를 남깁니다", "en": "Track reading progress and save book notes"},
+  "category": "Productivity",
+  "icon": "📚",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "기억(recall)에서 'reading_list/독서' 검색. 현재 읽는 책 확인. 없으면 새 책 제목/저자를 물어봐.", "en": "Search memories for 'reading_list'. Check current book. If none, ask for new book title/author."}},
+    {"type": "prompt", "content": {"ko": "오늘 읽은 범위(페이지/챕터), 읽은 시간, 핵심 메모 1~2줄을 물어봐.", "en": "Ask pages/chapters read today, reading time, and 1-2 key notes."}},
+    {"type": "prompt", "content": {"ko": "'📚 독서 기록 — [날짜]'로 정리. 전체 진행률 바, 예상 완독일 계산. reading_[날짜]로 메모리 저장, 메신저 전송.", "en": "Format as '📚 Reading Log — [date]' with progress bar and estimated finish date. Save as reading_[date], send via messenger."}}
+  ],
+  "hint_tools": "recall,memorize,send_notification,get_datetime",
+  "schedule": ""
+}

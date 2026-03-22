@@ -1,0 +1,15 @@
+{
+  "id": "wf-024",
+  "name": {"ko": "감사 일기", "en": "Gratitude Journal"},
+  "description": {"ko": "오늘 감사한 3가지를 기록하고 긍정적 마인드를 키웁니다", "en": "Record 3 things you're grateful for today and build positivity"},
+  "category": "Daily Routine",
+  "icon": "🙏",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "오늘 감사한 것 3가지를 물어봐. 크든 작든 상관없이. 답변이 짧으면 '왜 감사한지'도 한 줄 더 물어봐.", "en": "Ask for 3 things grateful for today. Big or small. If answers are short, ask 'why' for each."}},
+    {"type": "prompt", "content": {"ko": "추가로 오늘 하루를 한 문장으로 요약하면? / 내일 기대되는 것 하나는? 물어봐.", "en": "Also ask: summarize today in one sentence? One thing looking forward to tomorrow?"}},
+    {"type": "prompt", "content": {"ko": "'🙏 감사 일기 — [날짜]'로 따뜻하게 정리. gratitude_[날짜]로 메모리 저장, 메신저 전송.", "en": "Format warmly as '🙏 Gratitude Journal — [date]'. Save as gratitude_[date], send via messenger."}}
+  ],
+  "hint_tools": "memorize,send_notification,get_datetime",
+  "schedule": ""
+}

@@ -1,0 +1,15 @@
+{
+  "id": "wf-026",
+  "name": {"ko": "오늘 뭐 먹지?", "en": "What Should I Eat?"},
+  "description": {"ko": "날씨와 기분에 맞는 식사 메뉴를 추천합니다", "en": "Get meal recommendations based on weather and mood"},
+  "category": "Daily Routine",
+  "icon": "🍽️",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "현재 날씨를 확인하고, 사용자에게 지금 기분(든든하게/가볍게/매콤하게/달달하게)과 함께 먹을 인원수를 물어봐.", "en": "Check current weather, ask user their craving (hearty/light/spicy/sweet) and number of people."}},
+    {"type": "prompt", "content": {"ko": "날씨+기분 조합으로 한식/양식/일식/중식에서 메뉴 3가지를 추천해줘. 각 메뉴별 예상 칼로리, 조리 난이도(상/중/하), 예상 시간도 알려줘.", "en": "Based on weather+mood, recommend 3 meals from Korean/Western/Japanese/Chinese cuisine. Include estimated calories, difficulty (easy/medium/hard), and cook time."}},
+    {"type": "prompt", "content": {"ko": "'🍽️ 오늘의 추천 메뉴'로 정리. 선택한 메뉴의 간단 레시피(재료+5단계)도 포함. 메신저 전송.", "en": "Format as '🍽️ Today's Menu Picks' with a quick recipe (ingredients + 5 steps) for chosen meal. Send via messenger."}}
+  ],
+  "hint_tools": "weather,send_notification",
+  "schedule": ""
+}

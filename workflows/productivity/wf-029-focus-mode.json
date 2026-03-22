@@ -1,0 +1,15 @@
+{
+  "id": "wf-029",
+  "name": {"ko": "집중 모드", "en": "Focus Mode"},
+  "description": {"ko": "뽀모도로 타이머를 시작하고 집중 세션을 관리합니다", "en": "Start a Pomodoro timer and manage focus sessions"},
+  "category": "Productivity",
+  "icon": "🍅",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "지금 집중할 작업 이름과 원하는 집중 시간(기본 25분)을 물어봐.", "en": "Ask what task to focus on and desired focus duration (default 25 min)."}},
+    {"type": "code", "content": "pomodoro"},
+    {"type": "prompt", "content": {"ko": "세션 완료! 작업 성과를 물어보고, '🍅 집중 완료 — [작업]'으로 정리. focus_[날짜_시간]으로 메모리 저장, 메신저 전송.", "en": "Session done! Ask about progress, format as '🍅 Focus Complete — [task]'. Save as focus_[date_time], send via messenger."}}
+  ],
+  "hint_tools": "run_stored_code,memorize,send_notification,get_datetime",
+  "schedule": ""
+}

@@ -1,0 +1,15 @@
+{
+  "id": "wf-030",
+  "name": {"ko": "기념일 체크", "en": "Anniversary Checker"},
+  "description": {"ko": "다가오는 생일과 기념일을 확인하고 알려줍니다", "en": "Check upcoming birthdays and anniversaries"},
+  "category": "Daily Routine",
+  "icon": "🎂",
+  "lang": "multi",
+  "steps": [
+    {"type": "code", "content": "countdown"},
+    {"type": "prompt", "content": {"ko": "기억(recall)에서 '생일/기념일/birthday/anniversary' 검색. 이번 주, 이번 달 다가오는 날짜 확인.", "en": "Search memories for 'birthday/anniversary'. Find upcoming dates this week and this month."}},
+    {"type": "prompt", "content": {"ko": "'🎂 기념일 체크'로 정리. 3일 이내 ⚠️ 강조, 선물 아이디어 1~2개 제안, 축하 메시지 템플릿 포함. 메신저 전송.", "en": "Format as '🎂 Anniversary Check'. Highlight within 3 days ⚠️, suggest 1-2 gift ideas, include message templates. Send via messenger."}}
+  ],
+  "hint_tools": "run_stored_code,recall,send_notification,get_datetime",
+  "schedule": ""
+}
