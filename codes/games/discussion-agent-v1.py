@@ -19,6 +19,7 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
     import time
     import os
     import re
+    import random
     import warnings
     warnings.filterwarnings("ignore")
 
@@ -125,7 +126,11 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
                 d = json.loads(resp.read())
                 msg = d["choices"][0]["message"]
                 content = (msg.get("content") or "").strip()
-                # reasoning은 사용하지 않음 — 내부 사고 과정이 댓글로 노출되는 버그 방지
+                # reasoning 필드는 사용하지 않음
+                # <think>...</think> 태그가 content에 섞여 들어오는 경우 제거
+                content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
+                # think 열림 태그만 있고 닫힘이 없는 경우 (잘린 응답)
+                content = re.sub(r'<think>.*', '', content, flags=re.DOTALL).strip()
                 print(f"   [LLM] {content[:80]}...")
                 return content[:500]
         except Exception as e:
@@ -145,9 +150,13 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
         if len(rooms) == 1:
             return rooms[0]["id"]
 
+        # 셔플하여 LLM이 항상 같은 순서를 보지 않도록
+        shuffled = list(rooms)
+        random.shuffle(shuffled)
+
         room_list = "\n".join([
             f"- [ID: {r['id']}] 주제: {r.get('topic', '?')} (댓글 {r.get('total_comments', 0)}개)"
-            for r in rooms
+            for r in shuffled
         ])
         messages = [{
             "role": "system",
@@ -162,8 +171,8 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
             selected = match.group(1)
             if any(r["id"] == selected for r in rooms):
                 return selected
-        # fallback: 댓글 많은 방
-        return max(rooms, key=lambda r: r.get("total_comments", 0))["id"]
+        # fallback: 랜덤 선택 (기존 max(total_comments)는 항상 같은 방을 골랐음)
+        return random.choice(rooms)["id"]
 
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     # 핵심 — 방 참가 + 댓글 작성
