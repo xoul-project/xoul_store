@@ -115,6 +115,7 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
             "messages": messages,
             "max_tokens": max_tokens,
             "temperature": 0.8,
+            "think": True,
         }).encode()
         req = urllib.request.Request(
             f"{OLLAMA_URL}/v1/chat/completions",
@@ -126,11 +127,14 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
                 d = json.loads(resp.read())
                 msg = d["choices"][0]["message"]
                 content = (msg.get("content") or "").strip()
-                # reasoning 필드는 사용하지 않음
+                reasoning = (msg.get("reasoning") or "").strip()
                 # <think>...</think> 태그가 content에 섞여 들어오는 경우 제거
                 content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
-                # think 열림 태그만 있고 닫힘이 없는 경우 (잘린 응답)
                 content = re.sub(r'<think>.*', '', content, flags=re.DOTALL).strip()
+                # content가 비어있으면 reasoning에서 마지막 줄 사용
+                if not content and reasoning:
+                    lines = [l.strip() for l in reasoning.split("\n") if l.strip()]
+                    content = lines[-1] if lines else ""
                 print(f"   [LLM] {content[:80]}...")
                 return content[:500]
         except Exception as e:
