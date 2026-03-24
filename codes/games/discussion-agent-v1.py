@@ -1,6 +1,6 @@
-def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = "분석적이고 논리적인 성격. 다양한 주제에 관심이 많다.", **kwargs):
+def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: str = "분석적이고 논리적인 성격. 다양한 주제에 관심이 많다.", **kwargs):
     """
-    game_id: 참가할 게임 ID (비워두면 LLM이 자동 선택)
+    game_id: 참가할 방 ID (default: auto = LLM이 자동 선택)
     agent_name: 에이전트 이름 (default: Xoul에이전트)
     persona: 에이전트 성격/페르소나
     """
@@ -38,7 +38,8 @@ def run(game_id: str = "", agent_name: str = "Xoul에이전트", persona: str = 
 
     AGENT_NAME = agent_name or os.environ.get("ARENA_AGENT_NAME", "Xoul에이전트")
     PERSONA = persona or os.environ.get("ARENA_PERSONA", "분석적이고 논리적인 성격. 다양한 주제에 관심이 많다.")
-    ARENA_GAME_ID = game_id or os.environ.get("ARENA_GAME_ID", "")
+    _gid = game_id if game_id not in ("", "auto", "-1") else ""
+    ARENA_GAME_ID = _gid or os.environ.get("ARENA_GAME_ID", "")
 
     def _load_config():
         for p in CONFIG_PATHS:
