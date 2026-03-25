@@ -1,8 +1,10 @@
-def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: str = "분석적이고 논리적인 성격. 다양한 주제에 관심이 많다.", **kwargs):
+def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: str = "분석적이고 논리적인 성격. 다양한 주제에 관심이 많다.", create_chance: float = 0.15, rounds: int = 1, **kwargs):
     """
     game_id: 참가할 방 ID (default: auto = LLM이 자동 선택)
     agent_name: 에이전트 이름 (default: Xoul에이전트)
     persona: 에이전트 성격/페르소나
+    create_chance: 새 방 자동 생성 확률 (0.0~1.0, default: 0.15 = 15%)
+    rounds: 실행 횟수 (default: 1, 여러 번 반복 실행 가능)
     """
     """
     💬 Discussion Arena Agent v2 — 단일 실행형
@@ -40,6 +42,7 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
     PERSONA = persona or os.environ.get("ARENA_PERSONA", "분석적이고 논리적인 성격. 다양한 주제에 관심이 많다.")
     _gid = game_id if game_id not in ("", "auto", "-1") else ""
     ARENA_GAME_ID = _gid or os.environ.get("ARENA_GAME_ID", "")
+    ROOM_CREATE_CHANCE = max(0.0, min(1.0, float(create_chance)))
 
     def _load_config():
         for p in CONFIG_PATHS:
@@ -128,14 +131,13 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
                 d = json.loads(resp.read())
                 msg = d["choices"][0]["message"]
                 content = (msg.get("content") or "").strip()
-                reasoning = (msg.get("reasoning") or "").strip()
-                # <think>...</think> 태그가 content에 섞여 들어오는 경우 제거
-                content = re.sub(r'<think>.*?</think>', '', content, flags=re.DOTALL).strip()
-                content = re.sub(r'<think>.*', '', content, flags=re.DOTALL).strip()
-                # content가 비어있으면 reasoning에서 마지막 줄 사용
-                if not content and reasoning:
-                    lines = [l.strip() for l in reasoning.split("\n") if l.strip()]
-                    content = lines[-1] if lines else ""
+                # 다양한 모델의 reasoning/thinking 태그 제거
+                for tag in ("think", "thinking", "reasoning", "thought", "reflection"):
+                    content = re.sub(rf'<{tag}>.*?</{tag}>', '', content, flags=re.DOTALL).strip()
+                    content = re.sub(rf'<{tag}>.*', '', content, flags=re.DOTALL).strip()
+                # |think|...|/think| 포맷도 제거
+                content = re.sub(r'\|think\|.*?\|/think\|', '', content, flags=re.DOTALL).strip()
+                content = re.sub(r'\|think\|.*', '', content, flags=re.DOTALL).strip()
                 print(f"   [LLM] {content[:80]}...")
                 return content[:500]
         except Exception as e:
@@ -155,8 +157,12 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
         if len(rooms) == 1:
             return rooms[0]["id"]
 
+        # 최근 방 우선: created 기준 내림차순 정렬 후 상위 5개만 후보로 사용
+        sorted_rooms = sorted(rooms, key=lambda r: r.get("created", ""), reverse=True)
+        candidates = sorted_rooms[:5]
+
         # 셔플하여 LLM이 항상 같은 순서를 보지 않도록
-        shuffled = list(rooms)
+        shuffled = list(candidates)
         random.shuffle(shuffled)
 
         room_list = "\n".join([
@@ -174,10 +180,70 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
         match = re.search(r'\b([0-9a-f]{8})\b', response)
         if match:
             selected = match.group(1)
-            if any(r["id"] == selected for r in rooms):
+            if any(r["id"] == selected for r in candidates):
                 return selected
-        # fallback: 랜덤 선택 (기존 max(total_comments)는 항상 같은 방을 골랐음)
-        return random.choice(rooms)["id"]
+        # fallback: 최근 방 중 랜덤 선택
+        return random.choice(candidates)["id"]
+
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    # Mode C — 트렌딩 토픽으로 새 방 생성
+    # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    def fetch_trending_headlines():
+        """Google News RSS에서 최신 헤드라인을 가져온다 (API 키 불필요)"""
+        from xml.etree import ElementTree
+        feeds = {
+            "ko": "https://news.google.com/rss?hl=ko&gl=KR&ceid=KR:ko",
+            "en": "https://news.google.com/rss?hl=en-US&gl=US&ceid=US:en",
+            "ja": "https://news.google.com/rss?hl=ja&gl=JP&ceid=JP:ja",
+        }
+        url = feeds.get(LANG, feeds["en"])
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=10) as resp:
+                xml_data = resp.read()
+            root = ElementTree.fromstring(xml_data)
+            items = root.findall(".//item/title")
+            headlines = [item.text.strip() for item in items[:15] if item.text]
+            print(f"   📰 {len(headlines)}개 뉴스 헤드라인 수집")
+            return headlines
+        except Exception as e:
+            print(f"   ⚠️ 뉴스 수집 실패: {e}")
+            return []
+
+    def generate_topic(headlines):
+        """LLM이 헤드라인을 보고 토론하기 좋은 주제를 생성한다"""
+        news_str = "\n".join(f"- {h}" for h in headlines)
+        messages = [{
+            "role": "system",
+            "content": f"""당신은 토론 주제 생성기입니다.
+아래 최신 뉴스 헤드라인을 참고하여 사람들이 열띤 토론을 할 수 있는 매력적인 주제를 하나 만들어주세요.
+
+규칙:
+- {LANG_INST}
+- 주제 문장만 출력하세요 (설명 없이 1줄).
+- 의견이 갈릴 수 있는 논쟁적이거나 흥미로운 주제가 좋습니다.
+- 너무 시사적이지 않게, 약간 추상화해서 누구나 참여할 수 있게 만드세요.
+- 20~60자 이내."""
+        }, {
+            "role": "user",
+            "content": f"최신 뉴스 헤드라인:\n{news_str}\n\n위 뉴스를 참고한 토론 주제:"
+        }]
+        topic = call_llm(messages, max_tokens=100)
+        # 따옴표, 번호 등 정리
+        topic = re.sub(r'^[\d.\-\s"\'\'\"]+', '', topic).strip().strip('"\'\'\"')
+        return topic[:100] if topic else ""
+
+    def create_discussion_room(topic, token):
+        """새 토론방을 생성한다"""
+        result = api_post("/arena/games",
+                          {"game_type": "discussion", "topic": topic}, token)
+        if result.get("error"):
+            print(f"   ❌ 방 생성 실패: {result['error']}")
+            return None
+        gid = result.get("game_id") or result.get("id", "")
+        if gid:
+            print(f"   ✅ 새 방 생성 완료: {gid} | 주제: {topic}")
+        return gid
 
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     # 핵심 — 방 참가 + 댓글 작성
@@ -255,25 +321,58 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     # 메인
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+    total_rounds = max(1, int(rounds))
     user_id = f"disc-agent-{int(time.time()) % 100000}"
     token = make_token(user_id)
 
-    if ARENA_GAME_ID:
-        # Mode A: 특정 방
-        print(f"🎯 Mode A: 지정된 방 {ARENA_GAME_ID}")
-        join_and_comment(ARENA_GAME_ID, token)
-    else:
-        # Mode B: LLM이 방 선택
-        print("🔍 Mode B: 방 목록 탐색 중...")
-        rooms = fetch_discussion_rooms()
-        if not rooms:
-            print("❌ 참가 가능한 Discussion 방이 없습니다.")
-            return
-        print(f"   {len(rooms)}개 방 발견. LLM이 방 선택 중...")
-        gid = pick_room(rooms)
-        if not gid:
-            print("❌ 방 선택 실패")
-            return
-        selected = next((r for r in rooms if r["id"] == gid), {})
-        print(f"   선택된 방: {gid} (주제: {selected.get('topic', '?')})")
-        join_and_comment(gid, token)
+    print(f"🔄 총 {total_rounds}회 실행 예정")
+
+    for current_round in range(1, total_rounds + 1):
+        if total_rounds > 1:
+            print(f"\n{'='*40}")
+            print(f"🔄 라운드 {current_round}/{total_rounds}")
+            print(f"{'='*40}")
+
+        if ARENA_GAME_ID:
+            # Mode A: 특정 방
+            print(f"🎯 Mode A: 지정된 방 {ARENA_GAME_ID}")
+            join_and_comment(ARENA_GAME_ID, token)
+        else:
+            # 일정 확률로 Mode C (새 방 생성) vs Mode B (기존 방 참가)
+            created = False
+            if random.random() < ROOM_CREATE_CHANCE:
+                # Mode C: 트렌딩 토픽으로 새 방 생성
+                print(f"🌟 Mode C: 새 토론방 생성 시도 (확률 {ROOM_CREATE_CHANCE:.0%})")
+                headlines = fetch_trending_headlines()
+                if headlines:
+                    topic = generate_topic(headlines)
+                    if topic:
+                        gid = create_discussion_room(topic, token)
+                        if gid:
+                            print(f"   💬 생성된 방에 첫 댓글 작성 중...")
+                            join_and_comment(gid, token)
+                            created = True
+                if not created:
+                    print("   ⚠️ 새 방 생성 실패 → Mode B로 전환")
+
+            if not created:
+                # Mode B: LLM이 기존 방 선택
+                print("🔍 Mode B: 방 목록 탐색 중...")
+                rooms = fetch_discussion_rooms()
+                if not rooms:
+                    print("❌ 참가 가능한 Discussion 방이 없습니다.")
+                    continue
+                print(f"   {len(rooms)}개 방 발견. LLM이 방 선택 중...")
+                gid = pick_room(rooms)
+                if not gid:
+                    print("❌ 방 선택 실패")
+                    continue
+                selected = next((r for r in rooms if r["id"] == gid), {})
+                print(f"   선택된 방: {gid} (주제: {selected.get('topic', '?')})")
+                join_and_comment(gid, token)
+
+        # 라운드 간 딜레이 (마지막 라운드 제외)
+        if current_round < total_rounds:
+            delay = random.uniform(3, 8)
+            print(f"⏳ 다음 라운드까지 {delay:.1f}초 대기...")
+            time.sleep(delay)
