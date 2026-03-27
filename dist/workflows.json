@@ -36,7 +36,8 @@
       }
     ],
     "hint_tools": "weather,web_search,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-002",
@@ -68,7 +69,8 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-003",
@@ -100,7 +102,8 @@
       }
     ],
     "hint_tools": "list_emails,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-004",
@@ -132,7 +135,8 @@
       }
     ],
     "hint_tools": "web_search,write_file",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-005",
@@ -165,7 +169,8 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-006",
@@ -197,7 +202,8 @@
       }
     ],
     "hint_tools": "weather,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-007",
@@ -226,7 +232,8 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-008",
@@ -259,7 +266,8 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-009",
@@ -291,7 +299,8 @@
       }
     ],
     "hint_tools": "get_datetime,list_events,recall,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-010",
@@ -327,7 +336,8 @@
       }
     ],
     "hint_tools": "web_search,run_stored_code,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "name": "테스트",
@@ -335,7 +345,8 @@
     "steps": [],
     "hint_tools": [],
     "schedule": "",
-    "id": "workflow_item_5011"
+    "id": "workflow_item_5011",
+    "author": "Xoul"
   },
   {
     "id": "wf-011",
@@ -375,7 +386,8 @@
       }
     ],
     "hint_tools": "run_stored_code,web_search,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-012",
@@ -411,7 +423,8 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-013",
@@ -454,7 +467,8 @@
       }
     ],
     "hint_tools": "weather,list_events,run_stored_code,web_search,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-014",
@@ -500,7 +514,8 @@
       }
     ],
     "hint_tools": "web_search,write_file,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-015",
@@ -540,7 +555,8 @@
       }
     ],
     "hint_tools": "run_stored_code,run_command,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-016",
@@ -579,7 +595,8 @@
       }
     ],
     "hint_tools": "web_search,write_file,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-017",
@@ -615,7 +632,8 @@
       }
     ],
     "hint_tools": "run_stored_code,web_search,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-018",
@@ -654,7 +672,8 @@
       }
     ],
     "hint_tools": "web_search,write_file,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-019",
@@ -693,7 +712,8 @@
       }
     ],
     "hint_tools": "recall,write_file,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-020",
@@ -739,7 +759,8 @@
       }
     ],
     "hint_tools": "run_command,list_files,web_search,write_file,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-021",
@@ -778,7 +799,8 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-022",
@@ -817,7 +839,8 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-023",
@@ -856,7 +879,8 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-024",
@@ -895,7 +919,8 @@
       }
     ],
     "hint_tools": "memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-025",
@@ -934,7 +959,8 @@
       }
     ],
     "hint_tools": "memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-026",
@@ -973,7 +999,8 @@
       }
     ],
     "hint_tools": "weather,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-027",
@@ -1012,7 +1039,8 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-028",
@@ -1051,7 +1079,8 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-029",
@@ -1087,7 +1116,8 @@
       }
     ],
     "hint_tools": "run_stored_code,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-030",
@@ -1123,7 +1153,8 @@
       }
     ],
     "hint_tools": "run_stored_code,recall,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-031",
@@ -1162,7 +1193,8 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-032",
@@ -1201,7 +1233,8 @@
       }
     ],
     "hint_tools": "recall,memorize,write_file,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-033",
@@ -1240,7 +1273,8 @@
       }
     ],
     "hint_tools": "web_search,weather,write_file,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-034",
@@ -1279,7 +1313,8 @@
       }
     ],
     "hint_tools": "send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-035",
@@ -1318,7 +1353,8 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-036",
@@ -1357,7 +1393,8 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-037",
@@ -1396,7 +1433,8 @@
       }
     ],
     "hint_tools": "write_file,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-038",
@@ -1435,7 +1473,8 @@
       }
     ],
     "hint_tools": "get_datetime,send_notification",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-039",
@@ -1474,7 +1513,8 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   },
   {
     "id": "wf-040",
@@ -1510,6 +1550,7 @@
       }
     ],
     "hint_tools": "recall,run_stored_code,send_notification,get_datetime",
-    "schedule": ""
+    "schedule": "",
+    "author": "Xoul"
   }
 ]

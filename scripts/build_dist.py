@@ -48,6 +48,9 @@ def build_workflows():
         try:
             wf_data = json.loads(full_path.read_text(encoding="utf-8"))
             wf_data["id"] = wf_id
+            # author 필드 — manifest에 있으면 사용, 없으면 "Xoul"
+            if "author" not in wf_data:
+                wf_data["author"] = entry.get("author", "Xoul")
             existing.append(wf_data)
             existing_ids.add(wf_id)
             added += 1
