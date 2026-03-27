@@ -36,8 +36,7 @@
       }
     ],
     "hint_tools": "weather,web_search,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-002",
@@ -69,8 +68,7 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-003",
@@ -102,8 +100,7 @@
       }
     ],
     "hint_tools": "list_emails,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-004",
@@ -135,8 +132,7 @@
       }
     ],
     "hint_tools": "web_search,write_file",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-005",
@@ -169,8 +165,7 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-006",
@@ -202,8 +197,7 @@
       }
     ],
     "hint_tools": "weather,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-007",
@@ -232,8 +226,7 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-008",
@@ -266,8 +259,7 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-009",
@@ -299,8 +291,7 @@
       }
     ],
     "hint_tools": "get_datetime,list_events,recall,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-010",
@@ -336,8 +327,7 @@
       }
     ],
     "hint_tools": "web_search,run_stored_code,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "name": "테스트",
@@ -345,8 +335,7 @@
     "steps": [],
     "hint_tools": [],
     "schedule": "",
-    "id": "workflow_item_5011",
-    "author": "Xoul"
+    "id": "workflow_item_5011"
   },
   {
     "id": "wf-011",
@@ -386,8 +375,7 @@
       }
     ],
     "hint_tools": "run_stored_code,web_search,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-012",
@@ -423,8 +411,7 @@
       }
     ],
     "hint_tools": "run_stored_code,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-013",
@@ -467,8 +454,7 @@
       }
     ],
     "hint_tools": "weather,list_events,run_stored_code,web_search,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-014",
@@ -514,8 +500,7 @@
       }
     ],
     "hint_tools": "web_search,write_file,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-015",
@@ -555,8 +540,7 @@
       }
     ],
     "hint_tools": "run_stored_code,run_command,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-016",
@@ -595,8 +579,7 @@
       }
     ],
     "hint_tools": "web_search,write_file,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-017",
@@ -632,8 +615,7 @@
       }
     ],
     "hint_tools": "run_stored_code,web_search,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-018",
@@ -672,8 +654,7 @@
       }
     ],
     "hint_tools": "web_search,write_file,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-019",
@@ -712,8 +693,7 @@
       }
     ],
     "hint_tools": "recall,write_file,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-020",
@@ -759,8 +739,7 @@
       }
     ],
     "hint_tools": "run_command,list_files,web_search,write_file,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-021",
@@ -799,8 +778,7 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-022",
@@ -839,8 +817,7 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-023",
@@ -879,8 +856,7 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-024",
@@ -919,8 +895,7 @@
       }
     ],
     "hint_tools": "memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-025",
@@ -959,8 +934,7 @@
       }
     ],
     "hint_tools": "memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-026",
@@ -999,8 +973,7 @@
       }
     ],
     "hint_tools": "weather,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-027",
@@ -1039,8 +1012,7 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-028",
@@ -1079,8 +1051,7 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-029",
@@ -1116,8 +1087,7 @@
       }
     ],
     "hint_tools": "run_stored_code,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-030",
@@ -1153,8 +1123,7 @@
       }
     ],
     "hint_tools": "run_stored_code,recall,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-031",
@@ -1193,8 +1162,7 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-032",
@@ -1233,8 +1201,7 @@
       }
     ],
     "hint_tools": "recall,memorize,write_file,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-033",
@@ -1273,8 +1240,7 @@
       }
     ],
     "hint_tools": "web_search,weather,write_file,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-034",
@@ -1313,8 +1279,7 @@
       }
     ],
     "hint_tools": "send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-035",
@@ -1353,8 +1318,7 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-036",
@@ -1393,8 +1357,7 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-037",
@@ -1433,8 +1396,7 @@
       }
     ],
     "hint_tools": "write_file,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-038",
@@ -1473,8 +1435,7 @@
       }
     ],
     "hint_tools": "get_datetime,send_notification",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-039",
@@ -1513,8 +1474,7 @@
       }
     ],
     "hint_tools": "recall,memorize,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
   },
   {
     "id": "wf-040",
@@ -1550,7 +1510,205 @@
       }
     ],
     "hint_tools": "recall,run_stored_code,send_notification,get_datetime",
-    "schedule": "",
-    "author": "Xoul"
+    "schedule": ""
+  },
+  {
+    "id": "wf-041",
+    "name": {
+      "ko": "바이낸스 포트폴리오 리포트",
+      "en": "Binance Portfolio Report"
+    },
+    "description": {
+      "ko": "바이낸스 현물 잔고, 선물 포지션, 시세를 종합해서 리포트 생성",
+      "en": "Combine Binance spot balance, futures positions & prices into a report"
+    },
+    "category": "Finance",
+    "icon": "💼",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "recall('binance api')로 저장된 API 키를 조회해줘.",
+          "en": "Recall stored API keys with recall('binance api')."
+        }
+      },
+      {
+        "type": "code",
+        "content": "binance-spot-balance"
+      },
+      {
+        "type": "code",
+        "content": "binance-futures-positions"
+      },
+      {
+        "type": "code",
+        "content": "binance-ticker-24h"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "현물 잔고, 선물 포지션, 24h 시세를 합쳐서 '💼 바이낸스 포트폴리오' 리포트로 정리. 총 자산가치 추정, 위험 포지션 ⚠️ 표시, 메신저 전송.",
+          "en": "Combine spot balance, futures positions & 24h ticker into '💼 Binance Portfolio' report. Estimate total value, mark risky positions ⚠️, send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,recall,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-042",
+    "name": {
+      "ko": "선물 포지션 모니터링",
+      "en": "Futures Position Monitor"
+    },
+    "description": {
+      "ko": "바이낸스 선물 포지션과 펀딩비를 확인하고 위험도 분석",
+      "en": "Monitor Binance futures positions with funding rates and risk analysis"
+    },
+    "category": "Finance",
+    "icon": "⚡",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "recall('binance api')로 저장된 API 키를 조회해줘.",
+          "en": "Recall stored API keys with recall('binance api')."
+        }
+      },
+      {
+        "type": "code",
+        "content": "binance-futures-positions"
+      },
+      {
+        "type": "code",
+        "content": "binance-funding-rate"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "포지션과 펀딩비를 분석해서 '⚡ 선물 모니터링' 리포트 작성. 청산가 대비 현재가 거리(%), 펀딩비 부담 예상, 총 PnL 요약. 위험도 높은 포지션은 🚨 경고. 메신저 전송.",
+          "en": "Analyze positions & funding rates. Create '⚡ Futures Monitor' report. Show liquidation distance %, funding cost estimate, total PnL. Alert 🚨 risky positions. Send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,recall,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-043",
+    "name": {
+      "ko": "업비트 시황 브리핑",
+      "en": "Upbit Market Briefing"
+    },
+    "description": {
+      "ko": "업비트 주요 시세, 등락 TOP, 공포/탐욕 지수를 종합한 시황 브리핑",
+      "en": "Upbit prices, market movers, and Fear & Greed index combined briefing"
+    },
+    "category": "Finance",
+    "icon": "🇰🇷",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "code",
+        "content": "upbit-ticker"
+      },
+      {
+        "type": "code",
+        "content": "upbit-market-index"
+      },
+      {
+        "type": "code",
+        "content": "fear-greed"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "업비트 시세, 등락 TOP10, 공포/탐욕 지수를 합쳐서 '🇰🇷 업비트 시황 브리핑'으로 정리. 시장 분위기 한줄 코멘트 포함. 메신저 전송.",
+          "en": "Combine Upbit prices, gainers/losers TOP10, Fear & Greed into '🇰🇷 Upbit Market Briefing'. Include one-line market sentiment. Send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-044",
+    "name": {
+      "ko": "김프 알림",
+      "en": "Kimchi Premium Alert"
+    },
+    "description": {
+      "ko": "김치 프리미엄을 계산하고 차익거래 기회를 분석",
+      "en": "Calculate kimchi premium and analyze arbitrage opportunities"
+    },
+    "category": "Finance",
+    "icon": "🥟",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "code",
+        "content": "kimchi-premium"
+      },
+      {
+        "type": "code",
+        "content": "exchange-rates"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "김치 프리미엄 결과와 환율을 분석해서 '🥟 김프 리포트' 작성. 프리미엄 3% 이상이면 🚨 고프리미엄 경고, 마이너스면 🟢 역프리미엄 기회. 최근 추세와 차익거래 가능성 코멘트 포함. 메신저 전송.",
+          "en": "Analyze kimchi premium & FX rates. Create '🥟 Kimchi Premium Report'. Alert 🚨 if >3%, note 🟢 reverse premium opportunity if negative. Comment on trend & arbitrage. Send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,send_notification",
+    "schedule": ""
+  },
+  {
+    "id": "wf-045",
+    "name": {
+      "ko": "거래소 종합 대시보드",
+      "en": "Exchange Dashboard"
+    },
+    "description": {
+      "ko": "바이낸스+업비트 시세, 김프, 공포/탐욕, 환율을 한눈에 정리",
+      "en": "All-in-one: Binance + Upbit prices, kimchi premium, Fear & Greed, FX rates"
+    },
+    "category": "Finance",
+    "icon": "🖥️",
+    "lang": "multi",
+    "steps": [
+      {
+        "type": "code",
+        "content": "binance-ticker-24h"
+      },
+      {
+        "type": "code",
+        "content": "upbit-ticker"
+      },
+      {
+        "type": "code",
+        "content": "kimchi-premium"
+      },
+      {
+        "type": "code",
+        "content": "fear-greed"
+      },
+      {
+        "type": "code",
+        "content": "exchange-rates"
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "바이낸스 시세, 업비트 시세, 김치 프리미엄, 공포/탐욕 지수, 환율을 합쳐서 '🖥️ 거래소 종합 대시보드'로 정리. 항목별 표 형식, 시장 종합 의견 한줄. 변동 큰 항목 ⚠️ 표시. 메신저 전송.",
+          "en": "Combine Binance prices, Upbit prices, kimchi premium, Fear & Greed, FX rates into '🖥️ Exchange Dashboard'. Table format per section, one-line market opinion. Mark big movers ⚠️. Send via messenger."
+        }
+      }
+    ],
+    "hint_tools": "run_stored_code,send_notification",
+    "schedule": ""
   }
 ]
