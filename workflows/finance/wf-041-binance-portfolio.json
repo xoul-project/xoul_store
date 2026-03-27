@@ -1,0 +1,17 @@
+{
+  "id": "wf-041",
+  "name": {"ko": "바이낸스 포트폴리오 리포트", "en": "Binance Portfolio Report"},
+  "description": {"ko": "바이낸스 현물 잔고, 선물 포지션, 시세를 종합해서 리포트 생성", "en": "Combine Binance spot balance, futures positions & prices into a report"},
+  "category": "Finance",
+  "icon": "💼",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "recall('binance api')로 저장된 API 키를 조회해줘.", "en": "Recall stored API keys with recall('binance api')."}},
+    {"type": "code", "content": "binance-spot-balance"},
+    {"type": "code", "content": "binance-futures-positions"},
+    {"type": "code", "content": "binance-ticker-24h"},
+    {"type": "prompt", "content": {"ko": "현물 잔고, 선물 포지션, 24h 시세를 합쳐서 '💼 바이낸스 포트폴리오' 리포트로 정리. 총 자산가치 추정, 위험 포지션 ⚠️ 표시, 메신저 전송.", "en": "Combine spot balance, futures positions & 24h ticker into '💼 Binance Portfolio' report. Estimate total value, mark risky positions ⚠️, send via messenger."}}
+  ],
+  "hint_tools": "run_stored_code,recall,send_notification",
+  "schedule": ""
+}

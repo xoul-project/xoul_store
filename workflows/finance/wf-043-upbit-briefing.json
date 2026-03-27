@@ -1,0 +1,16 @@
+{
+  "id": "wf-043",
+  "name": {"ko": "업비트 시황 브리핑", "en": "Upbit Market Briefing"},
+  "description": {"ko": "업비트 주요 시세, 등락 TOP, 공포/탐욕 지수를 종합한 시황 브리핑", "en": "Upbit prices, market movers, and Fear & Greed index combined briefing"},
+  "category": "Finance",
+  "icon": "🇰🇷",
+  "lang": "multi",
+  "steps": [
+    {"type": "code", "content": "upbit-ticker"},
+    {"type": "code", "content": "upbit-market-index"},
+    {"type": "code", "content": "fear-greed"},
+    {"type": "prompt", "content": {"ko": "업비트 시세, 등락 TOP10, 공포/탐욕 지수를 합쳐서 '🇰🇷 업비트 시황 브리핑'으로 정리. 시장 분위기 한줄 코멘트 포함. 메신저 전송.", "en": "Combine Upbit prices, gainers/losers TOP10, Fear & Greed into '🇰🇷 Upbit Market Briefing'. Include one-line market sentiment. Send via messenger."}}
+  ],
+  "hint_tools": "run_stored_code,send_notification",
+  "schedule": ""
+}

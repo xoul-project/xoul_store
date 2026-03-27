@@ -220,5 +220,25 @@
   {
     "id": "wf-040",
     "file": "daily_routine/wf-040-dday-reminder.json"
+  },
+  {
+    "id": "wf-041",
+    "file": "finance/wf-041-binance-portfolio.json"
+  },
+  {
+    "id": "wf-042",
+    "file": "finance/wf-042-futures-monitor.json"
+  },
+  {
+    "id": "wf-043",
+    "file": "finance/wf-043-upbit-briefing.json"
+  },
+  {
+    "id": "wf-044",
+    "file": "finance/wf-044-kimchi-premium.json"
+  },
+  {
+    "id": "wf-045",
+    "file": "finance/wf-045-exchange-dashboard.json"
   }
 ]

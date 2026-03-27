@@ -1,0 +1,18 @@
+{
+  "id": "wf-045",
+  "name": {"ko": "거래소 종합 대시보드", "en": "Exchange Dashboard"},
+  "description": {"ko": "바이낸스+업비트 시세, 김프, 공포/탐욕, 환율을 한눈에 정리", "en": "All-in-one: Binance + Upbit prices, kimchi premium, Fear & Greed, FX rates"},
+  "category": "Finance",
+  "icon": "🖥️",
+  "lang": "multi",
+  "steps": [
+    {"type": "code", "content": "binance-ticker-24h"},
+    {"type": "code", "content": "upbit-ticker"},
+    {"type": "code", "content": "kimchi-premium"},
+    {"type": "code", "content": "fear-greed"},
+    {"type": "code", "content": "exchange-rates"},
+    {"type": "prompt", "content": {"ko": "바이낸스 시세, 업비트 시세, 김치 프리미엄, 공포/탐욕 지수, 환율을 합쳐서 '🖥️ 거래소 종합 대시보드'로 정리. 항목별 표 형식, 시장 종합 의견 한줄. 변동 큰 항목 ⚠️ 표시. 메신저 전송.", "en": "Combine Binance prices, Upbit prices, kimchi premium, Fear & Greed, FX rates into '🖥️ Exchange Dashboard'. Table format per section, one-line market opinion. Mark big movers ⚠️. Send via messenger."}}
+  ],
+  "hint_tools": "run_stored_code,send_notification",
+  "schedule": ""
+}

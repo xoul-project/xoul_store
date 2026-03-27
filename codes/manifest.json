@@ -904,5 +904,183 @@
     "lang": "multi",
     "params": [],
     "file": "system/security-check.py"
+  },
+  {
+    "id": "exchange-api-setup",
+    "name": "{\"ko\": \"거래소 API 설정\", \"en\": \"Exchange API Setup\"}",
+    "description": "{\"ko\": \"바이낸스/업비트 API 키를 메모리(LTM)에 저장\", \"en\": \"Save Binance/Upbit API keys to memory (LTM)\"}",
+    "category": "Finance",
+    "icon": "🔑",
+    "lang": "multi",
+    "params": [
+      {"name": "exchange", "type": "str", "desc": "Exchange (binance/upbit)", "default": "binance"},
+      {"name": "api_key", "type": "str", "desc": "API Key"},
+      {"name": "api_secret", "type": "str", "desc": "API Secret"}
+    ],
+    "file": "finance/exchange-api-setup.py"
+  },
+  {
+    "id": "binance-spot-balance",
+    "name": "{\"ko\": \"바이낸스 현물 잔고\", \"en\": \"Binance Spot Balance\"}",
+    "description": "{\"ko\": \"바이낸스 현물 계좌 잔고 조회\", \"en\": \"Fetch Binance spot account balance\"}",
+    "category": "Finance",
+    "icon": "💰",
+    "lang": "multi",
+    "params": [
+      {"name": "api_key", "type": "str", "desc": "Binance API Key"},
+      {"name": "api_secret", "type": "str", "desc": "Binance API Secret"}
+    ],
+    "file": "finance/binance-spot-balance.py"
+  },
+  {
+    "id": "binance-futures-positions",
+    "name": "{\"ko\": \"바이낸스 선물 포지션\", \"en\": \"Binance Futures Positions\"}",
+    "description": "{\"ko\": \"바이낸스 선물 오픈 포지션 및 미실현 PnL\", \"en\": \"Binance futures open positions & unrealized PnL\"}",
+    "category": "Finance",
+    "icon": "📈",
+    "lang": "multi",
+    "params": [
+      {"name": "api_key", "type": "str", "desc": "Binance API Key"},
+      {"name": "api_secret", "type": "str", "desc": "Binance API Secret"}
+    ],
+    "file": "finance/binance-futures-positions.py"
+  },
+  {
+    "id": "binance-trade-history",
+    "name": "{\"ko\": \"바이낸스 거래내역\", \"en\": \"Binance Trade History\"}",
+    "description": "{\"ko\": \"바이낸스 최근 체결 내역 조회\", \"en\": \"Fetch recent Binance trade history\"}",
+    "category": "Finance",
+    "icon": "📜",
+    "lang": "multi",
+    "params": [
+      {"name": "api_key", "type": "str", "desc": "Binance API Key"},
+      {"name": "api_secret", "type": "str", "desc": "Binance API Secret"},
+      {"name": "symbol", "type": "str", "desc": "Trading pair", "default": "BTCUSDT"}
+    ],
+    "file": "finance/binance-trade-history.py"
+  },
+  {
+    "id": "binance-open-orders",
+    "name": "{\"ko\": \"바이낸스 미체결 주문\", \"en\": \"Binance Open Orders\"}",
+    "description": "{\"ko\": \"바이낸스 미체결(대기) 주문 목록\", \"en\": \"List Binance pending open orders\"}",
+    "category": "Finance",
+    "icon": "📋",
+    "lang": "multi",
+    "params": [
+      {"name": "api_key", "type": "str", "desc": "Binance API Key"},
+      {"name": "api_secret", "type": "str", "desc": "Binance API Secret"},
+      {"name": "symbol", "type": "str", "desc": "Trading pair (empty=all)", "default": ""}
+    ],
+    "file": "finance/binance-open-orders.py"
+  },
+  {
+    "id": "binance-ticker-24h",
+    "name": "{\"ko\": \"바이낸스 24h 시세\", \"en\": \"Binance 24h Ticker\"}",
+    "description": "{\"ko\": \"바이낸스 주요 코인 24시간 가격 변동\", \"en\": \"Binance major coins 24h price change\"}",
+    "category": "Finance",
+    "icon": "📊",
+    "lang": "multi",
+    "params": [
+      {"name": "symbols", "type": "str", "desc": "Pairs (comma separated)", "default": "BTCUSDT,ETHUSDT,SOLUSDT,XRPUSDT,DOGEUSDT,BNBUSDT"}
+    ],
+    "file": "finance/binance-ticker-24h.py"
+  },
+  {
+    "id": "binance-orderbook",
+    "name": "{\"ko\": \"바이낸스 오더북\", \"en\": \"Binance Order Book\"}",
+    "description": "{\"ko\": \"바이낸스 매수/매도 호가 조회\", \"en\": \"Binance bid/ask order book depth\"}",
+    "category": "Finance",
+    "icon": "📖",
+    "lang": "multi",
+    "params": [
+      {"name": "symbol", "type": "str", "desc": "Trading pair", "default": "BTCUSDT"},
+      {"name": "limit", "type": "str", "desc": "Depth levels", "default": "10"}
+    ],
+    "file": "finance/binance-orderbook.py"
+  },
+  {
+    "id": "binance-funding-rate",
+    "name": "{\"ko\": \"바이낸스 펀딩비\", \"en\": \"Binance Funding Rate\"}",
+    "description": "{\"ko\": \"바이낸스 선물 펀딩비 조회\", \"en\": \"Binance futures funding rate tracker\"}",
+    "category": "Finance",
+    "icon": "💸",
+    "lang": "multi",
+    "params": [
+      {"name": "symbols", "type": "str", "desc": "Futures pairs (comma separated)", "default": "BTCUSDT,ETHUSDT,SOLUSDT,XRPUSDT,DOGEUSDT,BNBUSDT"}
+    ],
+    "file": "finance/binance-funding-rate.py"
+  },
+  {
+    "id": "binance-pnl-history",
+    "name": "{\"ko\": \"바이낸스 선물 PnL\", \"en\": \"Binance Futures PnL\"}",
+    "description": "{\"ko\": \"바이낸스 선물 실현 수익/손실 기록\", \"en\": \"Binance futures realized PnL history\"}",
+    "category": "Finance",
+    "icon": "💹",
+    "lang": "multi",
+    "params": [
+      {"name": "api_key", "type": "str", "desc": "Binance API Key"},
+      {"name": "api_secret", "type": "str", "desc": "Binance API Secret"},
+      {"name": "symbol", "type": "str", "desc": "Futures pair", "default": "BTCUSDT"}
+    ],
+    "file": "finance/binance-pnl-history.py"
+  },
+  {
+    "id": "upbit-ticker",
+    "name": "{\"ko\": \"업비트 시세\", \"en\": \"Upbit Ticker\"}",
+    "description": "{\"ko\": \"업비트 KRW 마켓 주요 코인 시세\", \"en\": \"Upbit KRW market major coin prices\"}",
+    "category": "Finance",
+    "icon": "🇰🇷",
+    "lang": "multi",
+    "params": [
+      {"name": "markets", "type": "str", "desc": "Market codes (comma separated)", "default": "KRW-BTC,KRW-ETH,KRW-SOL,KRW-XRP,KRW-DOGE"}
+    ],
+    "file": "finance/upbit-ticker.py"
+  },
+  {
+    "id": "upbit-orderbook",
+    "name": "{\"ko\": \"업비트 오더북\", \"en\": \"Upbit Order Book\"}",
+    "description": "{\"ko\": \"업비트 매수/매도 호가 조회\", \"en\": \"Upbit bid/ask order book with ratio\"}",
+    "category": "Finance",
+    "icon": "📖",
+    "lang": "multi",
+    "params": [
+      {"name": "market", "type": "str", "desc": "Market code", "default": "KRW-BTC"}
+    ],
+    "file": "finance/upbit-orderbook.py"
+  },
+  {
+    "id": "upbit-trades",
+    "name": "{\"ko\": \"업비트 체결내역\", \"en\": \"Upbit Recent Trades\"}",
+    "description": "{\"ko\": \"업비트 최근 체결 내역 조회\", \"en\": \"Upbit recent trade ticks\"}",
+    "category": "Finance",
+    "icon": "🔄",
+    "lang": "multi",
+    "params": [
+      {"name": "market", "type": "str", "desc": "Market code", "default": "KRW-BTC"},
+      {"name": "count", "type": "str", "desc": "Number of trades", "default": "20"}
+    ],
+    "file": "finance/upbit-trades.py"
+  },
+  {
+    "id": "upbit-market-index",
+    "name": "{\"ko\": \"업비트 등락 TOP\", \"en\": \"Upbit Market Index\"}",
+    "description": "{\"ko\": \"업비트 KRW 마켓 상승/하락 TOP 10\", \"en\": \"Upbit KRW market top gainers & losers\"}",
+    "category": "Finance",
+    "icon": "🏆",
+    "lang": "multi",
+    "params": [],
+    "file": "finance/upbit-market-index.py"
+  },
+  {
+    "id": "kimchi-premium",
+    "name": "{\"ko\": \"김치 프리미엄\", \"en\": \"Kimchi Premium\"}",
+    "description": "{\"ko\": \"업비트 vs 바이낸스 김치 프리미엄 계산\", \"en\": \"Upbit vs Binance kimchi premium calculator\"}",
+    "category": "Finance",
+    "icon": "🥟",
+    "lang": "multi",
+    "params": [
+      {"name": "coins", "type": "str", "desc": "Coins (comma separated)", "default": "BTC,ETH,SOL,XRP,DOGE"}
+    ],
+    "file": "finance/kimchi-premium.py"
   }
 ]

@@ -358,5 +358,23 @@
     "icon": "🧠",
     "lang": "ko",
     "file": "productivity/p-030-ko.md"
+  },
+  {
+    "id": "p-031-en",
+    "name": "Crypto Trading Assistant",
+    "description": "All-in-one Binance & Upbit trading companion — portfolio, analysis, monitoring",
+    "category": "Finance",
+    "icon": "📈",
+    "lang": "en",
+    "file": "finance/p-031-en.md"
+  },
+  {
+    "id": "p-031-ko",
+    "name": "크립토 트레이딩 어시스턴트",
+    "description": "바이낸스 & 업비트 올인원 트레이딩 도우미 — 포트폴리오, 분석, 모니터링",
+    "category": "Finance",
+    "icon": "📈",
+    "lang": "ko",
+    "file": "finance/p-031-ko.md"
   }
 ]

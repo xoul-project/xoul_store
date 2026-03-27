@@ -1,0 +1,16 @@
+{
+  "id": "wf-042",
+  "name": {"ko": "선물 포지션 모니터링", "en": "Futures Position Monitor"},
+  "description": {"ko": "바이낸스 선물 포지션과 펀딩비를 확인하고 위험도 분석", "en": "Monitor Binance futures positions with funding rates and risk analysis"},
+  "category": "Finance",
+  "icon": "⚡",
+  "lang": "multi",
+  "steps": [
+    {"type": "prompt", "content": {"ko": "recall('binance api')로 저장된 API 키를 조회해줘.", "en": "Recall stored API keys with recall('binance api')."}},
+    {"type": "code", "content": "binance-futures-positions"},
+    {"type": "code", "content": "binance-funding-rate"},
+    {"type": "prompt", "content": {"ko": "포지션과 펀딩비를 분석해서 '⚡ 선물 모니터링' 리포트 작성. 청산가 대비 현재가 거리(%), 펀딩비 부담 예상, 총 PnL 요약. 위험도 높은 포지션은 🚨 경고. 메신저 전송.", "en": "Analyze positions & funding rates. Create '⚡ Futures Monitor' report. Show liquidation distance %, funding cost estimate, total PnL. Alert 🚨 risky positions. Send via messenger."}}
+  ],
+  "hint_tools": "run_stored_code,recall,send_notification",
+  "schedule": ""
+}

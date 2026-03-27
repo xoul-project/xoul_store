@@ -1,0 +1,15 @@
+{
+  "id": "wf-044",
+  "name": {"ko": "김프 알림", "en": "Kimchi Premium Alert"},
+  "description": {"ko": "김치 프리미엄을 계산하고 차익거래 기회를 분석", "en": "Calculate kimchi premium and analyze arbitrage opportunities"},
+  "category": "Finance",
+  "icon": "🥟",
+  "lang": "multi",
+  "steps": [
+    {"type": "code", "content": "kimchi-premium"},
+    {"type": "code", "content": "exchange-rates"},
+    {"type": "prompt", "content": {"ko": "김치 프리미엄 결과와 환율을 분석해서 '🥟 김프 리포트' 작성. 프리미엄 3% 이상이면 🚨 고프리미엄 경고, 마이너스면 🟢 역프리미엄 기회. 최근 추세와 차익거래 가능성 코멘트 포함. 메신저 전송.", "en": "Analyze kimchi premium & FX rates. Create '🥟 Kimchi Premium Report'. Alert 🚨 if >3%, note 🟢 reverse premium opportunity if negative. Comment on trend & arbitrage. Send via messenger."}}
+  ],
+  "hint_tools": "run_stored_code,send_notification",
+  "schedule": ""
+}
