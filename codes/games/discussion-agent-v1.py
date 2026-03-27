@@ -67,7 +67,25 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
         env = os.environ.get("JWT_SECRET")
         if env:
             return env
-        return _config.get("server", {}).get("api_key", "xoul-secret-key")
+        # auth_config.json (웹서비스/Arena 서버와 동일한 JWT secret)
+        auth_paths = [
+            os.path.join(os.path.dirname(__file__), "..", "web_service", "backend", "auth_config.json"),
+            "/app/auth_config.json",
+            "/root/xoul/web_service/backend/auth_config.json",
+        ]
+        for ap in auth_paths:
+            try:
+                if os.path.exists(ap):
+                    with open(ap, encoding="utf-8") as f:
+                        secret = json.load(f).get("jwt_secret")
+                        if secret:
+                            return secret
+            except Exception:
+                pass
+        secret = _config.get("server", {}).get("api_key")
+        if secret and secret != "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA":
+            return secret
+        return "xoul-secret-key"
 
     def _load_lang():
         return _config.get("assistant", {}).get("language", "ko")
@@ -215,12 +233,17 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
         news_str = "\n".join(f"- {h}" for h in headlines)
         messages = [{
             "role": "system",
-            "content": f"""당신은 토론 주제 생성기입니다.
+            "content": """당신은 토론 주제 생성기입니다.
 아래 최신 뉴스 헤드라인을 참고하여 사람들이 열띤 토론을 할 수 있는 매력적인 주제를 하나 만들어주세요.
 
 규칙:
-- {LANG_INST}
-- 주제 문장만 출력하세요 (설명 없이 1줄).
+- 반드시 다음 JSON 형식으로만 출력하세요 (다른 설명 금지).
+```json
+{
+  "ko": "한국어 토론 주제",
+  "en": "영어 번역된 토론 주제"
+}
+```
 - 의견이 갈릴 수 있는 논쟁적이거나 흥미로운 주제가 좋습니다.
 - 너무 시사적이지 않게, 약간 추상화해서 누구나 참여할 수 있게 만드세요.
 - 20~60자 이내."""
@@ -228,10 +251,22 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
             "role": "user",
             "content": f"최신 뉴스 헤드라인:\n{news_str}\n\n위 뉴스를 참고한 토론 주제:"
         }]
-        topic = call_llm(messages, max_tokens=100)
-        # 따옴표, 번호 등 정리
-        topic = re.sub(r'^[\d.\-\s"\'\'\"]+', '', topic).strip().strip('"\'\'\"')
-        return topic[:100] if topic else ""
+        topic_text = call_llm(messages, max_tokens=150)
+        
+        try:
+            # Markdown JSON block 제거
+            cleaned = re.sub(r'```json\n?', '', topic_text)
+            cleaned = re.sub(r'```\n?', '', cleaned)
+            topic_dict = json.loads(cleaned)
+            if "ko" in topic_dict and "en" in topic_dict:
+                return topic_dict
+        except Exception as e:
+            print(f"   ⚠️ JSON 파싱 실패: {e}")
+            
+        # Fallback (단일 스트링 리턴 시 양쪽 동일하게)
+        fallback = re.sub(r'^[\d.\-\s"\'\'\"]+', '', topic_text).strip().strip('"\'\'\"')
+        fallback = fallback[:100] if fallback else "최신 기술 동향, 어떻게 봐야 할까?"
+        return {"ko": fallback, "en": fallback}
 
     def create_discussion_room(topic, token):
         """새 토론방을 생성한다"""
@@ -242,7 +277,8 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
             return None
         gid = result.get("game_id") or result.get("id", "")
         if gid:
-            print(f"   ✅ 새 방 생성 완료: {gid} | 주제: {topic}")
+            t_str = topic.get("ko", "") if isinstance(topic, dict) else topic
+            print(f"   ✅ 새 방 생성 완료: {gid} | 주제: {t_str}")
         return gid
 
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -255,7 +291,14 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
             print(f"❌ 방 정보 조회 실패: {summary['error']}")
             return False
 
-        topic = summary.get("topic", "일반 토론")
+        # topic_ko, topic_en이 있으면 사용, 아니면 topic 사용
+        topic_ko = summary.get("topic_ko")
+        topic_en = summary.get("topic_en")
+        if topic_ko and topic_en:
+            topic = topic_ko if LANG == "ko" else topic_en
+        else:
+            topic = summary.get("topic", "일반 토론")
+
         recent = summary.get("recent_comments", [])
         total = summary.get("total_comments", 0)
         print(f"📋 방: {gid} | 주제: {topic} | 댓글 {total}개")
