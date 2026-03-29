@@ -67,17 +67,80 @@ def build_workflows():
     print(f"\n📦 dist/workflows.json updated ({len(existing)} total, {added} new)")
 
 
+def build_personas():
+    """Aggregate individual persona files into dist/personas.json with author field"""
+    manifest_path = STORE_ROOT / "personas" / "manifest.json"
+    if not manifest_path.exists():
+        print("⚠ personas/manifest.json not found")
+        return
+
+    manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    existing_dist = DIST_DIR / "personas.json"
+
+    # Load existing dist as base (preserves stats like views/downloads)
+    if existing_dist.exists():
+        existing = json.loads(existing_dist.read_text(encoding="utf-8"))
+        existing_map = {p.get("id"): p for p in existing if isinstance(p, dict)}
+    else:
+        existing = []
+        existing_map = {}
+
+    result = []
+    for entry in manifest:
+        p_id = entry.get("id", "")
+        if p_id in existing_map:
+            # Merge: keep existing stats, ensure author is present
+            merged = existing_map[p_id]
+            if "author" not in merged:
+                merged["author"] = entry.get("author", "Xoul")
+            result.append(merged)
+        else:
+            # New entry from manifest
+            persona_data = dict(entry)
+            if "author" not in persona_data:
+                persona_data["author"] = entry.get("author", "Xoul")
+            # Remove file path (not needed in dist)
+            persona_data.pop("file", None)
+            result.append(persona_data)
+
+    DIST_DIR.mkdir(exist_ok=True)
+    (DIST_DIR / "personas.json").write_text(
+        json.dumps(result, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+    print(f"📦 dist/personas.json updated ({len(result)} total)")
+
+
 def build_codes():
-    """Aggregate codes.json (already aggregated)"""
+    """Aggregate codes.json with author field"""
     codes_path = STORE_ROOT / "codes" / "codes.json"
+    dist_path = DIST_DIR / "codes.json"
+
+    # Source can be either codes/codes.json or existing dist
     if codes_path.exists():
-        import shutil
-        shutil.copy2(codes_path, DIST_DIR / "codes.json")
-        print("📦 dist/codes.json updated")
+        codes = json.loads(codes_path.read_text(encoding="utf-8"))
+    elif dist_path.exists():
+        codes = json.loads(dist_path.read_text(encoding="utf-8"))
+    else:
+        print("⚠ No codes source found")
+        return
+
+    # Inject author field if missing
+    for c in codes:
+        if isinstance(c, dict) and "author" not in c:
+            c["author"] = "Xoul"
+
+    DIST_DIR.mkdir(exist_ok=True)
+    dist_path.write_text(
+        json.dumps(codes, ensure_ascii=False, indent=2),
+        encoding="utf-8"
+    )
+    print(f"📦 dist/codes.json updated ({len(codes)} total)")
 
 
 if __name__ == "__main__":
     print("🔨 Building xoul-store dist...\n")
     build_workflows()
+    build_personas()
     build_codes()
     print("\n✅ Done!")
