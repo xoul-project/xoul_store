@@ -30,8 +30,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "위 날씨와 뉴스 내용을 '☀️ 모닝 브리핑' 제목으로 깔끔하게 정리해서 메신저로 보내줘.",
-          "en": "Compile the weather and news above into a clean '☀️ Morning Briefing' message and send it via messenger."
+          "ko": "위 날씨와 뉴스 내용을 '☀️ 모닝 브리핑' 제목으로 깔끔하게 정리.",
+          "en": "Compile the weather and news above into a clean '☀️ Morning Briefing' message."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
@@ -62,8 +69,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "결과를 '💱 오늘의 환율' 제목으로 정리해서 메신저로 보내줘. 원/달러 환율은 강조해줘.",
-          "en": "Format the results as '💱 Today's Exchange Rates' and send via messenger. Highlight the KRW/USD rate."
+          "ko": "결과를 '💱 오늘의 환율' 제목으로 정리. 원/달러 환율은 강조해줘.",
+          "en": "Format the results as '💱 Today's Exchange Rates'. Highlight the KRW/USD rate."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
@@ -94,8 +108,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "각 이메일의 발신자와 제목을 정리하고, '📧 이메일 요약' 제목으로 메신저에 보내줘. 중요해 보이는 건 ⚠️로 표시해줘.",
+          "ko": "각 이메일의 발신자와 제목을 정리하고, '📧 이메일 요약' 제목으로. 중요해 보이는 건 ⚠️로 표시해줘.",
           "en": "Summarize each email's sender and subject, then send as '📧 Email Summary' via messenger. Mark important-looking ones with ⚠️."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
@@ -159,8 +180,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "위 코인 시세와 공포/탐욕 지수를 '📈 크립토 시황' 제목으로 깔끔하게 정리해서 메신저로 보내줘.",
-          "en": "Compile the coin prices and Fear & Greed index above into a clean '📈 Crypto Market' summary and send via messenger."
+          "ko": "위 코인 시세와 공포/탐욕 지수를 '📈 크립토 시황' 제목으로 깔끔하게 정리.",
+          "en": "Compile the coin prices and Fear & Greed index above into a clean '📈 Crypto Market' summary."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
@@ -191,8 +219,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "각 날의 최고/최저 기온, 날씨, 비 올 확률을 이모지와 함께 정리해서 '🌤️ 주간 날씨' 제목으로 메신저에 보내줘.",
+          "ko": "각 날의 최고/최저 기온, 날씨, 비 올 확률을 이모지와 함께 정리해서 '🌤️ 주간 날씨' 제목으로.",
           "en": "Format each day's high/low temp, weather, and rain probability with emojis, then send as '🌤️ Weekly Weather' via messenger."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
@@ -220,8 +255,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "시스템 상태를 분석해서 문제가 있으면 ⚠️로 경고하고, 정상이면 ✅로 표시해서 메신저로 보내줘.",
-          "en": "Analyze the system status. Warn with ⚠️ if there are issues, mark ✅ if normal, and send via messenger."
+          "ko": "시스템 상태를 분석해서 문제가 있으면 ⚠️로 경고하고, 정상이면 ✅로 표시.",
+          "en": "Analyze the system status. Warn with ⚠️ if there are issues, mark ✅ if normal."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
@@ -253,8 +295,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "HN 인기글과 GitHub 트렌딩 결과를 '🔥 기술 트렌드 브리핑' 제목으로 핵심만 정리해서 메신저로 보내줘.",
-          "en": "Summarize the HN top stories and GitHub trending results into a '🔥 Tech Trend Briefing' and send via messenger."
+          "ko": "HN 인기글과 GitHub 트렌딩 결과를 '🔥 기술 트렌드 브리핑' 제목으로 핵심만 정리.",
+          "en": "Summarize the HN top stories and GitHub trending results into a '🔥 Tech Trend Briefing'."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
@@ -285,8 +334,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "일정과 기억된 반복 일정을 합쳐서 '📅 오늘의 일정' 제목으로 시간 순서대로 정리하고 메신저로 보내줘.",
-          "en": "Combine events and recurring schedules into '📅 Today's Schedule', sorted by time, and send via messenger."
+          "ko": "일정과 기억된 반복 일정을 합쳐서 '📅 오늘의 일정' 제목으로 시간 순서대로 정리.",
+          "en": "Combine events and recurring schedules into '📅 Today's Schedule', sorted by time."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
@@ -321,8 +377,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "주식시장 동향과 환율을 합쳐서 '📊 오늘의 시장' 제목으로 핵심만 정리해서 메신저로 보내줘.",
-          "en": "Combine stock market trends and exchange rates into a '📊 Today's Market' summary and send via messenger."
+          "ko": "주식시장 동향과 환율을 합쳐서 '📊 오늘의 시장' 제목으로 핵심만 정리.",
+          "en": "Combine stock market trends and exchange rates into a '📊 Today's Market' summary."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
@@ -772,8 +835,15 @@
       {
         "type": "prompt",
         "content": {
-          "ko": "결과를 '✅ 습관 체크 — [날짜]'로 정리해서 habit_[날짜] 키로 메모리에 저장하고, 점수(완료/전체)와 스트릭 정보를 메신저로 보내줘.",
+          "ko": "결과를 '✅ 습관 체크 — [날짜]'로 정리해서 habit_[날짜] 키로 메모리에 저장하고, 점수(완료/전체)와 스트릭 정보를.",
           "en": "Format as '✅ Habit Check — [date]', save to memory as habit_[date], send score and streak info via messenger."
+        }
+      },
+      {
+        "type": "prompt",
+        "content": {
+          "ko": "위의 내용 요약해서 메신저로 보내줘.",
+          "en": "Summarize the above and send via messenger."
         }
       }
     ],
