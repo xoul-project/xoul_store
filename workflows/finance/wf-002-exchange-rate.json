@@ -1,13 +1,38 @@
 {
   "id": "wf-002",
-  "name": {"ko": "오늘의 환율 알림", "en": "Daily Exchange Rate Alert"},
-  "description": {"ko": "주요 통화 환율을 조회하고 메신저로 알려줍니다", "en": "Check major currency exchange rates and send via messenger"},
+  "name": {
+    "ko": "오늘의 환율 알림",
+    "en": "Daily Exchange Rate Alert"
+  },
+  "description": {
+    "ko": "주요 통화 환율을 조회하고 메신저로 알려줍니다",
+    "en": "Check major currency exchange rates and send via messenger"
+  },
   "category": "Finance",
   "icon": "💱",
   "lang": "multi",
   "steps": [
-    {"type": "prompt", "content": {"ko": "환율 조회 코드를 실행해서 USD 기준 주요 통화 환율을 확인해줘.", "en": "Run the Exchange Rates code to check major currency rates based on USD."}},
-    {"type": "prompt", "content": {"ko": "결과를 '💱 오늘의 환율' 제목으로 정리해서 메신저로 보내줘. 원/달러 환율은 강조해줘.", "en": "Format the results as '💱 Today's Exchange Rates' and send via messenger. Highlight the KRW/USD rate."}}
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "환율 조회 코드를 실행해서 USD 기준 주요 통화 환율을 확인해줘.",
+        "en": "Run the Exchange Rates code to check major currency rates based on USD."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "결과를 '💱 오늘의 환율' 제목으로 정리. 원/달러 환율은 강조해줘.",
+        "en": "Format the results as '💱 Today's Exchange Rates'. Highlight the KRW/USD rate."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "위의 내용 요약해서 메신저로 보내줘.",
+        "en": "Summarize the above and send via messenger."
+      }
+    }
   ],
   "hint_tools": "run_stored_code,send_notification",
   "schedule": ""

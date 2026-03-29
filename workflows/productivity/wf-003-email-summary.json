@@ -1,13 +1,38 @@
 {
   "id": "wf-003",
-  "name": {"ko": "이메일 요약 리포트", "en": "Email Summary Report"},
-  "description": {"ko": "읽지 않은 이메일을 확인하고 요약해서 메신저로 알려줍니다", "en": "Check unread emails, summarize them, and notify via messenger"},
+  "name": {
+    "ko": "이메일 요약 리포트",
+    "en": "Email Summary Report"
+  },
+  "description": {
+    "ko": "읽지 않은 이메일을 확인하고 요약해서 메신저로 알려줍니다",
+    "en": "Check unread emails, summarize them, and notify via messenger"
+  },
   "category": "Productivity",
   "icon": "📧",
   "lang": "multi",
   "steps": [
-    {"type": "prompt", "content": {"ko": "읽지 않은 이메일 목록을 확인해줘.", "en": "Check the list of unread emails."}},
-    {"type": "prompt", "content": {"ko": "각 이메일의 발신자와 제목을 정리하고, '📧 이메일 요약' 제목으로 메신저에 보내줘. 중요해 보이는 건 ⚠️로 표시해줘.", "en": "Summarize each email's sender and subject, then send as '📧 Email Summary' via messenger. Mark important-looking ones with ⚠️."}}
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "읽지 않은 이메일 목록을 확인해줘.",
+        "en": "Check the list of unread emails."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "각 이메일의 발신자와 제목을 정리하고, '📧 이메일 요약' 제목으로. 중요해 보이는 건 ⚠️로 표시해줘.",
+        "en": "Summarize each email's sender and subject, then send as '📧 Email Summary' via messenger. Mark important-looking ones with ⚠️."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "위의 내용 요약해서 메신저로 보내줘.",
+        "en": "Summarize the above and send via messenger."
+      }
+    }
   ],
   "hint_tools": "list_emails,send_notification",
   "schedule": ""

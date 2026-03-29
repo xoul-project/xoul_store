@@ -1,13 +1,38 @@
 {
   "id": "wf-009",
-  "name": {"ko": "오늘 일정 리마인더", "en": "Today's Schedule Reminder"},
-  "description": {"ko": "오늘의 일정과 기억된 정보를 확인하고 메신저로 알려줍니다", "en": "Check today's events and stored memories, then send a reminder via messenger"},
+  "name": {
+    "ko": "오늘 일정 리마인더",
+    "en": "Today's Schedule Reminder"
+  },
+  "description": {
+    "ko": "오늘의 일정과 기억된 정보를 확인하고 메신저로 알려줍니다",
+    "en": "Check today's events and stored memories, then send a reminder via messenger"
+  },
   "category": "Productivity",
   "icon": "📅",
   "lang": "multi",
   "steps": [
-    {"type": "prompt", "content": {"ko": "오늘 날짜를 확인하고, 오늘의 일정을 조회해줘. 기억(recall)에서 오늘과 관련된 반복 일정도 찾아봐.", "en": "Check today's date, list today's events, and search memories (recall) for any recurring schedules related to today."}},
-    {"type": "prompt", "content": {"ko": "일정과 기억된 반복 일정을 합쳐서 '📅 오늘의 일정' 제목으로 시간 순서대로 정리하고 메신저로 보내줘.", "en": "Combine events and recurring schedules into '📅 Today's Schedule', sorted by time, and send via messenger."}}
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "오늘 날짜를 확인하고, 오늘의 일정을 조회해줘. 기억(recall)에서 오늘과 관련된 반복 일정도 찾아봐.",
+        "en": "Check today's date, list today's events, and search memories (recall) for any recurring schedules related to today."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "일정과 기억된 반복 일정을 합쳐서 '📅 오늘의 일정' 제목으로 시간 순서대로 정리.",
+        "en": "Combine events and recurring schedules into '📅 Today's Schedule', sorted by time."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "위의 내용 요약해서 메신저로 보내줘.",
+        "en": "Summarize the above and send via messenger."
+      }
+    }
   ],
   "hint_tools": "get_datetime,list_events,recall,send_notification",
   "schedule": ""

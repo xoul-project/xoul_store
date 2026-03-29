@@ -1,14 +1,42 @@
 {
   "id": "wf-010",
-  "name": {"ko": "주식 시황 요약", "en": "Stock Market Summary"},
-  "description": {"ko": "주요 주식 시세를 확인하고 시장 동향을 메신저로 보냅니다", "en": "Check major stock prices and send market trends via messenger"},
+  "name": {
+    "ko": "주식 시황 요약",
+    "en": "Stock Market Summary"
+  },
+  "description": {
+    "ko": "주요 주식 시세를 확인하고 시장 동향을 메신저로 보냅니다",
+    "en": "Check major stock prices and send market trends via messenger"
+  },
   "category": "Finance",
   "icon": "📊",
   "lang": "multi",
   "steps": [
-    {"type": "prompt", "content": {"ko": "웹에서 '오늘 미국 주식시장 동향 S&P500 나스닥'을 검색해줘.", "en": "Search the web for 'today US stock market trends S&P500 NASDAQ'."}},
-    {"type": "code", "content": "exchange-rates"},
-    {"type": "prompt", "content": {"ko": "주식시장 동향과 환율을 합쳐서 '📊 오늘의 시장' 제목으로 핵심만 정리해서 메신저로 보내줘.", "en": "Combine stock market trends and exchange rates into a '📊 Today's Market' summary and send via messenger."}}
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "웹에서 '오늘 미국 주식시장 동향 S&P500 나스닥'을 검색해줘.",
+        "en": "Search the web for 'today US stock market trends S&P500 NASDAQ'."
+      }
+    },
+    {
+      "type": "code",
+      "content": "exchange-rates"
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "주식시장 동향과 환율을 합쳐서 '📊 오늘의 시장' 제목으로 핵심만 정리.",
+        "en": "Combine stock market trends and exchange rates into a '📊 Today's Market' summary."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "위의 내용 요약해서 메신저로 보내줘.",
+        "en": "Summarize the above and send via messenger."
+      }
+    }
   ],
   "hint_tools": "web_search,run_stored_code,send_notification",
   "schedule": ""

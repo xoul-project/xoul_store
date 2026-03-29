@@ -1,14 +1,45 @@
 {
   "id": "wf-021",
-  "name": {"ko": "습관 체크인", "en": "Daily Habit Check-in"},
-  "description": {"ko": "매일 습관 달성 여부를 체크하고 스트릭을 기록합니다", "en": "Check daily habit completion and track streaks"},
+  "name": {
+    "ko": "습관 체크인",
+    "en": "Daily Habit Check-in"
+  },
+  "description": {
+    "ko": "매일 습관 달성 여부를 체크하고 스트릭을 기록합니다",
+    "en": "Check daily habit completion and track streaks"
+  },
   "category": "Daily Routine",
   "icon": "✅",
   "lang": "multi",
   "steps": [
-    {"type": "prompt", "content": {"ko": "기억(recall)에서 '습관 목록/habit list'을 검색해줘. 없으면 기본 습관 5개(물 2L, 운동 30분, 독서 20분, 명상 10분, 11시 전 취침)를 제안해줘.", "en": "Search memories for 'habit list'. If none, suggest 5 defaults: drink 2L water, exercise 30min, read 20min, meditate 10min, sleep by 11pm."}},
-    {"type": "prompt", "content": {"ko": "각 습관의 오늘 완료 여부를 사용자에게 물어봐. 완료 ✅, 미완료 ❌로 체크하고, 메모가 있으면 기록해.", "en": "Ask user about each habit's completion today. Mark ✅ done, ❌ not done, note any comments."}},
-    {"type": "prompt", "content": {"ko": "결과를 '✅ 습관 체크 — [날짜]'로 정리해서 habit_[날짜] 키로 메모리에 저장하고, 점수(완료/전체)와 스트릭 정보를 메신저로 보내줘.", "en": "Format as '✅ Habit Check — [date]', save to memory as habit_[date], send score and streak info via messenger."}}
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "기억(recall)에서 '습관 목록/habit list'을 검색해줘. 없으면 기본 습관 5개(물 2L, 운동 30분, 독서 20분, 명상 10분, 11시 전 취침)를 제안해줘.",
+        "en": "Search memories for 'habit list'. If none, suggest 5 defaults: drink 2L water, exercise 30min, read 20min, meditate 10min, sleep by 11pm."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "각 습관의 오늘 완료 여부를 사용자에게 물어봐. 완료 ✅, 미완료 ❌로 체크하고, 메모가 있으면 기록해.",
+        "en": "Ask user about each habit's completion today. Mark ✅ done, ❌ not done, note any comments."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "결과를 '✅ 습관 체크 — [날짜]'로 정리해서 habit_[날짜] 키로 메모리에 저장하고, 점수(완료/전체)와 스트릭 정보를.",
+        "en": "Format as '✅ Habit Check — [date]', save to memory as habit_[date], send score and streak info via messenger."
+      }
+    },
+    {
+      "type": "prompt",
+      "content": {
+        "ko": "위의 내용 요약해서 메신저로 보내줘.",
+        "en": "Summarize the above and send via messenger."
+      }
+    }
   ],
   "hint_tools": "recall,memorize,send_notification,get_datetime",
   "schedule": ""
