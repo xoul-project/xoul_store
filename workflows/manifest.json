@@ -240,5 +240,18 @@
   {
     "id": "wf-045",
     "file": "finance/wf-045-exchange-dashboard.json"
+  },
+  {
+    "id": "test1_128",
+    "name": "Test1",
+    "description": "Test1",
+    "category": "Other",
+    "icon": "📦",
+    "lang": "multi",
+    "author": "Dextor",
+    "steps": [],
+    "hint_tools": [],
+    "schedule": "",
+    "file": "other/test1_128.json"
   }
 ]
