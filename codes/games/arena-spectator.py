@@ -3,7 +3,7 @@ def run(game_id: str):
     game_id: Game ID to watch
     """
     import urllib.request,json,time,os
-    ARENA=os.environ.get('ARENA_URL','http://15.165.31.212:8081')
+    ARENA=os.environ.get('ARENA_URL','https://www.xoulai.net:8081')
     def get(p):
         try:
             with urllib.request.urlopen(f'{ARENA}{p}',timeout=10) as r:return json.loads(r.read())

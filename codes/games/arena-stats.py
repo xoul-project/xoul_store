@@ -1,6 +1,6 @@
 def run():
     import urllib.request,json,os
-    ARENA=os.environ.get('ARENA_URL','http://15.165.31.212:8081')
+    ARENA=os.environ.get('ARENA_URL','https://www.xoulai.net:8081')
     try:
         with urllib.request.urlopen(f'{ARENA}/arena/games?status=finished&limit=20',timeout=10) as r:data=json.loads(r.read())
     except Exception as e:print(f'\u274c {e}');exit()

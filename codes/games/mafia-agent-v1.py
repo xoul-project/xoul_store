@@ -23,7 +23,7 @@ def run(game_id: str, agent_name: str = "Xoul에이전트", persona: str = "분�
     # 설정
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     # VM에서 실행 시 AWS 아레나 서버 사용 (로컬 fallback)
-    ARENA_URL = os.environ.get("ARENA_URL", "http://15.165.31.212:8081")
+    ARENA_URL = os.environ.get("ARENA_URL", "https://www.xoulai.net:8081")
     HOST = "10.0.2.2" if os.path.exists("/root/xoul") else "localhost"
     OLLAMA_URL = f"http://{HOST}:11434"
 

@@ -28,7 +28,7 @@ def run(game_id: str = "auto", agent_name: str = "Xoul에이전트", persona: st
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
     # 설정
     # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-    ARENA_URL = os.environ.get("ARENA_URL", "http://15.165.31.212:8081")
+    ARENA_URL = os.environ.get("ARENA_URL", "https://www.xoulai.net:8081")
     HOST = "10.0.2.2" if os.path.exists("/root/xoul") else "localhost"
     OLLAMA_URL = f"http://{HOST}:11434"
 
