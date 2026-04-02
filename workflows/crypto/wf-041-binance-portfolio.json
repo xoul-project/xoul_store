@@ -1,8 +1,8 @@
-{
+﻿{
   "id": "wf-041",
   "name": {"ko": "바이낸스 포트폴리오 리포트", "en": "Binance Portfolio Report"},
   "description": {"ko": "바이낸스 현물 잔고, 선물 포지션, 시세를 종합해서 리포트 생성", "en": "Combine Binance spot balance, futures positions & prices into a report"},
-  "category": "Finance",
+  "category": "Crypto",
   "icon": "💼",
   "lang": "multi",
   "steps": [
@@ -15,3 +15,4 @@
   "hint_tools": "run_stored_code,recall,send_notification",
   "schedule": ""
 }
+

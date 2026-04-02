@@ -1,380 +1,380 @@
-[
-  {
-    "id": "p-001-en",
-    "name": "Academic Writing Coach",
-    "description": "Expert in scholarly papers, literature reviews, research methodology, and thesis writing",
-    "category": "Research",
-    "icon": "📝",
-    "lang": "en",
-    "file": "research/p-001-en.md"
-  },
-  {
-    "id": "p-001-ko",
-    "name": "학술 글쓰기 코치",
-    "description": "학술 논문, 문헌 리뷰, 연구 방법론, 논문 작성 전문가",
-    "category": "Research",
-    "icon": "📝",
-    "lang": "ko",
-    "file": "research/p-001-ko.md"
-  },
-  {
-    "id": "p-002-en",
-    "name": "Creative Thought Partner",
-    "description": "Helps discover breakthrough insights by spotting hidden patterns in your ideas",
-    "category": "Productivity",
-    "icon": "💡",
-    "lang": "en",
-    "file": "productivity/p-002-en.md"
-  },
-  {
-    "id": "p-002-ko",
-    "name": "창의적 사고 파트너",
-    "description": "아이디어 속 숨겨진 패턴을 발견하여 획기적인 인사이트를 발굴합니다",
-    "category": "Productivity",
-    "icon": "💡",
-    "lang": "ko",
-    "file": "productivity/p-002-ko.md"
-  },
-  {
-    "id": "p-003-en",
-    "name": "Data Analyst",
-    "description": "SQL queries, spreadsheet analysis, data visualization, and report generation",
-    "category": "Data",
-    "icon": "📊",
-    "lang": "en",
-    "file": "data/p-003-en.md"
-  },
-  {
-    "id": "p-003-ko",
-    "name": "데이터 분석가",
-    "description": "SQL 쿼리, 스프레드시트 분석, 데이터 시각화, 리포트 생성",
-    "category": "Data",
-    "icon": "📊",
-    "lang": "ko",
-    "file": "data/p-003-ko.md"
-  },
-  {
-    "id": "p-004-en",
-    "name": "Expense Tracker",
-    "description": "Track expenses via natural language, get spending summaries and budget insights",
-    "category": "Finance",
-    "icon": "💰",
-    "lang": "en",
-    "file": "finance/p-004-en.md"
-  },
-  {
-    "id": "p-004-ko",
-    "name": "가계부 도우미",
-    "description": "자연어로 지출 추적, 지출 요약 및 예산 인사이트 제공",
-    "category": "Finance",
-    "icon": "💰",
-    "lang": "ko",
-    "file": "finance/p-004-ko.md"
-  },
-  {
-    "id": "p-006-en",
-    "name": "Anxiety Relief Guide",
-    "description": "Manage anxiety with grounding exercises, breathing techniques, and thought reframing",
-    "category": "Daily Routine",
-    "icon": "🧘",
-    "lang": "en",
-    "file": "daily_routine/p-006-en.md"
-  },
-  {
-    "id": "p-006-ko",
-    "name": "불안 해소 가이드",
-    "description": "그라운딩 운동, 호흡법, 사고 전환으로 불안 관리",
-    "category": "Daily Routine",
-    "icon": "🧘",
-    "lang": "ko",
-    "file": "daily_routine/p-006-ko.md"
-  },
-  {
-    "id": "p-008-en",
-    "name": "Founder Coach",
-    "description": "Startup mindset coaching with mental models and Socratic method",
-    "category": "Productivity",
-    "icon": "🚀",
-    "lang": "en",
-    "file": "productivity/p-008-en.md"
-  },
-  {
-    "id": "p-008-ko",
-    "name": "창업 코치",
-    "description": "멘탈 모델과 소크라테스 방식의 스타트업 마인드셋 코칭",
-    "category": "Productivity",
-    "icon": "🚀",
-    "lang": "ko",
-    "file": "productivity/p-008-ko.md"
-  },
-  {
-    "id": "p-009-en",
-    "name": "Competitor Analyst",
-    "description": "Analyze companies' competitive position with structured reports",
-    "category": "Research",
-    "icon": "🔍",
-    "lang": "en",
-    "file": "research/p-009-en.md"
-  },
-  {
-    "id": "p-009-ko",
-    "name": "경쟁사 분석가",
-    "description": "구조화된 리포트로 기업의 경쟁 포지션 분석",
-    "category": "Research",
-    "icon": "🔍",
-    "lang": "ko",
-    "file": "research/p-009-ko.md"
-  },
-  {
-    "id": "p-011-en",
-    "name": "Daily Briefing",
-    "description": "Start your day focused with overdue tasks, priorities, and context review",
-    "category": "Daily Routine",
-    "icon": "☀️",
-    "lang": "en",
-    "file": "daily_routine/p-011-en.md"
-  },
-  {
-    "id": "p-011-ko",
-    "name": "일일 브리핑",
-    "description": "밀린 작업, 우선순위, 맥락 리뷰로 집중된 하루 시작",
-    "category": "Daily Routine",
-    "icon": "☀️",
-    "lang": "ko",
-    "file": "daily_routine/p-011-ko.md"
-  },
-  {
-    "id": "p-012-en",
-    "name": "Daily Review",
-    "description": "End-of-day review capturing progress, insights, and tomorrow's setup",
-    "category": "Daily Routine",
-    "icon": "🌙",
-    "lang": "en",
-    "file": "daily_routine/p-012-en.md"
-  },
-  {
-    "id": "p-012-ko",
-    "name": "일일 리뷰",
-    "description": "진행 상황, 인사이트 정리 및 내일 준비를 위한 일과 마무리 리뷰",
-    "category": "Daily Routine",
-    "icon": "🌙",
-    "lang": "ko",
-    "file": "daily_routine/p-012-ko.md"
-  },
-  {
-    "id": "p-014-en",
-    "name": "Diet Tracker",
-    "description": "Track daily diet, calculate nutrition, and manage calorie budgets",
-    "category": "Daily Routine",
-    "icon": "🥗",
-    "lang": "en",
-    "file": "daily_routine/p-014-en.md"
-  },
-  {
-    "id": "p-014-ko",
-    "name": "식단 관리사",
-    "description": "일일 식단 추적, 영양 계산, 칼로리 예산 관리",
-    "category": "Daily Routine",
-    "icon": "🥗",
-    "lang": "ko",
-    "file": "daily_routine/p-014-ko.md"
-  },
-  {
-    "id": "p-021-en",
-    "name": "Tech News Researcher",
-    "description": "Search the web for latest tech news, summarize articles, and create briefing reports",
-    "category": "Research",
-    "icon": "📰",
-    "lang": "en",
-    "file": "research/p-021-en.md"
-  },
-  {
-    "id": "p-021-ko",
-    "name": "기술 뉴스 리서처",
-    "description": "최신 기술 뉴스 웹 검색, 기사 요약, 브리핑 리포트 작성",
-    "category": "Research",
-    "icon": "📰",
-    "lang": "ko",
-    "file": "research/p-021-ko.md"
-  },
-  {
-    "id": "p-022-en",
-    "name": "Weather Briefing Assistant",
-    "description": "Check weather forecasts, compare cities, and suggest outfit/activity based on conditions",
-    "category": "Daily Routine",
-    "icon": "🌤️",
-    "lang": "en",
-    "file": "daily_routine/p-022-en.md"
-  },
-  {
-    "id": "p-022-ko",
-    "name": "날씨 브리핑 어시스턴트",
-    "description": "날씨 예보 확인, 도시 비교, 날씨에 맞는 옷차림/활동 제안",
-    "category": "Daily Routine",
-    "icon": "🌤️",
-    "lang": "ko",
-    "file": "daily_routine/p-022-ko.md"
-  },
-  {
-    "id": "p-023-en",
-    "name": "Email Manager",
-    "description": "Read, compose, and manage emails with smart filtering and templates",
-    "category": "Productivity",
-    "icon": "📧",
-    "lang": "en",
-    "file": "productivity/p-023-en.md"
-  },
-  {
-    "id": "p-023-ko",
-    "name": "이메일 매니저",
-    "description": "스마트 필터링과 템플릿으로 이메일 읽기, 작성, 관리",
-    "category": "Productivity",
-    "icon": "📧",
-    "lang": "ko",
-    "file": "productivity/p-023-ko.md"
-  },
-  {
-    "id": "p-024-en",
-    "name": "Schedule Planner",
-    "description": "Manage calendar events, set reminders, and organize your day with smart scheduling",
-    "category": "Productivity",
-    "icon": "📅",
-    "lang": "en",
-    "file": "productivity/p-024-en.md"
-  },
-  {
-    "id": "p-024-ko",
-    "name": "일정 플래너",
-    "description": "일정 관리, 리마인더 설정, 스마트 스케줄링으로 하루를 체계적으로 구성",
-    "category": "Productivity",
-    "icon": "📅",
-    "lang": "ko",
-    "file": "productivity/p-024-ko.md"
-  },
-  {
-    "id": "p-025-en",
-    "name": "Python Developer",
-    "description": "Write, execute, and debug Python code on a full Linux VM environment",
-    "category": "DevOps",
-    "icon": "🐍",
-    "lang": "en",
-    "file": "devops/p-025-en.md"
-  },
-  {
-    "id": "p-025-ko",
-    "name": "파이썬 개발자",
-    "description": "완전한 Linux VM 환경에서 Python 코드 작성, 실행, 디버깅",
-    "category": "DevOps",
-    "icon": "🐍",
-    "lang": "ko",
-    "file": "devops/p-025-ko.md"
-  },
-  {
-    "id": "p-026-en",
-    "name": "System Admin",
-    "description": "Manage Linux VM, monitor services, configure system settings, deploy apps",
-    "category": "DevOps",
-    "icon": "🖥️",
-    "lang": "en",
-    "file": "devops/p-026-en.md"
-  },
-  {
-    "id": "p-026-ko",
-    "name": "시스템 관리자",
-    "description": "Linux VM 관리, 서비스 모니터링, 시스템 설정, 앱 배포",
-    "category": "DevOps",
-    "icon": "🖥️",
-    "lang": "ko",
-    "file": "devops/p-026-ko.md"
-  },
-  {
-    "id": "p-027-en",
-    "name": "File Organizer",
-    "description": "Organize, search, transfer, and manage files across VM and host PC",
-    "category": "Productivity",
-    "icon": "📁",
-    "lang": "en",
-    "file": "productivity/p-027-en.md"
-  },
-  {
-    "id": "p-027-ko",
-    "name": "파일 정리사",
-    "description": "VM과 호스트 PC 간 파일 정리, 검색, 전송, 관리",
-    "category": "Productivity",
-    "icon": "📁",
-    "lang": "ko",
-    "file": "productivity/p-027-ko.md"
-  },
-  {
-    "id": "p-028-en",
-    "name": "Git & Code Manager",
-    "description": "Clone repos, manage commits, review code changes, and automate Git workflows",
-    "category": "DevOps",
-    "icon": "🔀",
-    "lang": "en",
-    "file": "devops/p-028-en.md"
-  },
-  {
-    "id": "p-028-ko",
-    "name": "깃 & 코드 매니저",
-    "description": "리포 복제, 커밋 관리, 코드 변경 리뷰, Git 워크플로우 자동화",
-    "category": "DevOps",
-    "icon": "🔀",
-    "lang": "ko",
-    "file": "devops/p-028-ko.md"
-  },
-  {
-    "id": "p-029-en",
-    "name": "Price Tracker",
-    "description": "Search product prices across shopping sites, compare deals, and track price history",
-    "category": "Research",
-    "icon": "🛒",
-    "lang": "en",
-    "file": "research/p-029-en.md"
-  },
-  {
-    "id": "p-029-ko",
-    "name": "가격 추적기",
-    "description": "쇼핑 사이트 가격 검색, 딜 비교, 가격 이력 추적",
-    "category": "Research",
-    "icon": "🛒",
-    "lang": "ko",
-    "file": "research/p-029-ko.md"
-  },
-  {
-    "id": "p-030-en",
-    "name": "Personal Knowledge Manager",
-    "description": "Capture, organize, and retrieve personal knowledge using memory and file systems",
-    "category": "Productivity",
-    "icon": "🧠",
-    "lang": "en",
-    "file": "productivity/p-030-en.md"
-  },
-  {
-    "id": "p-030-ko",
-    "name": "개인 지식 관리자",
-    "description": "메모리와 파일 시스템으로 개인 지식 수집, 정리, 검색",
-    "category": "Productivity",
-    "icon": "🧠",
-    "lang": "ko",
-    "file": "productivity/p-030-ko.md"
-  },
-  {
-    "id": "p-031-en",
-    "name": "Crypto Trading Assistant",
-    "description": "All-in-one Binance & Upbit trading companion — portfolio, analysis, monitoring",
-    "category": "Finance",
-    "icon": "📈",
-    "lang": "en",
-    "file": "finance/p-031-en.md"
-  },
-  {
-    "id": "p-031-ko",
-    "name": "크립토 트레이딩 어시스턴트",
-    "description": "바이낸스 & 업비트 올인원 트레이딩 도우미 — 포트폴리오, 분석, 모니터링",
-    "category": "Finance",
-    "icon": "📈",
-    "lang": "ko",
-    "file": "finance/p-031-ko.md"
-  }
+﻿[
+    {
+        "id":  "p-001-en",
+        "name":  "Academic Writing Coach",
+        "description":  "Expert in scholarly papers, literature reviews, research methodology, and thesis writing",
+        "category":  "Research",
+        "icon":  "📝",
+        "lang":  "en",
+        "file":  "research/p-001-en.md"
+    },
+    {
+        "id":  "p-001-ko",
+        "name":  "학술 글쓰기 코치",
+        "description":  "학술 논문, 문헌 리뷰, 연구 방법론, 논문 작성 전문가",
+        "category":  "Research",
+        "icon":  "📝",
+        "lang":  "ko",
+        "file":  "research/p-001-ko.md"
+    },
+    {
+        "id":  "p-002-en",
+        "name":  "Creative Thought Partner",
+        "description":  "Helps discover breakthrough insights by spotting hidden patterns in your ideas",
+        "category":  "Productivity",
+        "icon":  "💡",
+        "lang":  "en",
+        "file":  "productivity/p-002-en.md"
+    },
+    {
+        "id":  "p-002-ko",
+        "name":  "창의적 사고 파트너",
+        "description":  "아이디어 속 숨겨진 패턴을 발견하여 획기적인 인사이트를 발굴합니다",
+        "category":  "Productivity",
+        "icon":  "💡",
+        "lang":  "ko",
+        "file":  "productivity/p-002-ko.md"
+    },
+    {
+        "id":  "p-003-en",
+        "name":  "Data Analyst",
+        "description":  "SQL queries, spreadsheet analysis, data visualization, and report generation",
+        "category":  "Data",
+        "icon":  "📊",
+        "lang":  "en",
+        "file":  "data/p-003-en.md"
+    },
+    {
+        "id":  "p-003-ko",
+        "name":  "데이터 분석가",
+        "description":  "SQL 쿼리, 스프레드시트 분석, 데이터 시각화, 리포트 생성",
+        "category":  "Data",
+        "icon":  "📊",
+        "lang":  "ko",
+        "file":  "data/p-003-ko.md"
+    },
+    {
+        "id":  "p-004-en",
+        "name":  "Expense Tracker",
+        "description":  "Track expenses via natural language, get spending summaries and budget insights",
+        "category":  "Finance",
+        "icon":  "💰",
+        "lang":  "en",
+        "file":  "finance/p-004-en.md"
+    },
+    {
+        "id":  "p-004-ko",
+        "name":  "가계부 도우미",
+        "description":  "자연어로 지출 추적, 지출 요약 및 예산 인사이트 제공",
+        "category":  "Finance",
+        "icon":  "💰",
+        "lang":  "ko",
+        "file":  "finance/p-004-ko.md"
+    },
+    {
+        "id":  "p-006-en",
+        "name":  "Anxiety Relief Guide",
+        "description":  "Manage anxiety with grounding exercises, breathing techniques, and thought reframing",
+        "category":  "Daily Routine",
+        "icon":  "🧘",
+        "lang":  "en",
+        "file":  "daily_routine/p-006-en.md"
+    },
+    {
+        "id":  "p-006-ko",
+        "name":  "불안 해소 가이드",
+        "description":  "그라운딩 운동, 호흡법, 사고 전환으로 불안 관리",
+        "category":  "Daily Routine",
+        "icon":  "🧘",
+        "lang":  "ko",
+        "file":  "daily_routine/p-006-ko.md"
+    },
+    {
+        "id":  "p-008-en",
+        "name":  "Founder Coach",
+        "description":  "Startup mindset coaching with mental models and Socratic method",
+        "category":  "Productivity",
+        "icon":  "🚀",
+        "lang":  "en",
+        "file":  "productivity/p-008-en.md"
+    },
+    {
+        "id":  "p-008-ko",
+        "name":  "창업 코치",
+        "description":  "멘탈 모델과 소크라테스 방식의 스타트업 마인드셋 코칭",
+        "category":  "Productivity",
+        "icon":  "🚀",
+        "lang":  "ko",
+        "file":  "productivity/p-008-ko.md"
+    },
+    {
+        "id":  "p-009-en",
+        "name":  "Competitor Analyst",
+        "description":  "Analyze companies\u0027 competitive position with structured reports",
+        "category":  "Research",
+        "icon":  "🔍",
+        "lang":  "en",
+        "file":  "research/p-009-en.md"
+    },
+    {
+        "id":  "p-009-ko",
+        "name":  "경쟁사 분석가",
+        "description":  "구조화된 리포트로 기업의 경쟁 포지션 분석",
+        "category":  "Research",
+        "icon":  "🔍",
+        "lang":  "ko",
+        "file":  "research/p-009-ko.md"
+    },
+    {
+        "id":  "p-011-en",
+        "name":  "Daily Briefing",
+        "description":  "Start your day focused with overdue tasks, priorities, and context review",
+        "category":  "Daily Routine",
+        "icon":  "☀️",
+        "lang":  "en",
+        "file":  "daily_routine/p-011-en.md"
+    },
+    {
+        "id":  "p-011-ko",
+        "name":  "일일 브리핑",
+        "description":  "밀린 작업, 우선순위, 맥락 리뷰로 집중된 하루 시작",
+        "category":  "Daily Routine",
+        "icon":  "☀️",
+        "lang":  "ko",
+        "file":  "daily_routine/p-011-ko.md"
+    },
+    {
+        "id":  "p-012-en",
+        "name":  "Daily Review",
+        "description":  "End-of-day review capturing progress, insights, and tomorrow\u0027s setup",
+        "category":  "Daily Routine",
+        "icon":  "🌙",
+        "lang":  "en",
+        "file":  "daily_routine/p-012-en.md"
+    },
+    {
+        "id":  "p-012-ko",
+        "name":  "일일 리뷰",
+        "description":  "진행 상황, 인사이트 정리 및 내일 준비를 위한 일과 마무리 리뷰",
+        "category":  "Daily Routine",
+        "icon":  "🌙",
+        "lang":  "ko",
+        "file":  "daily_routine/p-012-ko.md"
+    },
+    {
+        "id":  "p-014-en",
+        "name":  "Diet Tracker",
+        "description":  "Track daily diet, calculate nutrition, and manage calorie budgets",
+        "category":  "Daily Routine",
+        "icon":  "🥗",
+        "lang":  "en",
+        "file":  "daily_routine/p-014-en.md"
+    },
+    {
+        "id":  "p-014-ko",
+        "name":  "식단 관리사",
+        "description":  "일일 식단 추적, 영양 계산, 칼로리 예산 관리",
+        "category":  "Daily Routine",
+        "icon":  "🥗",
+        "lang":  "ko",
+        "file":  "daily_routine/p-014-ko.md"
+    },
+    {
+        "id":  "p-021-en",
+        "name":  "Tech News Researcher",
+        "description":  "Search the web for latest tech news, summarize articles, and create briefing reports",
+        "category":  "Research",
+        "icon":  "📰",
+        "lang":  "en",
+        "file":  "research/p-021-en.md"
+    },
+    {
+        "id":  "p-021-ko",
+        "name":  "기술 뉴스 리서처",
+        "description":  "최신 기술 뉴스 웹 검색, 기사 요약, 브리핑 리포트 작성",
+        "category":  "Research",
+        "icon":  "📰",
+        "lang":  "ko",
+        "file":  "research/p-021-ko.md"
+    },
+    {
+        "id":  "p-022-en",
+        "name":  "Weather Briefing Assistant",
+        "description":  "Check weather forecasts, compare cities, and suggest outfit/activity based on conditions",
+        "category":  "Daily Routine",
+        "icon":  "🌤️",
+        "lang":  "en",
+        "file":  "daily_routine/p-022-en.md"
+    },
+    {
+        "id":  "p-022-ko",
+        "name":  "날씨 브리핑 어시스턴트",
+        "description":  "날씨 예보 확인, 도시 비교, 날씨에 맞는 옷차림/활동 제안",
+        "category":  "Daily Routine",
+        "icon":  "🌤️",
+        "lang":  "ko",
+        "file":  "daily_routine/p-022-ko.md"
+    },
+    {
+        "id":  "p-023-en",
+        "name":  "Email Manager",
+        "description":  "Read, compose, and manage emails with smart filtering and templates",
+        "category":  "Productivity",
+        "icon":  "📧",
+        "lang":  "en",
+        "file":  "productivity/p-023-en.md"
+    },
+    {
+        "id":  "p-023-ko",
+        "name":  "이메일 매니저",
+        "description":  "스마트 필터링과 템플릿으로 이메일 읽기, 작성, 관리",
+        "category":  "Productivity",
+        "icon":  "📧",
+        "lang":  "ko",
+        "file":  "productivity/p-023-ko.md"
+    },
+    {
+        "id":  "p-024-en",
+        "name":  "Schedule Planner",
+        "description":  "Manage calendar events, set reminders, and organize your day with smart scheduling",
+        "category":  "Productivity",
+        "icon":  "📅",
+        "lang":  "en",
+        "file":  "productivity/p-024-en.md"
+    },
+    {
+        "id":  "p-024-ko",
+        "name":  "일정 플래너",
+        "description":  "일정 관리, 리마인더 설정, 스마트 스케줄링으로 하루를 체계적으로 구성",
+        "category":  "Productivity",
+        "icon":  "📅",
+        "lang":  "ko",
+        "file":  "productivity/p-024-ko.md"
+    },
+    {
+        "id":  "p-025-en",
+        "name":  "Python Developer",
+        "description":  "Write, execute, and debug Python code on a full Linux VM environment",
+        "category":  "DevOps",
+        "icon":  "🐍",
+        "lang":  "en",
+        "file":  "devops/p-025-en.md"
+    },
+    {
+        "id":  "p-025-ko",
+        "name":  "파이썬 개발자",
+        "description":  "완전한 Linux VM 환경에서 Python 코드 작성, 실행, 디버깅",
+        "category":  "DevOps",
+        "icon":  "🐍",
+        "lang":  "ko",
+        "file":  "devops/p-025-ko.md"
+    },
+    {
+        "id":  "p-026-en",
+        "name":  "System Admin",
+        "description":  "Manage Linux VM, monitor services, configure system settings, deploy apps",
+        "category":  "DevOps",
+        "icon":  "🖥️",
+        "lang":  "en",
+        "file":  "devops/p-026-en.md"
+    },
+    {
+        "id":  "p-026-ko",
+        "name":  "시스템 관리자",
+        "description":  "Linux VM 관리, 서비스 모니터링, 시스템 설정, 앱 배포",
+        "category":  "DevOps",
+        "icon":  "🖥️",
+        "lang":  "ko",
+        "file":  "devops/p-026-ko.md"
+    },
+    {
+        "id":  "p-027-en",
+        "name":  "File Organizer",
+        "description":  "Organize, search, transfer, and manage files across VM and host PC",
+        "category":  "Productivity",
+        "icon":  "📁",
+        "lang":  "en",
+        "file":  "productivity/p-027-en.md"
+    },
+    {
+        "id":  "p-027-ko",
+        "name":  "파일 정리사",
+        "description":  "VM과 호스트 PC 간 파일 정리, 검색, 전송, 관리",
+        "category":  "Productivity",
+        "icon":  "📁",
+        "lang":  "ko",
+        "file":  "productivity/p-027-ko.md"
+    },
+    {
+        "id":  "p-028-en",
+        "name":  "Git \u0026 Code Manager",
+        "description":  "Clone repos, manage commits, review code changes, and automate Git workflows",
+        "category":  "DevOps",
+        "icon":  "🔀",
+        "lang":  "en",
+        "file":  "devops/p-028-en.md"
+    },
+    {
+        "id":  "p-028-ko",
+        "name":  "깃 \u0026 코드 매니저",
+        "description":  "리포 복제, 커밋 관리, 코드 변경 리뷰, Git 워크플로우 자동화",
+        "category":  "DevOps",
+        "icon":  "🔀",
+        "lang":  "ko",
+        "file":  "devops/p-028-ko.md"
+    },
+    {
+        "id":  "p-029-en",
+        "name":  "Price Tracker",
+        "description":  "Search product prices across shopping sites, compare deals, and track price history",
+        "category":  "Research",
+        "icon":  "🛒",
+        "lang":  "en",
+        "file":  "research/p-029-en.md"
+    },
+    {
+        "id":  "p-029-ko",
+        "name":  "가격 추적기",
+        "description":  "쇼핑 사이트 가격 검색, 딜 비교, 가격 이력 추적",
+        "category":  "Research",
+        "icon":  "🛒",
+        "lang":  "ko",
+        "file":  "research/p-029-ko.md"
+    },
+    {
+        "id":  "p-030-en",
+        "name":  "Personal Knowledge Manager",
+        "description":  "Capture, organize, and retrieve personal knowledge using memory and file systems",
+        "category":  "Productivity",
+        "icon":  "🧠",
+        "lang":  "en",
+        "file":  "productivity/p-030-en.md"
+    },
+    {
+        "id":  "p-030-ko",
+        "name":  "개인 지식 관리자",
+        "description":  "메모리와 파일 시스템으로 개인 지식 수집, 정리, 검색",
+        "category":  "Productivity",
+        "icon":  "🧠",
+        "lang":  "ko",
+        "file":  "productivity/p-030-ko.md"
+    },
+    {
+        "id":  "p-031-en",
+        "name":  "Crypto Trading Assistant",
+        "description":  "All-in-one Binance \u0026 Upbit trading companion — portfolio, analysis, monitoring",
+        "category":  "Crypto",
+        "icon":  "📈",
+        "lang":  "en",
+        "file":  "crypto/p-031-en.md"
+    },
+    {
+        "id":  "p-031-ko",
+        "name":  "크립토 트레이딩 어시스턴트",
+        "description":  "바이낸스 \u0026 업비트 올인원 트레이딩 도우미 — 포트폴리오, 분석, 모니터링",
+        "category":  "Crypto",
+        "icon":  "📈",
+        "lang":  "ko",
+        "file":  "crypto/p-031-ko.md"
+    }
 ]

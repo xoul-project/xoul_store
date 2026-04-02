@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "wf-011",
   "name": {
     "ko": "포트폴리오 데일리 리포트",
@@ -8,7 +8,7 @@
     "ko": "주식, 암호화폐, 환율을 한눈에 확인하고 종합 리포트로 메신저 전송",
     "en": "Check stocks, crypto & exchange rates, send combined report via messenger"
   },
-  "category": "Finance",
+  "category": "Crypto",
   "icon": "💼",
   "lang": "multi",
   "steps": [

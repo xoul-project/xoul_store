@@ -1,8 +1,8 @@
-{
+﻿{
   "id": "wf-045",
   "name": {"ko": "거래소 종합 대시보드", "en": "Exchange Dashboard"},
   "description": {"ko": "바이낸스+업비트 시세, 김프, 공포/탐욕, 환율을 한눈에 정리", "en": "All-in-one: Binance + Upbit prices, kimchi premium, Fear & Greed, FX rates"},
-  "category": "Finance",
+  "category": "Crypto",
   "icon": "🖥️",
   "lang": "multi",
   "steps": [
@@ -16,3 +16,4 @@
   "hint_tools": "run_stored_code,send_notification",
   "schedule": ""
 }
+

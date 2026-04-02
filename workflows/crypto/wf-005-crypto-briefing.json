@@ -1,4 +1,4 @@
-{
+﻿{
   "id": "wf-005",
   "name": {
     "ko": "암호화폐 시황 브리핑",
@@ -8,7 +8,7 @@
     "ko": "주요 코인 시세와 공포/탐욕 지수를 확인하고 메신저로 전송합니다",
     "en": "Check major coin prices and Fear & Greed index, then send via messenger"
   },
-  "category": "Finance",
+  "category": "Crypto",
   "icon": "📈",
   "lang": "multi",
   "steps": [
@@ -38,3 +38,4 @@
   "hint_tools": "run_stored_code,send_notification",
   "schedule": ""
 }
+

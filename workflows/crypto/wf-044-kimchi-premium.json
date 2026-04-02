@@ -1,8 +1,8 @@
-{
+﻿{
   "id": "wf-044",
   "name": {"ko": "김프 알림", "en": "Kimchi Premium Alert"},
   "description": {"ko": "김치 프리미엄을 계산하고 차익거래 기회를 분석", "en": "Calculate kimchi premium and analyze arbitrage opportunities"},
-  "category": "Finance",
+  "category": "Crypto",
   "icon": "🥟",
   "lang": "multi",
   "steps": [
@@ -13,3 +13,4 @@
   "hint_tools": "run_stored_code,send_notification",
   "schedule": ""
 }
+

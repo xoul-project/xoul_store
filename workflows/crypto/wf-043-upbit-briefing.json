@@ -1,8 +1,8 @@
-{
+﻿{
   "id": "wf-043",
   "name": {"ko": "업비트 시황 브리핑", "en": "Upbit Market Briefing"},
   "description": {"ko": "업비트 주요 시세, 등락 TOP, 공포/탐욕 지수를 종합한 시황 브리핑", "en": "Upbit prices, market movers, and Fear & Greed index combined briefing"},
-  "category": "Finance",
+  "category": "Crypto",
   "icon": "🇰🇷",
   "lang": "multi",
   "steps": [
@@ -14,3 +14,4 @@
   "hint_tools": "run_stored_code,send_notification",
   "schedule": ""
 }
+

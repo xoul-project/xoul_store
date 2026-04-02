@@ -1,8 +1,8 @@
-{
+﻿{
   "id": "wf-042",
   "name": {"ko": "선물 포지션 모니터링", "en": "Futures Position Monitor"},
   "description": {"ko": "바이낸스 선물 포지션과 펀딩비를 확인하고 위험도 분석", "en": "Monitor Binance futures positions with funding rates and risk analysis"},
-  "category": "Finance",
+  "category": "Crypto",
   "icon": "⚡",
   "lang": "multi",
   "steps": [
@@ -14,3 +14,4 @@
   "hint_tools": "run_stored_code,recall,send_notification",
   "schedule": ""
 }
+
